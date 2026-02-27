@@ -4,8 +4,9 @@
         "apps/*",
         "packages/*"
     ],
-    "private": true,
+    "private":true,
     "version": "0.0.0",
+    "packageManager": "npm@11.6.2",
     "type": "module",
     "author": {
         "name": "Johan",
@@ -14,15 +15,10 @@
     "scripts": {
         "dev": "turbo run dev",
         "build": "turbo run build",
-        "lint": "turbo run lint",
+        "lint": "turbo run lint", 
         "test": "turbo run test"
     },
-    "dependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
-    },
     "devDependencies": {
-        "turbo": "^2.8.11",
-        "typescript": "^5.0.0"
-    }
+        "turbo": "2.8.11"
+  }
 }
