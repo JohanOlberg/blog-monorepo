@@ -1,1 +1,1 @@
-export type { post } from "./post";
+export type { Post } from "./post";

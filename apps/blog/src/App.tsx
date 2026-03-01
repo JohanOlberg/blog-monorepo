@@ -1,10 +1,11 @@
-import type {post} from "@blog/domain"
+import type {Post} from "@blog/domain"
 
-export const newPost: post = {
-                        postStatus:"pendente", 
-                        post:{
-                          description:"Primeiro Post do Blog", 
-                          title:"Primeiro", id:"1",
-                          text:"esse e o primeiro texto do blog"
+export const newPost: Post = {
+                        content:{image:{src:"linkImage",title:"Uma imagem de teste"}, text:"Um texto de teste"}, 
+                        description:"Primeiro Post do Blog", 
+                        title:"Primeiro", id:"1",
+                        status:"pendente",
+                        date:new Date(),
+                        author:"Johan",
                         }
-                      }
+                      
