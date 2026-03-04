@@ -1,0 +1,80 @@
+.post-list {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.post-image img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caso queira imagem default via CSS */
+.post-image img:empty {
+  background: #f2f2f2;
+}
+
+.post-content {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.post-title {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #222;
+}
+
+.post-description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: auto;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+  .post-card {
+    flex-direction: row;
+  }
+
+  .post-image {
+    flex: 0 0 280px;
+  }
+
+  .post-image img {
+    height: 100%;
+  }
+
+  .post-content {
+    flex: 1;
+  }
+}

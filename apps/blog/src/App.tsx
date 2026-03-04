@@ -1,11 +1,15 @@
-import type {Post} from "@blog/domain"
+import React from "react";
+import { PostListPage } from './features/post/view/listPosts'
+import './App.css'
 
-export const newPost: Post = {
-                        content:{image:{src:"linkImage",title:"Uma imagem de teste"}, text:"Um texto de teste"}, 
-                        description:"Primeiro Post do Blog", 
-                        title:"Primeiro", id:"1",
-                        status:"pendente",
-                        date:new Date(),
-                        author:"Johan",
-                        }
-                      
+function App() {
+  //const [count, setCount] = useState(0)
+
+return (
+  <div>
+<PostListPage/>
+    </div>
+  )
+}
+
+export default App
