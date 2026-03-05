@@ -3,21 +3,21 @@ import {type Post } from "../../../domain/src/post";
 
 export function getAllPosts(){
 if(!posts){
-    throw new Error("Usuário não encontrado");
+    throw new Error("Post not found");
 }
 return (posts)
 }
 
-export function getPostByStatus(post:"draft"|"published"|"archived"){
+export function getPostByStatus(status:"draft"|"published"|"archived"){
     if(!posts){
-        throw new Error("Usuário não encontrado");
+        throw new Error("Post not found");
     }
-    return (posts.filter(posts =>{return posts.status === post}))
+    return (posts.filter(posts =>{return posts.status === status}))
 }
 
-export function  getPostById(post:Post){
+export function  getPostById(id:string){
     if(!posts){
-        throw new Error("Usuário não encontrado");
+        throw new Error("Post not found");
     }
-    return (posts.filter(posts =>{return posts.id === post.id}))
+    return (posts.find(posts =>{return posts.id === id}))
 }

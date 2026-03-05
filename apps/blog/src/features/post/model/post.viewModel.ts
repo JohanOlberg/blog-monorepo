@@ -4,4 +4,5 @@ export type PostViewModel = {
   description: string;
   author: string;
   formattedDate: string;
+  likes?:number;
 };

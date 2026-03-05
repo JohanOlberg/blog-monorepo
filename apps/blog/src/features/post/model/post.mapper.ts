@@ -7,6 +7,7 @@ export function toPostViewModel(post: Post): PostViewModel {
     title: post.title,
     description: post.description,
     author: post.author,
-    formattedDate: post.date
+    formattedDate: post.date,
+    likes:post.likes,
   };
 }

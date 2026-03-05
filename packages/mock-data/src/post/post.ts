@@ -1,4 +1,4 @@
-import type{ Post } from "../../../domain/src/post";
+import type{ Post } from "@blog/domain";
 
 export const posts: Post[] = [
   {

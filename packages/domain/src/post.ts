@@ -16,7 +16,8 @@ export type Post ={
         status:Status,
         description:string,
         content:Content,
-        author:string // acho que pode ser interessante criar um tipo autor por enquanto so string
+        author:string,
+        likes?:number // acho que pode ser interessante criar um tipo autor por enquanto so string
         date:string
 
 }

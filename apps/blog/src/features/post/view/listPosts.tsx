@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPostByStatus } from "../model/getPostByStatus";
+import { getPostByStatus } from "../model/post.facade";
 import { toPostViewModel } from "../model/post.mapper";
 import { type PostViewModel } from "../model/post.viewModel";
 import  './listPost.css'
