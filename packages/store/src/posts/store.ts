@@ -1,22 +1,12 @@
 import { create } from 'zustand'
-import {type Post} from '@blog/domain'
+import { type PostsStore} from './types/postTypes'
+import { initialPostsState } from './state/initialPostState'
+import { createPostsActions } from './actions/createPostsActions'
 
-type PostsState = {
-    posts:Post[],
-     hydrate:boolean,
-    hydratePosts:(newPosts:Post[])=>void,
-    likePost:(postId:string)=>void
 
-}
 
-export const usePostsStore = create<PostsState>((set) => ({
-  posts:[],
-   hydrate:false,
-  hydratePosts: (newPosts:Post[]) => set({posts: newPosts,  hydrate: true }),
-likePost: (postId: string) =>
-    set((state) => ({
-      posts: state.posts.map(post =>
-        post.id === postId ? { ...post, likes: (post.likes || 0) + 1 } : post
-      ),
-    })),  
-}));
+
+export const usePostsStore = create<PostsStore>()((...args) => ({
+  ...initialPostsState,
+  ...createPostsActions(...args)
+}))

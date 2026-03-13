@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect } from 'react'
-import {usePostsStore} from '@blog/store'
+import {usePostsStore, type PostsStore} from '@blog/store'
 import {getAllPosts} from '@blog/mock-data'
 
+
 export function useHydratePosts(){
-    const hydrated = usePostsStore((state)=> state.hydrate)
-    const hydratePosts = usePostsStore((state)=> state.hydratePosts)
+    const hydrated = usePostsStore((state: PostsStore)=> state.isHydrated)
+    const hydratePosts = usePostsStore((state: PostsStore)=> state.hydratePosts)
 
     useEffect(()=>{
         if (hydrated) return

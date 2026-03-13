@@ -1,7 +1,10 @@
 
-import {AppBootstrap} from './bootstrap/AppBootstrap'
+import { AppBootstrap } from '../bootstrap/AppBootstrap'
+
 import './App.css'
-import { PostListPage } from '../../features/post/view/PostListPage'
+import { AppRouter } from './router/AppRouter'
+
+
 
 
 function App() {
@@ -10,7 +13,7 @@ function App() {
 return (
   <div>
     <AppBootstrap/>
-<PostListPage></PostListPage>
+    <AppRouter/>
     </div>
   )
 }
