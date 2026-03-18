@@ -1,5 +1,5 @@
 
-import { AppBootstrap } from '../bootstrap/AppBootstrap'
+import { AppBootstrap } from '@blog/store'
 
 import './App.css'
 import { AppRouter } from './router/AppRouter'
