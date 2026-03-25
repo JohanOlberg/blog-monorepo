@@ -9,7 +9,7 @@ type Image = {
 
 type Content = {
         
-    image?:Image,
+    image?:string,
     text:string
 }
 
@@ -17,25 +17,37 @@ type Content = {
 
 interface  PostProps {
     title:string
-    id:string
+    id?:number
     status:Status
     description:string
-    categoryId:number | null 
+    slug:string
+    categoryId:number  
     content:Content 
-    authorId:number | null 
+    authorId:number  
     createdAt: Date
     updatedAt: Date
     publishedAt: Date | null
     archivedAt: Date | null
 }
 
+interface  PostPropsCreate {
+    title:string
+    status:Status
+    description:string
+    slug:string
+    categoryId:number  
+    content?:Content 
+    authorId:number 
+}
+
 
 interface  PostPropsUpdate {
     title:string
     status:Status
+    slug:string
     description:string
     categoryId:number
-    content:Content 
+    content?:Content 
     authorId:number
     updatedAt: Date
 }
@@ -45,12 +57,10 @@ export class Post{
 constructor(private readonly props:PostProps){}
 
 getProps(){return this.props}
-/*
-getPropsUpdate(propsUpdate:Omit<PostProps, "status"|"id"|"publishedAt"|"archivedAt"|"createdAt">)
-{ return propsUpdate}*/
+
 
 static create(
-    post:Omit<PostProps, "status"|"updatedAt"|"publishedAt"|"archivedAt"|"categorie"|"content"|"createdAt">,now:Date
+    post:Omit<PostPropsCreate, "status">,now:Date
     ){
         if(!post.title || post.title.trim() ===""){
             throw new Error("Required Title");
@@ -61,15 +71,17 @@ static create(
          if(!post.description || post.description.trim() ===""){
             throw new Error("Required Description");
         }
+   
+  
         return new Post({
             ...post,
             createdAt : now,
             status : 'DRAFT',
+            slug : post.slug,
             updatedAt : now,
             publishedAt : null,
             archivedAt : null,
-            categoryId: null,
-            content: { text: "" }
+            content: post.content ?? { text:"", image: "" }
         })
     }
 
@@ -112,8 +124,23 @@ static create(
             if(!post.categoryId){
                 throw new Error("Required category ");
             }
-            if(!post.content.text || post.content.text.trim() === ""){
+           /* if(!post.content.text || post.content.text.trim() === ""){
                 throw new Error("Required Content ");
+            }*/
+            if(!post.authorId ){
+                throw new Error("Required author ");
+            }
+            if(!post.description || post.description.trim() === ""){
+                throw new Error("Required description ");
+            }
+            if(!post.title || post.title.trim() === ""){
+                throw new Error("Required title ");
+            }
+            
+        }
+        if(this.props.status==='DRAFT'){
+            if(!post.categoryId){
+                throw new Error("Required category ");
             }
             if(!post.authorId ){
                 throw new Error("Required author ");
@@ -128,10 +155,11 @@ static create(
         }
         this.props.updatedAt = now
         this.props.categoryId = post.categoryId
-        this.props.content = post.content
+        this.props.content = post.content ?? this.props.content
         this.props.authorId = post.authorId
         this.props.description = post.description
         this.props.title = post.title
+        this.props.slug = post.slug
     }
 
     static restore(post:PostProps){

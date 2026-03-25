@@ -1,45 +1,62 @@
 import { Prisma } from "@prisma/client";
-
+import { Post } from "../../../../domain/entities/post";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
-import { Post } from "../../../../domain/entities/post";
+type prismaContent = {
+  imgage?: string 
+  text: string
+}
 
 
-
-
-export function toPostPrisma(post: Post) {
+export function toPostCreatePrisma(post: Post) {
+  
     const props = post.getProps()
   return {
-    id: Number(props.id),
     title: props.title,
     description: props.description,
+    slug: props.slug,
     authorId: props.authorId,
-    createdAt: props.createdAt,
-    updatedAt: props.updatedAt,
     status:props.status,
     categoryId:props.categoryId,
     content:props.content,
-    publishedAt: props.publishedAt,
+    publishedAt: props.publishedAt, 
+  }
+}
+
+export function toPostUpdatePrisma(post: Post) {
+    const props = post.getProps()
+  return {
+    title: props.title,
+    description: props.description,
+    slug: props.slug,
+    authorId: props.authorId,
+    status:props.status,
+    categoryId:props.categoryId,
+    content:props.content,    
     archivedAt: props.archivedAt,    
   }
 }
+
+
   
 export function toPostDomain(prisma:PrismaPost ):Post {
+  const content = prisma.content as prismaContent
     
   return Post.restore({
-    id: String(prisma.id),
+    id: prisma.id,
     title: prisma.title,
     description: prisma.description,
+    slug: prisma.slug,
     authorId: prisma.authorId,
     createdAt: prisma.createdAt,
     updatedAt: prisma.updatedAt,
     status: prisma.status,
-    categoryId: null,
+    categoryId: prisma.categoryId,
     content: {
-      image: undefined,
-      text: ""
+      image: content.imgage ,
+      text: content.text
     },
-    publishedAt: null,
-    archivedAt: null
+    publishedAt: prisma.publishedAt,
+    archivedAt: prisma.archivedAt
   })
 }
