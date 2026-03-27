@@ -1,19 +1,11 @@
+import type { Content } from "../value-objects/post-content.js"
+
 type Status = ("DRAFT"|"PUBLISHED"|"ARCHIVED")
 
 type Image = {
     title:string, 
     src:string, 
 }
-
-
-
-type Content = {
-        
-    image?:string,
-    text:string
-}
-
-
 
 interface  PostProps {
     title:string
@@ -36,7 +28,7 @@ interface  PostPropsCreate {
     description:string
     slug:string
     categoryId:number  
-    content?:Content 
+    content?: Content | undefined
     authorId:number 
 }
 
@@ -81,7 +73,7 @@ static create(
             updatedAt : now,
             publishedAt : null,
             archivedAt : null,
-            content: post.content ?? { text:"", image: "" }
+            content: post.content ?? {}
         })
     }
 

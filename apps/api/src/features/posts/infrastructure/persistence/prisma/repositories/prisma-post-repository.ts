@@ -1,7 +1,7 @@
-import { Post } from "../../../../domain/entities/post";
-import { IPostRepository } from "../../../../domain/repositories/IPostRepository";
-import { toPostCreatePrisma, toPostDomain, toPostUpdatePrisma } from "../mappers/prisma-post-mapper";
-import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client";
+import { Post } from "../../../../domain/entities/post.js";
+import { type IPostRepository } from "../../../../domain/repositories/IPostRepository.js";
+import { toPostCreatePrisma, toPostDomain, toPostUpdatePrisma } from "../mappers/prisma-post-mapper.js";
+import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
 
 export class PrismaPostRepository implements IPostRepository{
     async findAll(): Promise<Post[]> {
@@ -15,6 +15,9 @@ export class PrismaPostRepository implements IPostRepository{
 
     async update(post:Post): Promise<void>{
     const props = post.getProps()
+    if(props.id === undefined){
+        throw new Error("Post Not Found!")
+    }
        const exist = await prisma.post.findUnique({
             where:{
                 id: props.id
@@ -32,6 +35,9 @@ export class PrismaPostRepository implements IPostRepository{
     }
 
     async findById(id: number): Promise<Post | null> {
+        if(id === undefined){
+            throw new Error("Post Not Found!")
+        }
         const post = await prisma.post.findUnique({
             where:{
                 id: id

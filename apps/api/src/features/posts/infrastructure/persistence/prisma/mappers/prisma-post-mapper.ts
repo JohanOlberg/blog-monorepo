@@ -1,11 +1,9 @@
 import { Prisma } from "@prisma/client";
-import { Post } from "../../../../domain/entities/post";
+import { Post } from "../../../../domain/entities/post.js";
+import { type Content } from "../../../../domain/value-objects/post-content.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
-type prismaContent = {
-  imgage?: string 
-  text: string
-}
+
 
 
 export function toPostCreatePrisma(post: Post) {
@@ -40,7 +38,7 @@ export function toPostUpdatePrisma(post: Post) {
 
   
 export function toPostDomain(prisma:PrismaPost ):Post {
-  const content = prisma.content as prismaContent
+  const content = prisma.content as Content
     
   return Post.restore({
     id: prisma.id,
@@ -53,7 +51,7 @@ export function toPostDomain(prisma:PrismaPost ):Post {
     status: prisma.status,
     categoryId: prisma.categoryId,
     content: {
-      image: content.imgage ,
+      image: content.image ,
       text: content.text
     },
     publishedAt: prisma.publishedAt,

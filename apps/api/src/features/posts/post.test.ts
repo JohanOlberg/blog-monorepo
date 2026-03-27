@@ -1,8 +1,8 @@
-import { toPostCreatePrisma, toPostUpdatePrisma, toPostDomain } from "./infrastructure/persistence/prisma/mappers/prisma-post-mapper";
-import { PrismaPostRepository } from "./infrastructure/persistence/prisma/repositories/prisma-post-repository";
-import { CreatePostUseCase } from "./application/use-cases/create-post-use-case";
-import { UpdatePostUseCase } from "./application/use-cases/edit-post-use-case";
-import { type UpdatePostInput } from "./application/dto/post.input";
+import { toPostCreatePrisma, toPostUpdatePrisma, toPostDomain } from "./infrastructure/persistence/prisma/mappers/prisma-post-mapper.js";
+import { PrismaPostRepository } from "./infrastructure/persistence/prisma/repositories/prisma-post-repository.js";
+import { CreatePostUseCase } from "./application/use-cases/create-post-use-case.js";
+import { UpdatePostUseCase } from "./application/use-cases/edit-post-use-case.js";
+import { type UpdatePostInput } from "./application/dto/post.input.js";
 
 const now = new Date()
 
