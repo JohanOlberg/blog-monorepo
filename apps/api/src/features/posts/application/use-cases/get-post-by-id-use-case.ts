@@ -1,10 +1,10 @@
-import { type IPostRepository } from "../../domain/repositories/IPostRepository";
+import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
 
 
 export class GetPostByIdUseCase{
     constructor(private iPostRepository:IPostRepository){}
 
-    async execute(id:string){
+    async execute(id:number){
         return this.iPostRepository.findById(id)       
     }
 }

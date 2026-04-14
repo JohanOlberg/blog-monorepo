@@ -1,11 +1,12 @@
 import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
+import { toPostListOutput } from "../mappers/post-output-mapper.js"
 
 
 export class PostsListUseCase{
-    constructor(private iPostRepository:IPostRepository){}
+    constructor(private postRepository:IPostRepository){}
 
     async execute(){
-        return this.iPostRepository.findAll()
-       
+        const result = await this.postRepository.findAll()
+        return result.map(toPostListOutput)       
     }
 }

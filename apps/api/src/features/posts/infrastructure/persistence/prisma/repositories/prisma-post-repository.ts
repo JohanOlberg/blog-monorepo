@@ -1,16 +1,17 @@
-import { Post } from "../../../../domain/entities/post.js";
+import { Post, NewPost } from "../../../../domain/entities/post.js";
 import { type IPostRepository } from "../../../../domain/repositories/IPostRepository.js";
-import { toPostCreatePrisma, toPostDomain, toPostUpdatePrisma } from "../mappers/prisma-post-mapper.js";
+import { toPrismaCreate, toDomain, toPrismaUpdate } from "../mappers/prisma-post-mapper.js";
 import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
 
 export class PrismaPostRepository implements IPostRepository{
     async findAll(): Promise<Post[]> {
         const posts = await prisma.post.findMany()
-        return posts.map(toPostDomain)
+        return posts.map(toDomain)
     }
-    async save(post: Post): Promise<void> {
+    async save(newPost: NewPost): Promise<Post> {
         
-        await prisma.post.create({data:toPostCreatePrisma(post)})
+        const post = await prisma.post.create({data:toPrismaCreate(newPost)})
+        return toDomain(post)
     }
 
     async update(post:Post): Promise<void>{
@@ -26,12 +27,14 @@ export class PrismaPostRepository implements IPostRepository{
                 id:true
             }
         })
-         if(exist){ 
+         if(!exist){ 
+            throw new Error("Post Not Found!")
+         }
             await prisma.post.update({
                 where:{id: props.id},
-                data:toPostUpdatePrisma(post)
+                data:toPrismaUpdate(post)
             })
-        }
+        
     }
 
     async findById(id: number): Promise<Post | null> {
@@ -46,7 +49,7 @@ export class PrismaPostRepository implements IPostRepository{
         })
         if(!post){return null}
 
-        return toPostDomain(post)
+        return toDomain(post)
     }
 
 }

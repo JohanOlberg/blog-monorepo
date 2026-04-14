@@ -1,6 +1,6 @@
 
 import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
-import {type UpdatePostInput} from '../dto/post.input.js'
+import {type UpdatePostInput} from '../../contracts/input/update-post.schema.js'
 
 
 export class UpdatePostUseCase{

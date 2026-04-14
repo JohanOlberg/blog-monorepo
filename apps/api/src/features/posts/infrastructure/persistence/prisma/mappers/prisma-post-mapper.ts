@@ -1,12 +1,12 @@
 import { Prisma } from "@prisma/client";
-import { Post } from "../../../../domain/entities/post.js";
-import { type Content } from "../../../../domain/value-objects/post-content.js";
+import { Post, NewPost } from "../../../../domain/entities/post.js";
+import { id } from "zod/locales";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
 
 
 
-export function toPostCreatePrisma(post: Post) {
+export function toPrismaCreate(post: NewPost) {
   
     const props = post.getProps()
   return {
@@ -17,11 +17,10 @@ export function toPostCreatePrisma(post: Post) {
     status:props.status,
     categoryId:props.categoryId,
     content:props.content,
-    publishedAt: props.publishedAt, 
   }
 }
 
-export function toPostUpdatePrisma(post: Post) {
+export function toPrismaUpdate(post: Post) {
     const props = post.getProps()
   return {
     title: props.title,
@@ -31,15 +30,17 @@ export function toPostUpdatePrisma(post: Post) {
     status:props.status,
     categoryId:props.categoryId,
     content:props.content,    
-    archivedAt: props.archivedAt,    
+    archivedAt: props.archivedAt,
+    publishedAt: props.publishedAt,    
+    updatedAt: props.updatedAt,
+    createdAt: props.createdAt,   
   }
 }
 
 
   
-export function toPostDomain(prisma:PrismaPost ):Post {
-  const content = prisma.content as Content
-    
+export function toDomain(prisma:PrismaPost ):Post {
+      
   return Post.restore({
     id: prisma.id,
     title: prisma.title,
@@ -50,10 +51,7 @@ export function toPostDomain(prisma:PrismaPost ):Post {
     updatedAt: prisma.updatedAt,
     status: prisma.status,
     categoryId: prisma.categoryId,
-    content: {
-      image: content.image ,
-      text: content.text
-    },
+    content: prisma.content,
     publishedAt: prisma.publishedAt,
     archivedAt: prisma.archivedAt
   })

@@ -5,12 +5,12 @@ import { type PostsListInput } from "../../../application/dto/post.input.js";
 
 export class ListPostController{
     constructor(private listPostUseCase: PostsListUseCase){}
-    async handle(request:FastifyRequest<{Body:PostsListInput}>, reply:FastifyReply){
+    async handle(request:FastifyRequest, reply:FastifyReply){
 
         
-        await this.listPostUseCase.execute();
+        const posts = await this.listPostUseCase.execute();
 
-        return reply.status(201).send()
+        return reply.status(200).send(posts)
 
     }
 }

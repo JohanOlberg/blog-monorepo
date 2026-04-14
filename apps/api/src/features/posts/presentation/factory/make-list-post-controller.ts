@@ -4,8 +4,8 @@ import { PrismaPostRepository } from "../../infrastructure/persistence/prisma/re
 
 export function makeListPostController() {
   const postRepository = new PrismaPostRepository();
-  const createPostUseCase = new PostsListUseCase(postRepository);
-  const listPostController = new ListPostController(createPostUseCase);
+  const listPostUseCase = new PostsListUseCase(postRepository);
+  const listPostController = new ListPostController(listPostUseCase);
 
   return listPostController;
 }
