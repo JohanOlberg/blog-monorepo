@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { PostsListUseCase } from "../../../application/use-cases/list-posts-use-case.js";
-import { type PostsListInput } from "../../../application/dto/post.input.js";
+import { PostsListUseCase } from "@posts/application/use-cases/list-posts-use-case.js";
+
 
 
 export class ListPostController{

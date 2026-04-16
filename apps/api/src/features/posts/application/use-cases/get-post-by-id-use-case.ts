@@ -1,4 +1,4 @@
-import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
+import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
 
 
 export class GetPostByIdUseCase{

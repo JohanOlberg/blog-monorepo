@@ -1,13 +1,11 @@
 import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
 
-export class ArchivePostUseCase {
+export class DraftPostUseCase {
     constructor(private iPostRepository:IPostRepository){}
-
     async execute(id:number){
         const now = new Date()
         const postFound = await this.iPostRepository.findById(id)
-        console.log(postFound)
-        if(postFound){
+       if(postFound){
             postFound.archive(now)
             await this.iPostRepository.update(postFound)
             console.log(postFound)
@@ -15,5 +13,4 @@ export class ArchivePostUseCase {
         }
          throw new Error("Post not found")
     }     
-    
 }

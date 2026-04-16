@@ -1,6 +1,6 @@
-import { NewPost } from "../../domain/entities/post.js";
-import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
-import {type CreatePostInput} from "../../contracts/input/create-post.schema.js"
+import { NewPost } from "@posts/domain/entities/post.js";
+import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
+import {type CreatePostInput} from "@posts/contracts/input/create-post.schema.js"
 
 
 export class CreatePostUseCase{

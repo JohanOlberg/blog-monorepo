@@ -1,7 +1,7 @@
 //import { toPrismaCreate, toPrismaUpdate, toDomain } from "./infrastructure/persistence/prisma/mappers/prisma-post-mapper.js";
 import { PrismaPostRepository } from "./infrastructure/persistence/prisma/repositories/prisma-post-repository.js";
 import { CreatePostUseCase } from "./application/use-cases/create-post-use-case.js";
-import { UpdatePostUseCase } from "./application/use-cases/edit-post-use-case.js";
+import { UpdatePostUseCase } from "./application/use-cases/update-post-use-case.js";
 import { type UpdatePostInput } from "./contracts/input/update-post.schema.js";
 import { type CreatePostInput } from "./contracts/input/create-post.schema.js";
 

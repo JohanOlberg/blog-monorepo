@@ -1,13 +1,14 @@
-import { Post, NewPost } from "../../../../domain/entities/post.js";
-import { type IPostRepository } from "../../../../domain/repositories/IPostRepository.js";
+import { Post, NewPost } from "@posts/domain/entities/post.js";
+import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
 import { toPrismaCreate, toDomain, toPrismaUpdate } from "../mappers/prisma-post-mapper.js";
-import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
+import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
 
 export class PrismaPostRepository implements IPostRepository{
     async findAll(): Promise<Post[]> {
         const posts = await prisma.post.findMany()
         return posts.map(toDomain)
     }
+
     async save(newPost: NewPost): Promise<Post> {
         
         const post = await prisma.post.create({data:toPrismaCreate(newPost)})

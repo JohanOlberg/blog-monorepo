@@ -4,6 +4,12 @@
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@posts/*": ["src/features/posts/*"],
+      "@shared/*": ["src/shared/*"]
+    },
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
