@@ -1,8 +1,17 @@
-//import {type PostContent } from "../types/post-content.js"
+
 import { type PostStatus } from "../value-objects/post-status.js"
+import {
+  CategoryRequiredError,
+  AuthorRequiredError,
+  TitleRequiredError,
+  DescriptionRequiredError,
+  SlugRequiredError,
+  ContentRequiredError,
+  TitleLengthError,
+  DescriptionLengthError,
+  InvalidPostStatusError
+} from "../errors/post-errors.js";
 
-
-/** Criacao do um novo Post com os inputs necessarios somente */
 
  
 interface  NewPostProps {
@@ -33,17 +42,30 @@ export class NewPost{
     newPost:PostCreateInput
     ){
         if(!newPost.title || newPost.title.trim() ===""){
-            throw new Error("Required Title");
+            throw new TitleRequiredError();
         }
-         if(!newPost.authorId){
-            throw new Error("Required Author");
+        if(!newPost.categoryId ){
+            throw new CategoryRequiredError();
+        }
+        if(newPost.title.length <= 10 || newPost.title.length > 30){
+            throw new TitleLengthError();
+        }
+        if(!newPost.authorId){
+            throw new AuthorRequiredError();
         }
          if(!newPost.description || newPost.description.trim() ===""){
-            throw new Error("Required Description");
+            throw new DescriptionRequiredError();
+        }
+        if(newPost.description.length <= 30 || newPost.description.length > 100){
+            throw new DescriptionLengthError();
+        }
+        if(!newPost.slug || newPost.slug.trim() === ""){
+            throw new SlugRequiredError();
         }
         return new NewPost({
             ...newPost, status:"DRAFT"
         })
+        
     }
 
 }
@@ -85,23 +107,32 @@ getProps(){return this.props}
 
     publish(now: Date){
         if (this.props.status ==='PUBLISHED'){
-            throw new Error("Post already Published");
+            throw new InvalidPostStatusError();
         }
         if(!this.props.categoryId ){
-            throw new Error("Required category Text");
+            throw new CategoryRequiredError();
         }
-        if(this.props.content.length === 0 ){
-            throw new Error("Required Content Text or Image");
+        if(!this.props.content || this.props.content.trim() === "" || this.props.content.length === 0){
+                throw new ContentRequiredError()
         }
         if(!this.props.authorId ){
-                throw new Error("Required author ");
+                throw new AuthorRequiredError();
         }
         if(!this.props.description || this.props.description.trim() === ""){
-            throw new Error("Required description ");
+            throw new DescriptionRequiredError();
         }
         if(!this.props.title || this.props.title.trim() === ""){
-            throw new Error("Required title ");
-        }  
+            throw new TitleRequiredError();
+        }
+        if(this.props.title.length <= 10 || this.props.title.length > 30){
+            throw new TitleLengthError();
+        }
+        if(this.props.description.length <= 30 || this.props.description.length > 100){
+            throw new DescriptionLengthError();
+        }
+        if(!this.props.slug || this.props.slug.trim() === ""){
+            throw new SlugRequiredError();
+        }   
         this.props.status ='PUBLISHED'
         this.props.updatedAt = now
         this.props.publishedAt = now
@@ -110,7 +141,7 @@ getProps(){return this.props}
 
     archive(now: Date){
         if (this.props.status ==='ARCHIVED'){
-            throw new Error("Post already Archived");
+            throw new InvalidPostStatusError();
         }
         this.props.status='ARCHIVED'
         this.props.archivedAt = now
@@ -119,7 +150,7 @@ getProps(){return this.props}
     }
     draft(now: Date){
         if (this.props.status ==='DRAFT'){
-            throw new Error("Post already Drafted");
+            throw new InvalidPostStatusError();
         }
         this.props.status='DRAFT'
         this.props.updatedAt = now   
@@ -128,22 +159,31 @@ getProps(){return this.props}
     }
     update(now:Date, post:PostPropsUpdate){
         
-            if(!post.categoryId){
-                throw new Error("Required category ");
-            }
-            
-            if(!post.authorId ){
-                throw new Error("Required author ");
-            }
-            if(!post.description || post.description.trim() === ""){
-                throw new Error("Required description ");
-            }
-            if(!post.title || post.title.trim() === ""){
-                throw new Error("Required title ");
-            }            
+        if(!post.categoryId){
+            throw new CategoryRequiredError();
+        }
+        if(!post.authorId ){
+            throw new AuthorRequiredError();
+        }
+        if(!post.description || post.description.trim() === ""){
+            throw new DescriptionRequiredError();
+        }
+        if(!post.title || post.title.trim() === ""){
+            throw new TitleRequiredError();
+        }
+        if(post.title.length <= 10 || post.title.length > 30){
+            throw new TitleLengthError();
+        }
+        if(post.description.length <= 30 || post.description.length > 100){
+            throw new DescriptionLengthError();
+        }
+        if(!post.slug || post.slug.trim() === ""){
+            throw new SlugRequiredError();
+        }  
+                  
         
-        if(this.props.status==='PUBLISHED' && post.content.trim() === "" || !post.content || post.content.length === 0){
-                throw new Error("Required Content Text or Image");            
+        if(this.props.status==='PUBLISHED' && (!post.content || post.content.trim() === "" || post.content.length === 0)){
+                throw new ContentRequiredError();            
         }
 
         this.props.updatedAt = now

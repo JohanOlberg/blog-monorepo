@@ -6,6 +6,7 @@ export interface IPostRepository {
     update(post:Post):Promise<void>
     findById(id:number):Promise<Post | null >
     findAll():Promise<Post[] >
-
+    findBySlug(slug:string):Promise<Post | null >
+    
 }
 

@@ -1,5 +1,6 @@
 import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
 import { toPostListOutput } from "../mappers/post-output-mapper.js"
+import { PostNotFoundError } from "../errors/post-application-errors.js";
 
 
 export class PostsListUseCase{
@@ -7,6 +8,7 @@ export class PostsListUseCase{
 
     async execute(){
         const result = await this.postRepository.findAll()
-        return result.map(toPostListOutput)       
+        if(!result){throw new PostNotFoundError()}
+            return result.map(toPostListOutput)
     }
 }

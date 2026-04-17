@@ -4,6 +4,18 @@ import { toPrismaCreate, toDomain, toPrismaUpdate } from "../mappers/prisma-post
 import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
 
 export class PrismaPostRepository implements IPostRepository{
+    
+    async findBySlug(slug:string): Promise<Post | null> {
+        const result = await prisma.post.findUnique({
+            where:{
+                slug: slug
+            },
+            
+        })
+        if(!result){return null}
+        return toDomain(result)
+    }
+
     async findAll(): Promise<Post[]> {
         const posts = await prisma.post.findMany()
         return posts.map(toDomain)
