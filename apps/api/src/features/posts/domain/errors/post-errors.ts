@@ -52,6 +52,19 @@ export class DescriptionLengthError extends PostError {
   }
 }
 
+export class SlugLengthError extends PostError {
+  constructor() {
+    super("Slug length must be between 5 and 50 characters")
+  }
+}
+
+export class SlugFormatError extends PostError {
+  constructor() {
+    super("Slug should contains letters")
+  }
+}
+
+
 export class InvalidPostStatusError extends PostError {
   constructor() {
     super("Invalid post status")

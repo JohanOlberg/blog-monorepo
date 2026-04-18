@@ -11,6 +11,7 @@ import {
   DescriptionLengthError,
   InvalidPostStatusError
 } from "../errors/post-errors.js";
+import { Slug } from "../value-objects/post-slug.js";
 
 
  
@@ -62,6 +63,9 @@ export class NewPost{
         if(!newPost.slug || newPost.slug.trim() === ""){
             throw new SlugRequiredError();
         }
+        const slug:string = Slug.createSlug(newPost.slug).getValue();
+        newPost.slug = slug
+
         return new NewPost({
             ...newPost, status:"DRAFT"
         })
