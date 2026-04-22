@@ -3,8 +3,8 @@ import {
   SlugAlreadyExistsError,
   PostNotFoundError,
 
-} from "@posts/application/errors/post-application-errors.js"
-import { PostError } from "@posts/domain/errors/post-errors.js"
+} from "src/features/post/application/errors/post-application-errors.js"
+import { PostError } from "src/features/post/domain/errors/post-errors.js"
   
 
 export function toHTTPError(error: unknown) {

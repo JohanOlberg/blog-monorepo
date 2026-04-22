@@ -7,7 +7,7 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@posts/*": ["src/features/posts/*"],
+      "@post/*": ["src/features/post/*"],
       "@shared/*": ["src/shared/*"],
       "@user/*": ["src/features/user/*"],
       "@author/*": ["src/features/author/*"],

@@ -1,4 +1,4 @@
-import { postsRoutes } from "@posts/presentation/http/routes/posts-routes.js";
+import { postsRoutes } from "src/features/post/presentation/http/routes/posts-routes.js";
 import type { FastifyInstance } from "fastify";
 
 
