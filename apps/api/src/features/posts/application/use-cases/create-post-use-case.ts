@@ -1,6 +1,6 @@
 import { NewPost } from "@posts/domain/entities/post.js";
 import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
-import {type CreatePostInput} from "@posts/contracts/input/create-post.schema.js"
+import {type CreatePostInput} from "@posts/application/dto/create-post.schema.js"
 import { SlugAlreadyExistsError } from "../errors/post-application-errors.js";
 
 

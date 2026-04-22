@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { CreatePostUseCase } from "@posts/application/use-cases/create-post-use-case.js";
-import { createPostSchema } from "@posts/contracts/input/create-post.schema.js";
+import { createPostSchema } from "@posts/application/dto/create-post.schema.js";
 import { toPostOutput } from "@posts/application/mappers/post-output-mapper.js";
 
 export class CreatePostController{

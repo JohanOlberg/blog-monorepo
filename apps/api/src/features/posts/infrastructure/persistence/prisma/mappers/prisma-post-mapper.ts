@@ -51,7 +51,7 @@ export function toDomain(prisma:PrismaPost ):Post {
     updatedAt: prisma.updatedAt,
     status: prisma.status,
     categoryId: prisma.categoryId,
-    content: prisma.content,
+    content: String(prisma.content),
     publishedAt: prisma.publishedAt,
     archivedAt: prisma.archivedAt
   })

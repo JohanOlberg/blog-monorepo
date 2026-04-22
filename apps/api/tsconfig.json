@@ -8,7 +8,10 @@
     "baseUrl": ".",
     "paths": {
       "@posts/*": ["src/features/posts/*"],
-      "@shared/*": ["src/shared/*"]
+      "@shared/*": ["src/shared/*"],
+      "@user/*": ["src/features/user/*"],
+      "@author/*": ["src/features/author/*"],
+      "@auth/*": ["src/features/auth/*"]
     },
 
     // Environment Settings

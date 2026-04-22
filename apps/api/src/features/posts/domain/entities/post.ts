@@ -21,7 +21,7 @@ interface  NewPostProps {
     slug:string
     description:string
     categoryId:number
-    content:string//PostContent 
+    content:string
     authorId:number
 }
 
@@ -30,7 +30,7 @@ interface PostCreateInput {
   slug: string
   description: string
   categoryId: number
-  content:string//PostContent
+  content:string
   authorId: number
 }
 
@@ -106,8 +106,6 @@ export class Post{
 private constructor(private readonly props:PostProps){}
 
 getProps(){return this.props}
-
-
 
     publish(now: Date){
         if (this.props.status ==='PUBLISHED'){

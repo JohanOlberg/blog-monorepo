@@ -1,6 +1,6 @@
 
 import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
-import {type UpdatePostInput} from '@posts/contracts/input/update-post.schema.js'
+import {type UpdatePostInput} from '@posts/application/dto/update-post.schema.js'
 import { PostNotFoundError, SlugAlreadyExistsError } from "../errors/post-application-errors.js";
 
 
