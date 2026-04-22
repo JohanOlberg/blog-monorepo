@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { CreatePostUseCase } from "@posts/application/use-cases/create-post-use-case.js";
-import { createPostSchema } from "@posts/application/dto/create-post.schema.js";
+import { createPostSchema } from "@posts/presentation/http/schemas/create-post.schema.js";
 import { toPostOutput } from "@posts/application/mappers/post-output-mapper.js";
 
 export class CreatePostController{
@@ -10,8 +10,8 @@ export class CreatePostController{
         
         const body = createPostSchema.parse(request.body)
 
-        const post = await this.createPostUseCase.execute(body);
-        return reply.status(200).send(toPostOutput(post))
+        const postOutput  = await this.createPostUseCase.execute(body);
+        return reply.status(201).send(postOutput)
 
     }
 }

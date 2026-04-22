@@ -1,7 +1,7 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { UpdatePostUseCase } from "@posts/application/use-cases/update-post-use-case.js";
-import { updatePostSchema } from "@posts/application/dto/update-post.schema.js";
-import { postIdParamSchema } from "@posts/application/dto/get-post-by-id.schema.js";
+import { updatePostSchema } from "@posts/presentation/http/schemas/update-post.schema.js";
+import { postIdParamSchema } from "@posts/presentation/http/schemas/get-post-by-id.schema.js";
 import { toPostOutput } from "@posts/application/mappers/post-output-mapper.js";
 
 export class UpdatePostController{

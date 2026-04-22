@@ -2,8 +2,8 @@
 import { PrismaPostRepository } from "./infrastructure/persistence/prisma/repositories/prisma-post-repository.js";
 import { CreatePostUseCase } from "./application/use-cases/create-post-use-case.js";
 import { UpdatePostUseCase } from "./application/use-cases/update-post-use-case.js";
-import { type UpdatePostInput } from "./application/dto/update-post.schema.js";
-import { type CreatePostInput } from "./application/dto/create-post.schema.js";
+import { type UpdatePostInput } from "./presentation/http/schemas/update-post.schema.js";
+import { type CreatePostInput } from "./presentation/http/schemas/create-post.schema.js";
 
 const now = new Date()
 

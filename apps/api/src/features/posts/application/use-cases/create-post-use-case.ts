@@ -1,8 +1,8 @@
 import { NewPost } from "@posts/domain/entities/post.js";
 import { type IPostRepository } from "@posts/domain/repositories/IPostRepository.js";
-import {type CreatePostInput} from "@posts/application/dto/create-post.schema.js"
 import { SlugAlreadyExistsError } from "../errors/post-application-errors.js";
-
+import { toPostOutput } from "../mappers/post-output-mapper.js";
+import type { CreatePostInput } from "../dto/post.input.js";
 
 
 export class CreatePostUseCase{
@@ -14,6 +14,6 @@ export class CreatePostUseCase{
         
         const newPost = NewPost.create(input)
         const post = await this.iPostRepository.save(newPost)
-         return post
+        return toPostOutput(post)
     }
 }
