@@ -8,7 +8,7 @@ export class DraftPostUseCase {
         const now = new Date()
         const result = await this.iPostRepository.findById(id)
         if(!result){ throw new PostNotFoundError()}
-        result.archive(now)
+        result.draft(now)
         await this.iPostRepository.update(result)
         return toPostOutput(result)
     }     

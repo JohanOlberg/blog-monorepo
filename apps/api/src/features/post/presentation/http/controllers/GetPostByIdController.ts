@@ -13,7 +13,6 @@ export class GetPostByIdController{
         if(postOutput){
             return reply.status(200).send(postOutput)
         }
-        return reply.status(404).send({ message: "Post not found" })
-
+       
     }
 }

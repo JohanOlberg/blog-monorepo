@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { CreatePostUseCase } from "src/features/post/application/use-cases/create-post-use-case.js";
-import { createPostSchema } from "src/features/post/presentation/http/schemas/create-post.schema.js";
+import { CreatePostUseCase } from "@post/application/use-cases/create-post-use-case.js";
+import { createPostSchema } from "@post/presentation/http/schemas/create-post.schema.js";
 
 export class CreatePostController{
     constructor(private createPostUseCase: CreatePostUseCase){}

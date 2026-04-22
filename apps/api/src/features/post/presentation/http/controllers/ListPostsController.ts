@@ -1,10 +1,10 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { PostsListUseCase } from "src/features/post/application/use-cases/list-posts-use-case.js";
+import { ListPostsUseCase } from "@post/application/use-cases/list-posts-use-case.js";
 
 
 
-export class ListPostController{
-    constructor(private listPostUseCase: PostsListUseCase){}
+export class ListPostsController{
+    constructor(private listPostUseCase: ListPostsUseCase){}
     async handle(request:FastifyRequest, reply:FastifyReply){
 
         

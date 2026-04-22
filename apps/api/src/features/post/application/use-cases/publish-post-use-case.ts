@@ -9,7 +9,7 @@ export class PublishPostUseCase {
         const now = new Date()
         const result = await this.iPostRepository.findById(id)
        if(!result){throw new PostNotFoundError()}
-            result.archive(now)
+            result.publish(now)
             await this.iPostRepository.update(result)
             console.log(result)
             return toPostOutput(result)

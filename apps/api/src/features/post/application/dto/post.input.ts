@@ -8,7 +8,7 @@ export type CreatePostInput = {
     authorId: number;
     content:string
 };
-export type updatePostInput = {
+export type UpdatePostInput = {
     title: string;
     slug: string;
     description: string;

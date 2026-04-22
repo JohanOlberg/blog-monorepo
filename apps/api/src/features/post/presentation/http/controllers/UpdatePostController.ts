@@ -14,7 +14,6 @@ export class UpdatePostController{
         if(postOutput){
             return reply.status(201).send(postOutput)
         }
-        return reply.status(404).send({ message: "Post not found" })
-
+        
     }
 }

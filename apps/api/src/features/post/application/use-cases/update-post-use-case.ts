@@ -1,14 +1,14 @@
 
 import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
 import { PostNotFoundError, SlugAlreadyExistsError } from "../errors/post-application-errors.js";
-import type { updatePostInput } from "../dto/post.input.js";
+import type { UpdatePostInput } from "../dto/post.input.js";
 import { toPostOutput } from "../mappers/post-output-mapper.js";
 
 
 export class UpdatePostUseCase{
     constructor(private iPostRepository:IPostRepository){}
     
-    async execute(input:updatePostInput, id:number){
+    async execute(input:UpdatePostInput, id:number){
         const result = await this.iPostRepository.findById(id)
 
         if(!result){ throw new PostNotFoundError()}

@@ -1,11 +1,11 @@
 import type { FastifyInstance } from "fastify";
 import { makeCreatePostController } from "../../factory/make-create-post-controller.js";
-import { makeListPostController } from "../../factory/make-list-post-controller.js";
-import { makeGetPostByIdController } from "src/features/post/presentation/factory/make-get-post-by-id-controller.js";
-import { makeUpdatePostController } from "src/features/post/presentation/factory/make-update-post-controller.js";
-import { makeArchivePostController } from "src/features/post/presentation/factory/make-archive-post-controller.js";
-import { makePublishPostController } from "src/features/post/presentation/factory/make-publish-post-controller.js";
-import { makeDraftPostController } from "src/features/post/presentation/factory/make-draft-post-controller.js";
+import { makeListPostsController } from "../../factory/make-list-post-controller.js";
+import { makeGetPostByIdController } from "@post/presentation/factory/make-get-post-by-id-controller.js";
+import { makeUpdatePostController } from "@post/presentation/factory/make-update-post-controller.js";
+import { makeArchivePostController } from "@post/presentation/factory/make-archive-post-controller.js";
+import { makePublishPostController } from "@post/presentation/factory/make-publish-post-controller.js";
+import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
 
 
 
@@ -13,7 +13,7 @@ import { makeDraftPostController } from "src/features/post/presentation/factory/
 
 export async function postsRoutes(app: FastifyInstance) {
   const createPostController = makeCreatePostController();
-  const listPostController = makeListPostController()
+  const ListPostsController = makeListPostsController()
   const getPostByIdController = makeGetPostByIdController()
   const updatePostController = makeUpdatePostController()
   const archivePostController = makeArchivePostController()
@@ -21,7 +21,7 @@ export async function postsRoutes(app: FastifyInstance) {
   const draftPostController = makeDraftPostController()
 
   app.post("/posts", createPostController.handle.bind(createPostController));
-  app.get("/posts", listPostController.handle.bind(listPostController))
+  app.get("/posts", ListPostsController.handle.bind(ListPostsController))
   app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
   app.put("/posts/:id", updatePostController.handle.bind(updatePostController))
 

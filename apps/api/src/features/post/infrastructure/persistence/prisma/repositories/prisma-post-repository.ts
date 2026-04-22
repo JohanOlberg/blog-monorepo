@@ -1,5 +1,5 @@
-import { Post, NewPost } from "src/features/post/domain/entities/post.js";
-import { type IPostRepository } from "src/features/post/domain/repositories/IPostRepository.js";
+import { Post, NewPost } from "@post/domain/entities/post.js";
+import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
 import { toPrismaCreate, toDomain, toPrismaUpdate } from "../mappers/prisma-post-mapper.js";
 import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
 

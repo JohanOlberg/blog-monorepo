@@ -8,7 +8,7 @@ export type PostOutput = {
     slug: string;
     description: string;
     categoryId: number;
-    content: string
+    content: string;
     authorId: number;
     createdAt: Date;
     updatedAt: Date;

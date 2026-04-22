@@ -8,5 +8,3 @@ export const updatePostSchema= z.object({
   authorId: z.number(),
   content: z.string(),    
 });
-
-export type UpdatePostInput = z.infer<typeof updatePostSchema>
