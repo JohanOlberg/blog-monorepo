@@ -9,4 +9,5 @@ export interface IUserRepository {
     
     findAll():Promise<User[] >*/
     
+    
 }

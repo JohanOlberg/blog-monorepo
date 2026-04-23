@@ -1,7 +1,4 @@
 {
-
-  "name": "Johan",
-  "email": "johan@test.com",
-  "password":"1234",
-  "authorIds":[1]
+  "email": "johan2@test.com",
+  "password": "123456"
 }

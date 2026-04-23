@@ -46,7 +46,7 @@ interface UserProps{
     updatedAt:Date
     createdAt:Date
     passwordChangedAt?:Date
-    authorIds?: number[]
+    authorIds: number[]
     status:UserStatus
 }
 

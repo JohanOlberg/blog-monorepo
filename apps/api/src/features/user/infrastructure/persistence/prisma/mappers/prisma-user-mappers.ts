@@ -1,8 +1,7 @@
 import { Prisma } from "@prisma/client";
 import  { NewUser, User } from "@user/domain/entities/user.js";
 
-type  PrismaUser = Prisma.UserGetPayload<{}>
-
+type  PrismaUser = Prisma.UserGetPayload<{ include: { authors: true }}>
 
 export function toPrismaCreate(user:NewUser){
     const props = user.getProps()
@@ -20,11 +19,11 @@ export function toDomain(prisma:PrismaUser ):User {
       id: prisma.id,
       name: prisma.name,
       email: prisma.email,
-      passwordHash: "",
+      passwordHash:prisma.passwordHash,
       updatedAt: prisma.updatedAt,
       createdAt: prisma.createdAt,
       passwordChangedAt: prisma.passwordChangedAt,
-      authorIds: [],
-      status: "ACTIVE"
+      authorIds:prisma.authors?.map(a => a.id) ?? [],
+      status: prisma.status
   })
 }

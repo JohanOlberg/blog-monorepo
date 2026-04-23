@@ -9,3 +9,8 @@ export type UserOutput = {
     createdAt:Date;
     updatedAt:Date;
 }
+
+export type LoginUserOutput = {
+  accessToken: string
+  user: UserOutput
+}

@@ -1,4 +1,4 @@
-import type { IPasswordHasher } from "@user/domain/contracts/IPasswordHasher.js";
+import type { IPasswordHasher } from "@user/application/contracts/IPasswordHasher.js";
 import argon2 from 'argon2';
 
 export class Argon2PasswordHasher implements IPasswordHasher{

@@ -5,15 +5,16 @@ import { toDomain, toPrismaCreate } from "../mappers/prisma-user-mappers.js";
 
 export class PrismaUserRepository implements IUserRepository{
     async save(newUser: NewUser): Promise<User> {
-        const user = await prisma.user.create({data:toPrismaCreate(newUser)})
+        const user = await prisma.user.create({data:toPrismaCreate(newUser),include: { authors: true }})
         return toDomain(user)
         
-    }async findByEmail(email: string): Promise<User | null> {
+    }
+    async findByEmail(email: string): Promise<User | null> {
         const result = await prisma.user.findUnique({
                     where:{
                         email: email
                     },
-                    
+                   include: { authors: true } 
                 })
         if(!result){return null}
         return toDomain(result)

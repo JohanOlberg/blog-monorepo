@@ -2,7 +2,7 @@ import { type CreateUserInput } from "@user/application/dto/user.input.js";
 import { NewUser } from "@user/domain/entities/user.js";
 import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
-import type { IPasswordHasher } from "@user/domain/contracts/IPasswordHasher.js";
+import type { IPasswordHasher } from "@user/application/contracts/IPasswordHasher.js";
 
 
 
