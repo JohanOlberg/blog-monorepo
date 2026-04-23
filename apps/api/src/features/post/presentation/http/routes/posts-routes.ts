@@ -13,7 +13,7 @@ import { makeDraftPostController } from "@post/presentation/factory/make-draft-p
 
 export async function postsRoutes(app: FastifyInstance) {
   const createPostController = makeCreatePostController();
-  const ListPostsController = makeListPostsController()
+  const listPostsController = makeListPostsController()
   const getPostByIdController = makeGetPostByIdController()
   const updatePostController = makeUpdatePostController()
   const archivePostController = makeArchivePostController()
@@ -21,7 +21,7 @@ export async function postsRoutes(app: FastifyInstance) {
   const draftPostController = makeDraftPostController()
 
   app.post("/posts", createPostController.handle.bind(createPostController));
-  app.get("/posts", ListPostsController.handle.bind(ListPostsController))
+  app.get("/posts", listPostsController.handle.bind(listPostsController))
   app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
   app.put("/posts/:id", updatePostController.handle.bind(updatePostController))
 

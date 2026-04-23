@@ -1,18 +1,24 @@
-import { type CreatePostInput } from "@user/presentation/http/schemas/create-user-schema.js";
+import { type CreateUserInput } from "@user/application/dto/user.input.js";
 import { NewUser } from "@user/domain/entities/user.js";
-import { type IUserRepository } from "@user/domain/repository/IUserRepository.js";
+import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import { toUserOutput } from "../mappers/user-output-mapper.js";
+import type { IPasswordHasher } from "@user/domain/contracts/IPasswordHasher.js";
+
 
 
 export class CreateUserUseCase{
-    constructor(private readonly iUserRepository:IUserRepository){}
+    constructor(private readonly userRepository:IUserRepository, private passwordHasher:IPasswordHasher){}
 
-    async  execute(input:CreatePostInput) {
-        const existEmail = await this.iUserRepository.findByEmail(input.email)
-        if(!existEmail){
+    async  execute(input:CreateUserInput) {
+        const existingUser = await this.userRepository.findByEmail(input.email)
+        if(existingUser){
             throw new Error()
         }
-        const newUser = NewUser.create(input)
-        const user = this.iUserRepository.save(newUser)
-        return user // criar um dto de saida pra nao trazer todas informacoes do banco
+        const hashedPassword = await this.passwordHasher.hash(input.password)
+        const { password, ...rest } = input 
+        const newUser = NewUser.create({...rest, passwordHash: hashedPassword})
+        
+        const user = await this.userRepository.save(newUser)
+        return toUserOutput(user) 
     }
 }

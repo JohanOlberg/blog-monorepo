@@ -1,37 +1,32 @@
-import {Author} from "@author/domain/entities/author.js"
+import {type UserStatus } from "@user/domain/types/user-status.js";
 
-type UserStatus = "ACTIVE"|"INACTIVE"|"BLOCKED"//criar type igual status em POst
-
-interface UserCreateProps{
+interface NewUserProps{
     name:string
     email:string
     passwordHash:string
-    authorsId: number[]
     status:UserStatus
 }
 
-interface UserCreateInput{
+interface NewUserInput{
     name:string
     email:string
-    passwordHash:string
-    authorsId: number[]
-    
+    passwordHash:string   
 }
 
 export class NewUser{
-    private constructor(private readonly props:UserCreateProps){}
+    private constructor(private readonly props:NewUserProps){}
     getProps() {
         return this.props
     }
 
-    static create(newUser:UserCreateInput){
+    static create(newUser:NewUserInput){
         if(!newUser.name || newUser.name.trim() ===""){
             throw new Error()
         }
         if(!newUser.email || newUser.email.trim() ===""){
             throw new Error()
         }
-        if(!newUser.authorsId || newUser.authorsId.length < 0){
+        if(!newUser.passwordHash || newUser.passwordHash.trim() ===""){
             throw new Error()
         }
 
@@ -48,11 +43,11 @@ interface UserProps{
     name:string
     email:string
     passwordHash:string
-    updateAt:Date
-    createAt:Date
-    passwordChangedAt:Date
-    authors: number[]
-    stauts:UserStatus
+    updatedAt:Date
+    createdAt:Date
+    passwordChangedAt?:Date
+    authorIds?: number[]
+    status:UserStatus
 }
 
 export class User{
@@ -60,7 +55,10 @@ export class User{
 
     getProps(){return this.props}
     
-        static restore(user:UserProps){
-            return new User(user)
-        }
+    static restore(user:UserProps){
+        return new User(user)
+    }
+    changeStatus(now: Date){}
+    changePassword(now: Date){}
+    changeAuthors(now: Date){}
 }

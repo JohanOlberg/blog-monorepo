@@ -11,7 +11,6 @@ export class PublishPostUseCase {
        if(!result){throw new PostNotFoundError()}
             result.publish(now)
             await this.iPostRepository.update(result)
-            console.log(result)
             return toPostOutput(result)
     }     
 }

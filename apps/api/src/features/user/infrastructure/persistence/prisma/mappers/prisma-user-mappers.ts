@@ -10,7 +10,6 @@ export function toPrismaCreate(user:NewUser){
         name:props.name,
         email:props.email,
         passwordHash:props.passwordHash,
-        authorsId: props.authorsId,
         status:props.status
     })
 }
@@ -22,10 +21,10 @@ export function toDomain(prisma:PrismaUser ):User {
       name: prisma.name,
       email: prisma.email,
       passwordHash: "",
-      updateAt: prisma.updatedAt,
-      createAt: prisma.createdAt,
+      updatedAt: prisma.updatedAt,
+      createdAt: prisma.createdAt,
       passwordChangedAt: prisma.passwordChangedAt,
-      authors: [],
-      stauts: "ACTIVE"
+      authorIds: [],
+      status: "ACTIVE"
   })
 }

@@ -1,4 +1,18 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { CreateUserUseCase } from "@user/application/use-cases/create-user-use-case.js";
 import { createUserSchema } from "../schemas/create-user-schema.js";
-import { toPostOutput } from "@user/application/mappers/post-output-mapper.js";
+
+export class CreateUserController{
+    constructor(private createUserUseCase:CreateUserUseCase){}
+    async handle(request:FastifyRequest, reply:FastifyReply){
+        try {
+            const body = createUserSchema.parse(request.body)
+            const userOutput = await this.createUserUseCase.execute(body)
+            return reply.status(201).send(userOutput)
+        } catch (error) {
+            console.error(error)
+            throw error
+        }
+
+    }
+}
