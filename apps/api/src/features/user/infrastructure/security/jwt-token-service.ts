@@ -27,7 +27,7 @@ export class JwtTokenService implements ITokenService{
             typeof obj.sub === "string"
         )
     }
-    verify(token: string): TokenPayload {
+ verify(token: string): TokenPayload {
         const payload =  jwt.verify(token, this.secret)
         if (typeof payload === "string") {
             throw new Error("Invalid token payload")

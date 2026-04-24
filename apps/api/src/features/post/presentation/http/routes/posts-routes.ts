@@ -7,7 +7,7 @@ import { makeArchivePostController } from "@post/presentation/factory/make-archi
 import { makePublishPostController } from "@post/presentation/factory/make-publish-post-controller.js";
 import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
 
-
+import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
 
 
 
@@ -20,12 +20,16 @@ export async function postsRoutes(app: FastifyInstance) {
   const publishPostController = makePublishPostController()
   const draftPostController = makeDraftPostController()
 
-  app.post("/posts", createPostController.handle.bind(createPostController));
-  app.get("/posts", listPostsController.handle.bind(listPostsController))
-  app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
-  app.put("/posts/:id", updatePostController.handle.bind(updatePostController))
+app.register(async (protectedRoutes) => {
+  protectedRoutes.addHook("preHandler", authGuard)
 
-  app.patch("/posts/:id/archive", archivePostController.handle.bind(archivePostController))
-  app.patch("/posts/:id/draft", draftPostController.handle.bind(draftPostController))
-  app.patch("/posts/:id/publish", publishPostController.handle.bind(publishPostController))
+  protectedRoutes.post("/posts", createPostController.handle.bind(createPostController))
+  protectedRoutes.put("/posts/:id", updatePostController.handle.bind(updatePostController))
+
+  protectedRoutes.patch("/posts/:id/archive", archivePostController.handle.bind(archivePostController))
+  protectedRoutes.patch("/posts/:id/draft", draftPostController.handle.bind(draftPostController))
+  protectedRoutes.patch("/posts/:id/publish", publishPostController.handle.bind(publishPostController))
+})
+app.get("/posts", listPostsController.handle.bind(listPostsController))
+app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
 }

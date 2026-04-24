@@ -8,7 +8,7 @@ import { globalErrorHandler } from '@shared/presentation/http/error-handler/glob
 export function buildServer(){
     
 const server = fastify()
-
+server.decorateRequest("user", undefined)
 registerPlugins(server)
 registerRoutes(server)
 server.setErrorHandler(globalErrorHandler)
