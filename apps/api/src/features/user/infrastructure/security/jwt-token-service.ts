@@ -16,14 +16,16 @@ export class JwtTokenService implements ITokenService{
         return jwt.sign(payload, this.secret, { expiresIn: this.expiresIn } as SignOptions );
     }
     isTokenPayload(value: unknown): value is TokenPayload {
+        if (typeof value !== "object" || value === null) {
+            return false
+        }
+
+        const obj = value as Record<string, unknown>
+
         return (
-            typeof value === "object" &&
-            value !== null &&
-            "email" in value &&
-            typeof "email" === "string" &&
-            "sub" in value &&
-            typeof "email" === "string" 
-        );
+            typeof obj.email === "string" &&
+            typeof obj.sub === "string"
+        )
     }
     verify(token: string): TokenPayload {
         const payload =  jwt.verify(token, this.secret)
