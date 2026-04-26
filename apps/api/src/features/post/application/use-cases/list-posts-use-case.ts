@@ -7,7 +7,7 @@ export class ListPostsUseCase{
 
     async execute(){
         const result = await this.postRepository.findAll()
-        if(!result){[]}
+        if(!result){return []}
             return result.map(toPostListOutput)
     }
 }

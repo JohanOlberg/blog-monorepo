@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const postIdParamSchema = z.object({
+export const userByIdParamSchema = z.object({
   id: z.coerce.number().int().positive()
 });

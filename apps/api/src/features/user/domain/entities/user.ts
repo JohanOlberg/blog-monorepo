@@ -1,4 +1,10 @@
-import {type UserStatus } from "@user/domain/types/user-status.js";
+import { type UserStatus } from "@user/domain/types/user-status.js";
+import { 
+  NameRequiredError,
+  EmailRequiredError,
+  PasswordHashRequiredError,
+  InvalidUserStatusError
+} from "../errors/user-errors.js";
 
 interface NewUserProps{
     name:string
@@ -21,13 +27,13 @@ export class NewUser{
 
     static create(newUser:NewUserInput){
         if(!newUser.name || newUser.name.trim() ===""){
-            throw new Error()
+            throw new NameRequiredError();
         }
         if(!newUser.email || newUser.email.trim() ===""){
-            throw new Error()
+            throw new EmailRequiredError()
         }
         if(!newUser.passwordHash || newUser.passwordHash.trim() ===""){
-            throw new Error()
+            throw new PasswordHashRequiredError()
         }
 
         return new NewUser({
@@ -50,15 +56,62 @@ interface UserProps{
     status:UserStatus
 }
 
+interface UserPropsUpdate{
+    
+    name:string
+    email:string
+}
+
 export class User{
     private constructor(private readonly props:UserProps){}
 
     getProps(){return this.props}
     
+    update(now:Date, data:UserPropsUpdate){
+        if(!data.name || data.name.trim() ===""){
+            throw new NameRequiredError();
+        }
+        if(!data.email || data.email.trim() ===""){
+            throw new EmailRequiredError()
+        }
+        this.props.email = data.email
+        this.props.name = data.name
+        this.props.updatedAt = now
+    }
+   
+    activate(now: Date){
+        if(this.props.status === "ACTIVE")
+        {
+            throw new InvalidUserStatusError()
+        }
+        this.props.status = "ACTIVE"
+        this.props.updatedAt = now
+    }
+
+    deactivate(now: Date){
+        if(this.props.status === "INACTIVE")
+        {
+            throw new InvalidUserStatusError()
+        }
+        this.props.status = "INACTIVE"
+        this.props.updatedAt = now
+    }  
+
+    block(now: Date){
+        if(this.props.status === "BLOCKED")
+        {
+            throw new InvalidUserStatusError()
+        }
+        this.props.status = "BLOCKED"
+        this.props.updatedAt = now
+    }
+
+    changePassword(now:Date, passwordHash:string){
+
+    }
+    changeAuthors(now: Date){}
+    
     static restore(user:UserProps){
         return new User(user)
     }
-    changeStatus(now: Date){}
-    changePassword(now: Date){}
-    changeAuthors(now: Date){}
 }

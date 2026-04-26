@@ -1,6 +1,6 @@
 import { CreateUserUseCase } from "@user/application/use-cases/create-user-use-case.js";
 import { PrismaUserRepository } from "@user/infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
-import { Argon2PasswordHasher } from "@user/infrastructure/security/argon2-password-hasher.js";
+import { Argon2PasswordHasher } from "@shared/infrastructure/security/argon2-password-hasher.js";
 import { CreateUserController } from "../http/controllers/CreateUserController.js";
 
 export function makeCreateUserController(){

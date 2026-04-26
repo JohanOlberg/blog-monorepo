@@ -1,4 +1,4 @@
-import { JwtTokenService } from "@user/infrastructure/security/jwt-token-service.js";
+import { JwtTokenService } from "@shared/infrastructure/security/jwt-token-service.js";
 import type {FastifyRequest, FastifyReply } from "fastify";
     const secret = process.env.JWT_SECRET
     if(secret == null){throw  Error("d")}

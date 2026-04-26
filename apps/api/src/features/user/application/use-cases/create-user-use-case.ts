@@ -3,6 +3,7 @@ import { NewUser } from "@user/domain/entities/user.js";
 import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
 import type { IPasswordHasher } from "@user/application/contracts/IPasswordHasher.js";
+import { EmailAlreadyExistsError } from "@user/domain/errors/user-errors.js";
 
 
 
@@ -12,7 +13,7 @@ export class CreateUserUseCase{
     async  execute(input:CreateUserInput) {
         const existingUser = await this.userRepository.findByEmail(input.email)
         if(existingUser){
-            throw new Error()
+            throw new EmailAlreadyExistsError()
         }
         const hashedPassword = await this.passwordHasher.hash(input.password)
         const { password, ...rest } = input 

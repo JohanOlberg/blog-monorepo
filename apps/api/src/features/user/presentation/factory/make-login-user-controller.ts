@@ -1,7 +1,7 @@
 import { LoginUserUseCase } from "@user/application/use-cases/login-user-use-case.js";
 import { PrismaUserRepository } from "@user/infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
-import { Argon2PasswordHasher } from "@user/infrastructure/security/argon2-password-hasher.js";
-import { JwtTokenService } from "@user/infrastructure/security/jwt-token-service.js";
+import { Argon2PasswordHasher } from "@shared/infrastructure/security/argon2-password-hasher.js";
+import { JwtTokenService } from "@shared/infrastructure/security/jwt-token-service.js";
 import { LoginUserController } from "../http/controllers/LoginUserController.js";
 
 const SECRET_KEY = process.env.JWT_SECRET as string;

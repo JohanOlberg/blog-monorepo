@@ -1,5 +1,5 @@
-import type { ITokenService } from "@user/application/contracts/ITokenService.js";
-import type { TokenPayload } from "@user/application/contracts/token-payload.js";
+import type { ITokenService } from "@shared/application/contracts/ITokenService.js";
+import type { TokenPayload } from "@shared/application/contracts/token-payload.js";
 import jwt, { type JwtPayload, type SignOptions } from "jsonwebtoken";
 
 export class JwtTokenService implements ITokenService{

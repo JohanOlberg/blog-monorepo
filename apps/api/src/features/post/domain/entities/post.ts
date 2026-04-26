@@ -64,10 +64,9 @@ export class NewPost{
             throw new SlugRequiredError();
         }
         const slug:string = Slug.createSlug(newPost.slug).getValue();
-        newPost.slug = slug
-
+        
         return new NewPost({
-            ...newPost, status:"DRAFT"
+            ...newPost, status:"DRAFT", slug:slug
         })
         
     }
@@ -184,7 +183,7 @@ getProps(){return this.props}
         }  
                   
         
-        if(this.props.status==='PUBLISHED' && (!post.content || post.content.trim() === "" || post.content.length === 0)){
+        if(this.props.status==='PUBLISHED' && (!post.content || post.content.trim() === "")){
                 throw new ContentRequiredError();            
         }
 
@@ -194,7 +193,7 @@ getProps(){return this.props}
         this.props.authorId = post.authorId
         this.props.description = post.description
         this.props.title = post.title
-        this.props.slug = post.slug
+        this.props.slug =  Slug.createSlug(post.slug).getValue();
     }
 
     static restore(post:PostProps){

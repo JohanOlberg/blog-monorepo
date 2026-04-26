@@ -12,7 +12,7 @@ export class UpdatePostController{
 
         const postOutput = await this.updatePostUseCase.execute(body,params.id);
         if(postOutput){
-            return reply.status(201).send(postOutput)
+            return reply.status(200).send(postOutput)
         }
         
     }

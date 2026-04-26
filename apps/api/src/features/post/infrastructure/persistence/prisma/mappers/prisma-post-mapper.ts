@@ -1,6 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { Post, NewPost } from "../../../../domain/entities/post.js";
-import { id } from "zod/locales";
+import { Post, NewPost } from "@post/domain/entities/post.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
 
@@ -32,8 +31,7 @@ export function toPrismaUpdate(post: Post) {
     content:props.content,    
     archivedAt: props.archivedAt,
     publishedAt: props.publishedAt,    
-    updatedAt: props.updatedAt,
-    createdAt: props.createdAt,   
+    updatedAt: props.updatedAt,  
   }
 }
 

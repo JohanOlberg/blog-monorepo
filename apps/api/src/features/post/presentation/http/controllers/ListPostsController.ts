@@ -6,7 +6,6 @@ import { ListPostsUseCase } from "@post/application/use-cases/list-posts-use-cas
 export class ListPostsController{
     constructor(private listPostUseCase: ListPostsUseCase){}
     async handle(request:FastifyRequest, reply:FastifyReply){
-
         
         const posts = await this.listPostUseCase.execute();
 

@@ -9,7 +9,7 @@ export class GetPostByIdController{
 
         const params = postIdParamSchema.parse(request.params)
         const postOutput = await this.postByIdUseCase.execute(params.id);
-        //fazer tratamento de erro de retorno
+        
         if(postOutput){
             return reply.status(200).send(postOutput)
         }

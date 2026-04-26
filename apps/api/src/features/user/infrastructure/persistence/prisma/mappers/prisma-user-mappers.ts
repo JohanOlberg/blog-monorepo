@@ -12,7 +12,17 @@ export function toPrismaCreate(user:NewUser){
         status:props.status
     })
 }
-
+export function toPrismaUpdate(user:User ){
+    const props = user.getProps()
+    return {
+        name: props.name,
+        email: props.email,
+        status: props.status,
+        updatedAt: props.updatedAt,
+        passwordHash: props.passwordHash,
+        passwordChangedAt: props.passwordChangedAt
+    }
+}
 export function toDomain(prisma:PrismaUser ):User {
       
   return User.restore({
