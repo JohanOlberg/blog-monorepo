@@ -18,23 +18,11 @@ export class PrismaUserRepository implements IUserRepository{
     async update(user: User): Promise<void> {
         const props = user.getProps()
         if(props.id === undefined){throw new Error("User not found")}
-        const exist = await prisma.user.findUnique({
-            where:{
-                id: props.id
-            },
-            select:{
-                id:true
-            }
-        })
-         if(!exist){ 
-            throw new Error("User Not Found!")
-         }
         
         await prisma.user.update({
                         where:{id: props.id},
                         data:toPrismaUpdate(user)
                     })
-                
     }
 
     async findAll(): Promise<User[]> {

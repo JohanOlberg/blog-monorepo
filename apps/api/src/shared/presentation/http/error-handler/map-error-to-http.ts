@@ -14,13 +14,17 @@ import { UserError,
 
 export function toHTTPError(error: unknown) {
     
-    if (error instanceof ZodError) {    
-    return {
-                statusCode:400,
-                error:"Bad Request",
-                message: "Invalid input"
-            }
-    }
+    if (error instanceof ZodError) {
+  return {
+        statusCode: 400,
+        error: "Bad Request",
+        message: "Invalid input",
+        issues: error.issues.map(issue => ({
+        path: issue.path.join("."),
+        message: issue.message
+    }))
+  }
+}
     
     if(error instanceof SlugAlreadyExistsError){    
     return {

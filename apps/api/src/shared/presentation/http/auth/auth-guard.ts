@@ -1,5 +1,7 @@
 import { JwtTokenService } from "@shared/infrastructure/security/jwt-token-service.js";
 import type {FastifyRequest, FastifyReply } from "fastify";
+import type { UserRoles } from "@user/domain/types/user-roles.js"
+
     const secret = process.env.JWT_SECRET
     if(secret == null){throw  Error("d")}
     const expire = process.env.JWT_EXPIRES_IN

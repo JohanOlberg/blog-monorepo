@@ -1,4 +1,5 @@
 import {type UserStatus } from "@user/domain/types/user-status.js";
+import {type UserRoles } from "@user/domain/types/user-roles.js";
 
 export type UserOutput = {
     id:number;
@@ -8,6 +9,7 @@ export type UserOutput = {
     status:UserStatus;
     createdAt:Date;
     updatedAt:Date;
+    role:string
 }
 
 export type LoginUserOutput = {

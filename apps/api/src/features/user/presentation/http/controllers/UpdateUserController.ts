@@ -1,7 +1,7 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { UpdateUserUseCase } from "@user/application/use-cases/update-user-use-case.js";
 import { updateUserSchema } from "../schemas/update-user-schema.js";
-import { userByIdParamSchema } from "../schemas/get-user-by-id-schemas.js";
+import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
 
 
 

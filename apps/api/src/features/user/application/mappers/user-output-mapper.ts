@@ -10,6 +10,7 @@ export function toUserOutput(user:User):UserOutput{
     authorIds:props.authorIds || [],
     status: props.status,
     createdAt: props.createdAt,
-    updatedAt: props.updatedAt
+    updatedAt: props.updatedAt,
+    role: props.role
     }
 }

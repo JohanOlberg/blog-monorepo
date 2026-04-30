@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { userByIdParamSchema } from "../schemas/get-user-by-id-schemas.js";
+import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
 import { DeactivateUserUseCase } from "@user/application/use-cases/deactivate-user-use-case.js";
 
 export class DeactivateUserController{

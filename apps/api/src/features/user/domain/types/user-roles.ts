@@ -1,0 +1,1 @@
+export type UserRoles = "ADMIN" | "AUTHOR" | "USER" | "EDITOR"

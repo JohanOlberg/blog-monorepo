@@ -6,6 +6,7 @@ export class LoginUserController{
         constructor(private loginUserUseCase:LoginUserUseCase){}
         async handle(request:FastifyRequest, reply:FastifyReply){                
                 const body = loginUserSchema.parse(request.body)
+                
                 const userOutput = await this.loginUserUseCase.execute(body)
                 return reply.status(200).send(userOutput)            
 

@@ -9,7 +9,8 @@ export function toPrismaCreate(user:NewUser){
         name:props.name,
         email:props.email,
         passwordHash:props.passwordHash,
-        status:props.status
+        status:props.status,
+        role:props.role
     })
 }
 export function toPrismaUpdate(user:User ){
@@ -19,8 +20,9 @@ export function toPrismaUpdate(user:User ){
         email: props.email,
         status: props.status,
         updatedAt: props.updatedAt,
-        passwordHash: props.passwordHash,
-        passwordChangedAt: props.passwordChangedAt
+        passwordHash: props.passwordHash,        
+        role: props.role,
+        passwordChangedAt: props.passwordChangedAt,
     }
 }
 export function toDomain(prisma:PrismaUser ):User {
@@ -34,6 +36,7 @@ export function toDomain(prisma:PrismaUser ):User {
       createdAt: prisma.createdAt,
       passwordChangedAt: prisma.passwordChangedAt,
       authorIds:prisma.authors?.map(a => a.id) ?? [],
-      status: prisma.status
+      status: prisma.status,
+      role:prisma.role
   })
 }

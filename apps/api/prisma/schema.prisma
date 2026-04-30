@@ -12,6 +12,12 @@ enum PostStatus {
   ARCHIVED
 }
 
+enum UserRole {
+  ADMIN
+  AUTHOR
+  USER
+}
+
 enum UserStatus {
   ACTIVE
   INACTIVE
@@ -34,15 +40,16 @@ model Author {
 
 
 model User {
-  id                Int        @id @default(autoincrement())
+  id                Int         @id @default(autoincrement())
   name              String
-  email             String     @unique
+  email             String      @unique
   passwordHash      String
   status            UserStatus
-  createdAt         DateTime   @default(now())
-  updatedAt         DateTime   @updatedAt
-  passwordChangedAt DateTime   @default(now())
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  passwordChangedAt DateTime?   @default(now())
   authors            Author[]
+  role UserRole @default(USER)
 
   
 }

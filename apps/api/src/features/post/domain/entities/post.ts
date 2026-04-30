@@ -83,7 +83,7 @@ interface  PostProps {
     description:string
     slug:string
     categoryId:number  
-    content:string//PostContent 
+    content:string
     authorId:number  
     createdAt: Date 
     updatedAt: Date 

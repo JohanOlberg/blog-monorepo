@@ -39,6 +39,20 @@ export class InvalidUserStatusError extends UserError {
     super("Invalid status")
   }
 }
+
+export class InvalidUserRoleError extends UserError {
+  constructor() {
+    super("Invalid role")
+  }
+}
+
+export class InvalidUserPasswordError extends UserError {
+  constructor() {
+    super("Invalid password")
+  }
+}
+
+
 export class UserNotFoundError extends UserError {
   constructor() {
     super("Invalid status")

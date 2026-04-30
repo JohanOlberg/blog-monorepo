@@ -25,8 +25,5 @@ export class UpdatePostUseCase{
             result.update(now , input)
             await this.iPostRepository.update(result)
             return toPostOutput(result)
-            
-        
-        
     }
 }

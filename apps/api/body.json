@@ -6,4 +6,41 @@
   "authorId": 1,
   "content": ""
 }
-curl.exe -X GET "http://localhost:3000/users" -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiZW1haWwiOiJqb2hhbjJAdGVzdC5jb20iLCJpYXQiOjE3NzcyMzk2NjksImV4cCI6MTc3NzI1NzY2OX0.IY-jRErySiQPIfwta_KyI4LKKpyLZWwOL_Cp9untzoI"  --data-binary "@user.json"
+curl.exe -X GET "http://localhost:3000/users" -H "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqb2hhbi51cGRhdGVkQGVtYWlsLmNvbSIsImlhdCI6MTc3NzMzMTE5OSwiZXhwIjoxNzc3MzQ5MTk5fQ.VHyOtBP15_K2GVWSoqXNUhKQos9UC96EAWaA8Af8TSo"  --data-binary "@user.json"
+
+curl.exe -X POST "http://localhost:3000/users" -H "Content-Type: application/json" -H "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJvYmVydmFsQGdtYWlsLmNvbSIsImlhdCI6MTc3NzQxMTg2OSwiZXhwIjoxNzc3NDI5ODY5fQ.DjZ-cZXxABx2tYkDooueZxEDo-tEExRCNkEobSpumOo"  --data-binary "@user.json"
+
+curl.exe -X POST "http://localhost:3000/login" -H "Content-Type: application/json" --data-binary "@user.json"
+
+
+curl.exe -X PATCH "http://localhost:3000/users/7/role" -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJvYmVydmFsQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc3NTU0Njk0LCJleHAiOjE3Nzc1NzI2OTR9.7jAeuyM7PxLqyeb7OI_LdGEjg9UUzow6OWP_7Zkib30" --data-binary "@user.json"
+
+curl.exe -X PATCH "http://localhost:3000/users/8/password" -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4IiwiZW1haWwiOiJqb2hhbm4udXBkYXRlQGVtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NzU2NTUzNywiZXhwIjoxNzc3NTgzNTM3fQ.YJhRZ_hwwpfQlhXSnBeV-BQfVRaDt5O13tTp5IwVNvE" --data-binary "@user.json"
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2IiwiZW1haWwiOiJvYmVydmFsQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc3NTU0Njk0LCJleHAiOjE3Nzc1NzI2OTR9.7jAeuyM7PxLqyeb7OI_LdGEjg9UUzow6OWP_7Zkib30
+
+{
+limpar o banco criar novo users de teste e deixar salvo as informacoes deles no json
+testar a troca de roles e testar a troca de senha, depois aplicar as roles nas rotas 
+validar que um user nao troque a propria role e que sempre tenha um user com role admin no sistema, 
+posso criar uma regra que um admin especifico nao possa trocar a role e nem a senha
+}
+{
+  "name":"Johan",
+  "email":"johan.update@email.com",
+  "passwordHash":"123"
+}
+
+
+{   "name":"Oberval",
+    "email":"oberval@gmail.com",
+    "password":"novaSenha123",
+    "role":"USER"
+}
+
+{"email":"johan@yahooo.com","password":"123456"}
+
+
+[{"id":6,"name":"Oberval","email":"oberval@gmail.com","authorIds":[1],"status":"ACTIVE","createdAt":"2026-04-27T23:10:02.933Z","updatedAt":"2026-04-27T23:10:02.933Z","role":"USER"},{"id":8,"name":"Johan","email":"johann.update@email.com","authorIds":[],"status":"BLOCKED","createdAt":"2026-04-28T21:44:38.607Z","updatedAt":"2026-04-30T13:42:10.672Z","role":"ADMIN"},{"id":7,"name":"Johan","email":"johan.update@email.com","authorIds":[],"status":"ACTIVE","createdAt":"2026-04-28T21:37:54.229Z","updatedAt":"2026-04-30T16:00:58.209Z","role":"USER"}]
+

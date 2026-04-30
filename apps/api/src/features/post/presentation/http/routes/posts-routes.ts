@@ -6,7 +6,7 @@ import { makeUpdatePostController } from "@post/presentation/factory/make-update
 import { makeArchivePostController } from "@post/presentation/factory/make-archive-post-controller.js";
 import { makePublishPostController } from "@post/presentation/factory/make-publish-post-controller.js";
 import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
-
+import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
 import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
 
 
@@ -23,12 +23,11 @@ export async function postsRoutes(app: FastifyInstance) {
 app.register(async (protectedRoutes) => {
   protectedRoutes.addHook("preHandler", authGuard)
 
-  protectedRoutes.post("/posts", createPostController.handle.bind(createPostController))
-  protectedRoutes.put("/posts/:id", updatePostController.handle.bind(updatePostController))
-
-  protectedRoutes.patch("/posts/:id/archive", archivePostController.handle.bind(archivePostController))
-  protectedRoutes.patch("/posts/:id/draft", draftPostController.handle.bind(draftPostController))
-  protectedRoutes.patch("/posts/:id/publish", publishPostController.handle.bind(publishPostController))
+  protectedRoutes.post("/posts", { preHandler:  requirePermission("POST_CREATE")}, createPostController.handle.bind(createPostController))
+  protectedRoutes.put("/posts/:id", { preHandler:  requirePermission("POST_UPDATE")}, updatePostController.handle.bind(updatePostController))
+  protectedRoutes.patch("/posts/:id/archive", { preHandler:  requirePermission("POST_ARCHIVE")}, archivePostController.handle.bind(archivePostController))
+  protectedRoutes.patch("/posts/:id/draft", { preHandler:  requirePermission("POST_DRAFT")}, draftPostController.handle.bind(draftPostController))
+  protectedRoutes.patch("/posts/:id/publish", { preHandler: requirePermission("POST_PUBLISH")},  publishPostController.handle.bind(publishPostController))
 })
 app.get("/posts", listPostsController.handle.bind(listPostsController))
 app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
