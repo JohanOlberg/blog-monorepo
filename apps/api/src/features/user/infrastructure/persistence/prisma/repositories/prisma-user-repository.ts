@@ -5,6 +5,17 @@ import { toDomain, toPrismaCreate, toPrismaUpdate } from "../mappers/prisma-user
 
 export class PrismaUserRepository implements IUserRepository{
 
+    async existsById(id: number): Promise<boolean> {
+        const result = await prisma.user.findUnique({
+                    where:{
+                        id: id
+                    },
+                   include: { authors: true } 
+                })
+        if(!result){return false}
+        return true
+    }
+
     async findById(id: number): Promise<User | null> {
         const result = await prisma.user.findUnique({
                     where:{

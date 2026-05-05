@@ -104,7 +104,7 @@ interface  PostPropsUpdate {
 export class Post{
 private constructor(private readonly props:PostProps){}
 
-getProps(){return this.props}
+    getProps(){return this.props}
 
     publish(now: Date){
         if (this.props.status ==='PUBLISHED'){
@@ -149,6 +149,7 @@ getProps(){return this.props}
         this.props.updatedAt = now  
         this.props.publishedAt = null  
     }
+
     draft(now: Date){
         if (this.props.status ==='DRAFT'){
             throw new InvalidPostStatusError();
@@ -158,6 +159,7 @@ getProps(){return this.props}
         this.props.archivedAt = null 
         this.props.publishedAt = null
     }
+
     update(now:Date, post:PostPropsUpdate){
         
         if(!post.categoryId){
@@ -195,7 +197,7 @@ getProps(){return this.props}
         this.props.title = post.title
         this.props.slug =  Slug.createSlug(post.slug).getValue();
     }
-
+    
     static restore(post:PostProps){
         return new Post(post)
     }
