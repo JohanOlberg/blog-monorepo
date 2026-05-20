@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post List</title>
+
+  <style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #ece8df;
+  color: #111;
+}
+
+.post-list-page {
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.post-list-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: #f6f3ec;
+  border: 2px solid #111;
+  box-shadow: 7px 7px 0 #111;
+}
+
+.post-list-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 32px;
+  border-bottom: 2px solid #111;
+  background: #dbeeea;
+}
+
+.page-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.post-list-header h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.post-list-header p {
+  max-width: 560px;
+  margin: 18px 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.header-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.button,
+.small-button {
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.button {
+  padding: 13px 18px;
+}
+
+.button-primary,
+.small-button.is-dark {
+  background: #111;
+  color: #fff;
+}
+
+.button-secondary {
+  background: #fff;
+}
+
+.post-list-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 24px;
+  padding: 28px 32px;
+  border-bottom: 2px solid #111;
+  background: #f6f3ec;
+}
+
+.search-box,
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-box label,
+.filter-box label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.search-box input,
+.filter-box select {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #111;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.post-list-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 2px solid #111;
+}
+
+.summary-card {
+  padding: 24px;
+  background: #fff;
+  border-right: 2px solid #111;
+}
+
+.summary-card:last-child {
+  border-right: none;
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.summary-card strong {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+}
+
+.post-list-item {
+  display: grid;
+  grid-template-columns: 2.5fr 1.4fr 1fr 1fr 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+}
+
+.post-main-info h2 {
+  margin: 12px 0 10px;
+  font-size: 1.6rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.post-main-info p {
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.post-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 2px solid #111;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 #111;
+}
+
+.status-published {
+  background: #e8f6d5;
+}
+
+.status-draft {
+  background: #fff1b8;
+}
+
+.status-archived {
+  background: #e4e4e4;
+}
+
+.post-meta span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.post-meta strong {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.small-button {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .post-list-item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .post-main-info,
+  .post-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .post-list-page {
+    padding: 20px;
+  }
+
+  .post-list-header {
+    flex-direction: column;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .post-list-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .post-list-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .summary-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .post-list-item {
+    grid-template-columns: 1fr;
+  }
+
+  .post-actions {
+    flex-direction: column;
+  }
+
+  .small-button {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <main class="post-list-page">
+    <section class="post-list-shell">
+      <header class="post-list-header">
+        <div>
+          <span class="page-label">CMS Content</span>
+          <h1>Posts</h1>
+          <p>Gerencie, visualize e acompanhe todos os posts cadastrados no CMS.</p>
+        </div>
+
+        <div class="header-actions">
+          <button class="button button-secondary">Filtrar</button>
+          <button class="button button-primary">Novo post</button>
+        </div>
+      </header>
+
+      <section class="post-list-toolbar">
+        <div class="search-box">
+          <label for="search">Search</label>
+          <input id="search" type="text" placeholder="Buscar por título, slug ou autor..." />
+        </div>
+
+        <div class="filter-box">
+          <label for="status">Status</label>
+          <select id="status">
+            <option>All</option>
+            <option>Draft</option>
+            <option>Published</option>
+            <option>Archived</option>
+          </select>
+        </div>
+
+        <div class="filter-box">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>All</option>
+            <option>Design</option>
+            <option>Frontend</option>
+            <option>Architecture</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="post-list-summary">
+        <div class="summary-card">
+          <span>Total</span>
+          <strong>24</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Published</span>
+          <strong>16</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Draft</span>
+          <strong>6</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Archived</span>
+          <strong>2</strong>
+        </div>
+      </section>
+
+      <section class="post-list">
+        <article class="post-list-item">
+          <div class="post-main-info">
+            <span class="post-status status-published">Published</span>
+            <h2>Emerging Web Design Trends</h2>
+            <p>Uma descrição curta do post aparece aqui antes do conteúdo completo.</p>
+          </div>
+
+          <div class="post-meta">
+            <span>Slug</span>
+            <strong>emerging-web-design-trends</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Author</span>
+            <strong>Johan Olberg</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Category</span>
+            <strong>Design</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Updated</span>
+            <strong>2026-05-08</strong>
+          </div>
+
+          <div class="post-actions">
+            <button class="small-button">View</button>
+            <button class="small-button is-dark">Edit</button>
+          </div>
+        </article>
+
+        <article class="post-list-item">
+          <div class="post-main-info">
+            <span class="post-status status-draft">Draft</span>
+            <h2>Atomic Design no CMS</h2>
+            <p>Como organizar componentes reutilizáveis sem transformar o projeto em overengineering.</p>
+          </div>
+
+          <div class="post-meta">
+            <span>Slug</span>
+            <strong>atomic-design-no-cms</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Author</span>
+            <strong>Johan Olberg</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Category</span>
+            <strong>Frontend</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Updated</span>
+            <strong>2026-05-06</strong>
+          </div>
+
+          <div class="post-actions">
+            <button class="small-button">View</button>
+            <button class="small-button is-dark">Edit</button>
+          </div>
+        </article>
+
+        <article class="post-list-item">
+          <div class="post-main-info">
+            <span class="post-status status-archived">Archived</span>
+            <h2>Clean Architecture Like no Frontend</h2>
+            <p>Separando UI, ViewModel, hooks e contratos sem perder pragmatismo.</p>
+          </div>
+
+          <div class="post-meta">
+            <span>Slug</span>
+            <strong>clean-architecture-like-frontend</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Author</span>
+            <strong>Johan Olberg</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Category</span>
+            <strong>Architecture</strong>
+          </div>
+
+          <div class="post-meta">
+            <span>Updated</span>
+            <strong>2026-04-28</strong>
+          </div>
+
+          <div class="post-actions">
+            <button class="small-button">View</button>
+            <button class="small-button is-dark">Edit</button>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post List</title>
+
+  <style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #ece8df;
+  color: #111;
+}
+
+.post-list-page {
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.post-list-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: #f6f3ec;
+  border: 2px solid #111;
+  box-shadow: 7px 7px 0 #111;
+}
+
+.post-list-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 32px;
+  border-bottom: 2px solid #111;
+  background: #dbeeea;
+}
+
+.page-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.post-list-header h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.post-list-header p {
+  max-width: 560px;
+  margin: 18px 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.header-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.button,
+.small-button {
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.button {
+  padding: 13px 18px;
+}
+
+.button-primary,
+.small-button.is-dark {
+  background: #111;
+  color: #fff;
+}
+
+.button-secondary {
+  background: #fff;
+}
+
+.post-list-toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 24px;
+  padding: 28px 32px;
+  border-bottom: 2px solid #111;
+  background: #f6f3ec;
+}
+
+.search-box,
+.filter-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-box label,
+.filter-box label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.search-box input,
+.filter-box select {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #111;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.post-list-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 2px solid #111;
+}
+
+.summary-card {
+  padding: 24px;
+  background: #fff;
+  border-right: 2px solid #111;
+}
+
+.summary-card:last-child {
+  border-right: none;
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.summary-card strong {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+}
+
+.post-list-item {
+  display: grid;
+  grid-template-columns: 2.5fr 1.4fr 1fr 1fr 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+}
+h2 {
+    margin: 0;   /* remove margens padrão */
+    padding: 0;  /* remove qualquer padding */
+}
+
+p {
+    margin: 0;   /* remove margens padrão */
+    padding: 0;  /* remove qualquer padding */
+}
+.post-main-info h2 {
+  
+  font-size: 1.6rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.post-main-info p {
+  margin: 0;
+  max-width: 520px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.post-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 2px solid #111;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 #111;
+}
+
+.status-published {
+  background: #e8f6d5;
+}
+
+.status-draft {
+  background: #fff1b8;
+}
+
+.status-archived {
+  background: #e4e4e4;
+}
+
+.post-meta span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.post-meta strong {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.small-button {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+}
+
+.post-list-item {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1.4fr 1fr;
+  grid-template-areas:
+    "status main main actions"
+    "status slug slug actions"
+    "created author category updated";
+  gap: 20px;
+  align-items: start;
+}
+.slug-space{
+  margin-top: 3px;
+}
+.post-status-area{
+  grid-area: status;
+}
+
+.post-main-info {
+  grid-area: main;
+}
+
+.post-slug {
+  grid-area: slug;
+}
+
+.post-actions {
+  grid-area: actions;
+  align-self: center;
+  justify-self: end;
+}
+
+.post-created {
+  grid-area: created;
+}
+
+.post-author {
+  grid-area: author;
+}
+
+.post-category {
+  grid-area: category;
+}
+
+.post-updated {
+  grid-area: updated;
+}
+
+@media (max-width: 900px) {
+  .post-list-item {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "main main"
+      "slug slug"
+      "created author"
+      "category updated"
+      "actions actions";
+  }
+
+  .post-actions {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 620px) {
+  .post-list-item {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main"
+      "slug"
+      "created"
+      "author"
+      "category"
+      "updated"
+      "actions";
+  }
+
+  .post-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1100px) {
+  .post-list-item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .post-main-info,
+  .post-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .post-list-page {
+    padding: 20px;
+  }
+
+  .post-list-header {
+    flex-direction: column;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .post-list-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .post-list-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .summary-card:nth-child(2) {
+    border-right: none;
+  }
+
+  .post-list-item {
+    grid-template-columns: 1fr;
+  }
+
+  .post-actions {
+    flex-direction: column;
+  }
+
+  .small-button {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <main class="post-list-page">
+    <section class="post-list-shell">
+      <header class="post-list-header">
+        <div>
+          <span class="page-label">CMS Content</span>
+          <h1>Posts</h1>
+          <p>Gerencie, visualize e acompanhe todos os posts cadastrados no CMS.</p>
+        </div>
+
+        <div class="header-actions">
+          <button class="button button-secondary">Filtrar</button>
+          <button class="button button-primary">Novo post</button>
+        </div>
+      </header>
+
+      <section class="post-list-toolbar">
+        <div class="search-box">
+          <label for="search">Search</label>
+          <input id="search" type="text" placeholder="Buscar por título, slug ou autor..." />
+        </div>
+
+        <div class="filter-box">
+          <label for="status">Status</label>
+          <select id="status">
+            <option>All</option>
+            <option>Draft</option>
+            <option>Published</option>
+            <option>Archived</option>
+          </select>
+        </div>
+
+        <div class="filter-box">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>All</option>
+            <option>Design</option>
+            <option>Frontend</option>
+            <option>Architecture</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="post-list-summary">
+        <div class="summary-card">
+          <span>Total</span>
+          <strong>24</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Published</span>
+          <strong>16</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Draft</span>
+          <strong>6</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Archived</span>
+          <strong>2</strong>
+        </div>
+      </section>
+
+      <section class="post-list">
+<article class="post-list-item">
+  <div class="post-status-area"> <span class="post-status status-published">Published</span></div>
+  <div class="post-main-info">
+    
+    <h2>Emerging Web Design Trends</h2>
+    <strong class="slug-space">emerging-web-design-trends</strong>
+    
+  </div>
+
+  <div class="post-meta post-slug">
+    <strong>Description</strong>
+    <p>Uma descrição curta do post aparece aqui antes do conteúdo completo.</p>
+  </div>
+
+  <div class="post-actions">
+    <button class="small-button">View</button>
+    <button class="small-button is-dark">Edit</button>
+  </div>
+
+  <div class="post-meta post-created">
+    <span>Created</span>
+    <strong>2026-05-08</strong>
+  </div>
+
+  <div class="post-meta post-author">
+    <span>Author</span>
+    <strong>Johan Olberg</strong>
+  </div>
+
+  <div class="post-meta post-category">
+    <span>Category</span>
+    <strong>Design</strong>
+  </div>
+
+  <div class="post-meta post-updated">
+    <span>Updated</span>
+    <strong>2026-05-08</strong>
+  </div>
+</article>
+
+      </section>
+    </section>
+  </main>
+</body>
+</html>

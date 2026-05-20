@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Grid Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #1a1a1a;
+            padding-top: 90px; /* Espaço para o header fixo não cobrir o conteúdo */
+        }
+
+        /* --- HEADER FIXO --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #ffffff;
+            border-bottom: 3px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .search-bar {
+            flex: 0 1 400px;
+            padding: 0.5rem 1rem;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        /* --- BENTO GRID LAYOUT --- */
+        .bento-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            /* 3 Colunas iguais */
+            grid-template-columns: repeat(3, 1fr);
+            /* 4 Linhas com tamanho automático baseado no conteúdo */
+            grid-template-rows: repeat(4, auto);
+            gap: 1.5rem;
+        }
+
+        /* --- ESTILIZAÇÃO DAS CAIXAS (BENTO BOXES) --- */
+        .bento-box {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: grid;
+            /* Grid interno para conteúdo dinâmico */
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 1rem;
+            align-content: start;
+        }
+
+        /* Título da Caixa ocupando as duas colunas internas */
+        .box-header {
+            grid-column: span 2;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        /* Elemento decorativo [] do título */
+        .bracket {
+            font-weight: 900;
+        }
+
+        /* Imagem fictícia dentro do grid interno */
+        .box-img {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #666;
+            object-fit: cover;
+        }
+
+        /* Descrição do Post */
+        .box-desc {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #2d2d2d;
+        }
+
+        /* --- CORES VARIADAS PARA AS BORDAS E BRACKETS --- */
+        /* Caixa 1 - Azul */
+        .box-blue { border: 4px solid #3b82f6; }
+        .box-blue .bracket { color: #3b82f6; }
+
+        /* Caixa 2 - Verde */
+        .box-green { border: 4px solid #10b981; }
+        .box-green .bracket { color: #10b981; }
+
+        /* Caixa 3 - Roxo */
+        .box-purple { border: 4px solid #8b5cf6; }
+        .box-purple .bracket { color: #8b5cf6; }
+
+        /* Caixa 4 - Laranja */
+        .box-orange { border: 4px solid #f97316; }
+        .box-orange .bracket { color: #f97316; }
+
+        /* Caixa 5 - Rosa */
+        .box-pink { border: 4px solid #ec4899; }
+        .box-pink .bracket { color: #ec4899; }
+
+        /* Caixa 6 - Amarelo/Dourado */
+        .box-yellow { border: 4px solid #eab308; }
+        .box-yellow .bracket { color: #eab308; }
+
+        /* --- EXEMPLOS DE CONFIGURAÇÃO DO BENTO GRID (OPCIONAL) ---
+           Aqui você pode fazer caixas ocuparem mais de uma linha ou coluna se quiser o efeito "Bento" clássico.
+           Por enquanto, elas preenchem o grid de 4x3 naturalmente. */
+        
+        /* Exemplo: Fazer a primeira caixa ser mais larga */
+        .box-1 { grid-column: span 2; }
+        
+        /* Exemplo: Fazer outra caixa ser mais alta */
+        .box-4 { grid-row: span 2; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Fixo -->
+    <header class="main-header">
+        <div class="logo">MyBrand</div>
+        <input type="text" class="search-bar" placeholder="Pesquisar posts...">
+        <nav class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">Posts</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+
+    <!-- Container Bento Grid (4 linhas x 3 colunas) -->
+    <main class="bento-container">
+        
+        <!-- Caixa 1 -->
+        <div class="bento-box box-blue box-1">
+            <div class="box-header"><span class="bracket">[</span> Meu post Azul <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">Esta é uma descrição dinâmica. Como esta caixa está configurada para ocupar duas colunas, o texto tem mais espaço para se espalhar.</p>
+        </div>
+
+        <!-- Caixa 2 -->
+        <div class="bento-box box-green">
+            <div class="box-header"><span class="bracket">[</span> Estilo Verde <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">Descrição curta para uma caixa padrão do nosso layout.</p>
+        </div>
+
+        <!-- Caixa 3 -->
+        <div class="bento-box box-purple">
+            <div class="box-header"><span class="bracket">[</span> Tech Purple <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">O conteúdo se adapta perfeitamente graças ao display grid interno configurado em cada box.</p>
+        </div>
+
+        <!-- Caixa 4 -->
+        <div class="bento-box box-orange box-4">
+            <div class="box-header"><span class="bracket">[</span> Orange Box <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">Esta caixa foi configurada para ocupar duas linhas verticais, ideal para textos mais longos ou imagens maiores.</p>
+        </div>
+
+        <!-- Caixa 5 -->
+        <div class="bento-box box-pink">
+            <div class="box-header"><span class="bracket">[</span> Design Pink <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">Bordas arredondadas e cores fortes destacam as postagens.</p>
+        </div>
+
+        <!-- Caixa 6 -->
+        <div class="bento-box box-yellow">
+            <div class="box-header"><span class="bracket">[</span> Ideias Gold <span class="bracket">]</span></div>
+            <div class="box-img">Img</div>
+            <p class="box-desc">Mais um bloco preenchendo o design bento perfeitamente.</p>
+        </div>
+
+        <!-- Você pode continuar adicionando até completar as 4 linhas do grid -->
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Post View - Asymmetric Zine</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #faf8f5; color: #1a1a1a; font-family: 'Arial Black', Gadget, sans-serif; padding: 3% 5%; }
+
+        /* SUPERIOR */
+        .top-zine { border: 6px solid #000; background: #ffff00; padding: 30px; margin-bottom: 40px; transform: rotate(1deg); }
+        .top-zine h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: -3px; line-height: 0.8; margin-bottom: 20px; }
+        .control-btns { display: inline-flex; border: 4px solid #000; }
+        .control-btns a { display: block; padding: 15px 30px; text-decoration: none; color: #000; background: #fff; font-weight: bold; text-transform: uppercase; border-right: 4px solid #000; }
+        .control-btns a:last-child { border-right: none; }
+        .control-btns a:hover { background: #00ffff; }
+
+        /* MÉDIO-SUPERIOR */
+        .meta-collage { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 40px; }
+        .tag-info { background: #000; color: #fff; padding: 10px 20px; font-size: 0.9rem; transform: rotate(-1.5deg); }
+        .tag-info:nth-child(even) { background: #ff3333; transform: rotate(2deg); }
+        .tag-info span { font-family: monospace; color: #fff; font-weight: normal; }
+
+        /* MÉDIO */
+        .editorial-desc { max-width: 700px; border-left: 15px solid #000; padding: 20px; font-size: 1.5rem; line-height: 1.2; margin-bottom: 50px; background: #fff; }
+
+        /* MÉDIO-INFERIOR */
+        .content-body { max-width: 850px; background: #fff; border: 4px dashed #000; padding: 40px; font-family: Garamond, Georgia, serif; font-size: 1.35rem; line-height: 1.7; }
+        .content-body h3 { font-family: sans-serif; font-size: 2rem; text-transform: uppercase; margin: 20px 0 10px 0; background: #000; color: #fff; display: inline-block; padding: 0 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- SUPERIOR -->
+    <header class="top-zine">
+        <h1>POST #03:<br>ASSIMETRIA</h1>
+        <div class="control-btns">
+            <a href="#">[Leitura]</a>
+            <a href="#">[Edição]</a>
+        </div>
+    </header>
+
+    <!-- MÉDIO-SUPERIOR -->
+    <section class="meta-collage">
+        <div class="tag-info">AUTOR: <span>Jane Doe</span></div>
+        <div class="tag-info">CAT: <span>Zine-Culture</span></div>
+        <div class="tag-info">SLUG: <span>/asymmetric-zine</span></div>
+        <div class="tag-info">DATA: <span>15.10.2023</span></div>
+        <div class="tag-info">STATUS: <span>PUBLISHED</span></div>
+    </section>
+
+    <!-- MÉDIO -->
+    <section class="editorial-desc">
+        Esta é uma descrição que quebra a simetria da tela. Ela usa uma borda lateral esquerda extremamente grossa para empurrar o layout.
+    </section>
+
+    <!-- MÉDIO-INFERIOR -->
+    <article class="content-body">
+        <p>No brutalismo estilo zine, o design simula recortes de jornal. As caixas de texto possuem espaçamentos generosos e bordas pontilhadas ou tracejadas.</p>
+        <h3>Subtítulo Cru</h3>
+        <p>O HTML permanece sem firulas: parágrafos limpos, cabeçalhos fortes. Todo o impacto visual fica por conta do posicionamento e dos contrastes pesados do CSS.</p>
+    </article>
+
+</body>
+</html>

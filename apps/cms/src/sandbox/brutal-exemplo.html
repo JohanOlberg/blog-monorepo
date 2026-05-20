@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Post View - Brutalist Layout Variations</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: #111;
+      color: #111;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .page {
+      display: grid;
+      gap: 80px;
+      padding: 48px;
+    }
+
+    .layout-title {
+      margin: 0 0 24px;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .post-button {
+      border: 3px solid currentColor;
+      padding: 10px 18px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: transparent;
+      box-shadow: 5px 5px 0 currentColor;
+    }
+
+    .post-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: 1px 1px 0 currentColor;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .meta-item span {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
+    .meta-item strong {
+      font-size: 16px;
+    }
+
+    .section-label {
+      margin: 0 0 12px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .post-description,
+    .post-content {
+      line-height: 1.65;
+    }
+
+    .post-description {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .post-content {
+      font-size: 16px;
+    }
+
+    /* =========================================================
+      1. MINIMAL BRUTALISM
+    ========================================================= */
+
+    .minimal-brutal {
+      background: #f4f0e8;
+      border: 4px solid #111;
+      box-shadow: 14px 14px 0 #111;
+      padding: 32px;
+    }
+
+    .minimal-brutal .post-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 4px solid #111;
+      padding-bottom: 28px;
+    }
+
+    .minimal-brutal .post-title {
+      max-width: 760px;
+      margin: 0;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: clamp(46px, 8vw, 96px);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .minimal-brutal .post-meta {
+      margin-top: 28px;
+    }
+
+    .minimal-brutal .meta-item,
+    .minimal-brutal .post-description-box,
+    .minimal-brutal .post-content-box {
+      border: 3px solid #111;
+      background: #fff;
+      padding: 18px;
+    }
+
+    .minimal-brutal .post-description-box,
+    .minimal-brutal .post-content-box {
+      margin-top: 16px;
+    }
+
+    /* =========================================================
+      2. CYBERPUNK BRUTALISM
+    ========================================================= */
+
+    .cyber-brutal {
+      position: relative;
+      overflow: hidden;
+      background: #090812;
+      color: #f5ff00;
+      border: 4px solid #f5ff00;
+      box-shadow: 12px 12px 0 #ff2bd6;
+      padding: 32px;
+    }
+
+    .cyber-brutal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245, 255, 0, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 255, 0, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .cyber-brutal > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cyber-brutal .post-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .cyber-brutal .post-title {
+      margin: 0;
+      color: #00f6ff;
+      font-size: clamp(38px, 7vw, 86px);
+      line-height: 0.92;
+      font-weight: 1000;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 #ff2bd6;
+    }
+
+    .cyber-brutal .post-button {
+      color: #00f6ff;
+      background: #090812;
+      box-shadow: 5px 5px 0 #ff2bd6;
+    }
+
+    .cyber-brutal .meta-item,
+    .cyber-brutal .post-description-box,
+    .cyber-brutal .post-content-box {
+      border: 2px solid #00f6ff;
+      background: rgba(0, 246, 255, 0.08);
+      padding: 18px;
+    }
+
+    .cyber-brutal .post-description-box,
+    .cyber-brutal .post-content-box {
+      margin-top: 16px;
+    }
+
+    .cyber-brutal .section-label,
+    .cyber-brutal .meta-item span {
+      color: #ff2bd6;
+      opacity: 1;
+    }
+
+    /* =========================================================
+      3. COLORFUL BRUTALISM
+    ========================================================= */
+
+    .colorful-brutal {
+      background: #fffc31;
+      border: 5px solid #111;
+      box-shadow: 16px 16px 0 #ff4b4b;
+      padding: 28px;
+    }
+
+    .colorful-brutal .post-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .colorful-brutal .post-title {
+      margin: 0;
+      padding: 22px;
+      background: #2afc98;
+      border: 4px solid #111;
+      font-size: clamp(42px, 7vw, 90px);
+      line-height: 0.9;
+      font-weight: 1000;
+      letter-spacing: -0.07em;
+      text-transform: uppercase;
+      box-shadow: 8px 8px 0 #111;
+    }
+
+    .colorful-brutal .post-actions {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .colorful-brutal .post-button:first-child {
+      background: #38b6ff;
+    }
+
+    .colorful-brutal .post-button:last-child {
+      background: #ff66c4;
+    }
+
+    .colorful-brutal .post-meta {
+      margin-top: 22px;
+    }
+
+    .colorful-brutal .meta-item {
+      border: 4px solid #111;
+      background: #fff;
+      padding: 16px;
+      box-shadow: 6px 6px 0 #111;
+    }
+
+    .colorful-brutal .post-description-box {
+      margin-top: 18px;
+      border: 4px solid #111;
+      background: #ff66c4;
+      padding: 22px;
+      box-shadow: 8px 8px 0 #111;
+    }
+
+    .colorful-brutal .post-content-box {
+      margin-top: 18px;
+      border: 4px solid #111;
+      background: #fff;
+      padding: 24px;
+      box-shadow: 8px 8px 0 #111;
+    }
+
+    /* =========================================================
+      4. EDITORIAL SPLIT BRUTALISM
+    ========================================================= */
+
+    .split-brutal {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 0;
+      background: #e9e1d0;
+      border: 4px solid #111;
+      box-shadow: 14px 14px 0 #111;
+    }
+
+    .split-brutal .post-side {
+      padding: 28px;
+      border-right: 4px solid #111;
+      background: #111;
+      color: #f4f0e8;
+    }
+
+    .split-brutal .post-main {
+      padding: 32px;
+    }
+
+    .split-brutal .post-title {
+      margin: 0 0 28px;
+      font-family: Georgia, serif;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .split-brutal .post-button {
+      width: 100%;
+      color: #f4f0e8;
+      margin-bottom: 12px;
+    }
+
+    .split-brutal .meta-grid {
+      grid-template-columns: 1fr;
+      margin-top: 32px;
+    }
+
+    .split-brutal .meta-item {
+      border-top: 2px solid #f4f0e8;
+      padding: 14px 0;
+    }
+
+    .split-brutal .post-description-box,
+    .split-brutal .post-content-box {
+      border: 3px solid #111;
+      background: #fffaf0;
+      padding: 24px;
+    }
+
+    .split-brutal .post-content-box {
+      margin-top: 18px;
+    }
+
+    /* =========================================================
+      5. INDUSTRIAL BRUTALISM
+    ========================================================= */
+
+    .industrial-brutal {
+      background: #c7c7c7;
+      border: 5px solid #111;
+      box-shadow: 18px 18px 0 #3b3b3b;
+      padding: 0;
+    }
+
+    .industrial-brutal .post-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 26px;
+      border-bottom: 5px solid #111;
+      background: repeating-linear-gradient(
+        -45deg,
+        #f7c600,
+        #f7c600 14px,
+        #111 14px,
+        #111 28px
+      );
+    }
+
+    .industrial-brutal .post-title-wrap {
+      background: #c7c7c7;
+      border: 4px solid #111;
+      padding: 18px;
+    }
+
+    .industrial-brutal .post-title {
+      margin: 0;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: clamp(38px, 6vw, 78px);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .industrial-brutal .post-actions {
+      background: #c7c7c7;
+      border: 4px solid #111;
+      padding: 14px;
+    }
+
+    .industrial-brutal .post-body {
+      padding: 26px;
+    }
+
+    .industrial-brutal .meta-item {
+      border: 3px solid #111;
+      background: #e7e7e7;
+      padding: 16px;
+    }
+
+    .industrial-brutal .post-description-box,
+    .industrial-brutal .post-content-box {
+      margin-top: 18px;
+      border: 3px solid #111;
+      background: #f5f5f5;
+      padding: 24px;
+    }
+
+    .industrial-brutal .post-description-box {
+      border-left-width: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        padding: 24px;
+      }
+
+      .meta-grid,
+      .minimal-brutal .post-header,
+      .cyber-brutal .post-header,
+      .colorful-brutal .post-header,
+      .industrial-brutal .post-header,
+      .split-brutal {
+        grid-template-columns: 1fr;
+      }
+
+      .minimal-brutal .post-header {
+        display: grid;
+      }
+
+      .split-brutal .post-side {
+        border-right: 0;
+        border-bottom: 4px solid #111;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- =======================================================
+      MODEL 1
+    ======================================================== -->
+    <section>
+      <h2 class="layout-title">Modelo 1 — Minimal Brutalism</h2>
+
+      <article class="minimal-brutal">
+        <header class="post-header">
+          <h1 class="post-title">Construindo um CMS moderno com React</h1>
+
+          <div class="post-actions">
+            <button class="post-button">Leitura</button>
+            <button class="post-button">Edição</button>
+          </div>
+        </header>
+
+        <section class="post-meta meta-grid">
+          <div class="meta-item">
+            <span>Autor</span>
+            <strong>Johan Olberg</strong>
+          </div>
+          <div class="meta-item">
+            <span>Categoria</span>
+            <strong>Frontend</strong>
+          </div>
+          <div class="meta-item">
+            <span>Status</span>
+            <strong>Publicado</strong>
+          </div>
+          <div class="meta-item">
+            <span>Slug</span>
+            <strong>cms-moderno-react</strong>
+          </div>
+          <div class="meta-item">
+            <span>Data de criação</span>
+            <strong>15/05/2026</strong>
+          </div>
+          <div class="meta-item">
+            <span>Última atualização</span>
+            <strong>15/05/2026</strong>
+          </div>
+        </section>
+
+        <section class="post-description-box">
+          <h3 class="section-label">Descrição</h3>
+          <p class="post-description">
+            Um resumo direto sobre arquitetura de CMS, organização por features, design system e renderização de conteúdo editorial.
+          </p>
+        </section>
+
+        <section class="post-content-box">
+          <h3 class="section-label">Conteúdo do post</h3>
+          <div class="post-content">
+            <p>
+              Este post apresenta uma visão prática de como estruturar um CMS moderno usando React, TypeScript e uma arquitetura orientada a features.
+            </p>
+            <p>
+              A ideia principal é separar responsabilidades entre layout, domínio, dados e experiência editorial, mantendo flexibilidade visual sem comprometer consistência.
+            </p>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <!-- =======================================================
+      MODEL 2
+    ======================================================== -->
+    <section>
+      <h2 class="layout-title">Modelo 2 — Cyberpunk Brutalism</h2>
+
+      <article class="cyber-brutal">
+        <header class="post-header">
+          <h1 class="post-title">Construindo um CMS moderno com React</h1>
+
+          <div class="post-actions">
+            <button class="post-button">Leitura</button>
+            <button class="post-button">Edição</button>
+          </div>
+        </header>
+
+        <section class="post-meta meta-grid">
+          <div class="meta-item">
+            <span>Autor</span>
+            <strong>Johan Olberg</strong>
+          </div>
+          <div class="meta-item">
+            <span>Categoria</span>
+            <strong>Frontend</strong>
+          </div>
+          <div class="meta-item">
+            <span>Status</span>
+            <strong>Publicado</strong>
+          </div>
+          <div class="meta-item">
+            <span>Slug</span>
+            <strong>cms-moderno-react</strong>
+          </div>
+          <div class="meta-item">
+            <span>Data de criação</span>
+            <strong>15/05/2026</strong>
+          </div>
+          <div class="meta-item">
+            <span>Última atualização</span>
+            <strong>15/05/2026</strong>
+          </div>
+        </section>
+
+        <section class="post-description-box">
+          <h3 class="section-label">Descrição</h3>
+          <p class="post-description">
+            Um layout agressivo, digital e neon, ideal para uma variação mais experimental do CMS ou tema tech.
+          </p>
+        </section>
+
+        <section class="post-content-box">
+          <h3 class="section-label">Conteúdo do post</h3>
+          <div class="post-content">
+            <p>
+              Aqui o brutalismo aparece em bordas duras, contraste extremo, grid visível e tipografia pesada.
+            </p>
+            <p>
+              A inspiração cyberpunk entra nas cores neon, sombras artificiais e sensação de interface técnica ou terminal futurista.
+            </p>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <!-- =======================================================
+      MODEL 3
+    ======================================================== -->
+    <section>
+      <h2 class="layout-title">Modelo 3 — Colorful Brutalism</h2>
+
+      <article class="colorful-brutal">
+        <header class="post-header">
+          <h1 class="post-title">Construindo um CMS moderno com React</h1>
+
+          <div class="post-actions">
+            <button class="post-button">Leitura</button>
+            <button class="post-button">Edição</button>
+          </div>
+        </header>
+
+        <section class="post-meta meta-grid">
+          <div class="meta-item">
+            <span>Autor</span>
+            <strong>Johan Olberg</strong>
+          </div>
+          <div class="meta-item">
+            <span>Categoria</span>
+            <strong>Frontend</strong>
+          </div>
+          <div class="meta-item">
+            <span>Status</span>
+            <strong>Publicado</strong>
+          </div>
+          <div class="meta-item">
+            <span>Slug</span>
+            <strong>cms-moderno-react</strong>
+          </div>
+          <div class="meta-item">
+            <span>Data de criação</span>
+            <strong>15/05/2026</strong>
+          </div>
+          <div class="meta-item">
+            <span>Última atualização</span>
+            <strong>15/05/2026</strong>
+          </div>
+        </section>
+
+        <section class="post-description-box">
+          <h3 class="section-label">Descrição</h3>
+          <p class="post-description">
+            Uma versão mais divertida, forte e visual, boa para páginas de CMS que querem mostrar personalidade sem perder organização.
+          </p>
+        </section>
+
+        <section class="post-content-box">
+          <h3 class="section-label">Conteúdo do post</h3>
+          <div class="post-content">
+            <p>
+              O colorful brutalism usa cores sólidas, sombras duras, cards bem separados e uma hierarquia visual quase exagerada.
+            </p>
+            <p>
+              Esse estilo combina bem com um produto de portfólio, pois demonstra controle visual, ousadia e capacidade de criar identidade própria.
+            </p>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <!-- =======================================================
+      MODEL 4
+    ======================================================== -->
+    <section>
+      <h2 class="layout-title">Modelo 4 — Editorial Split Brutalism</h2>
+
+      <article class="split-brutal">
+        <aside class="post-side">
+          <div class="post-actions">
+            <button class="post-button">Leitura</button>
+            <button class="post-button">Edição</button>
+          </div>
+
+          <section class="post-meta meta-grid">
+            <div class="meta-item">
+              <span>Autor</span>
+              <strong>Johan Olberg</strong>
+            </div>
+            <div class="meta-item">
+              <span>Categoria</span>
+              <strong>Frontend</strong>
+            </div>
+            <div class="meta-item">
+              <span>Status</span>
+              <strong>Publicado</strong>
+            </div>
+            <div class="meta-item">
+              <span>Slug</span>
+              <strong>cms-moderno-react</strong>
+            </div>
+            <div class="meta-item">
+              <span>Data de criação</span>
+              <strong>15/05/2026</strong>
+            </div>
+          </section>
+        </aside>
+
+        <main class="post-main">
+          <header>
+            <h1 class="post-title">Construindo um CMS moderno com React</h1>
+          </header>
+
+          <section class="post-description-box">
+            <h3 class="section-label">Descrição</h3>
+            <p class="post-description">
+              Uma versão com sidebar fixa de metadados e área principal mais editorial, ótima para leitura administrativa com foco no conteúdo.
+            </p>
+          </section>
+
+          <section class="post-content-box">
+            <h3 class="section-label">Conteúdo do post</h3>
+            <div class="post-content">
+              <p>
+                Esse modelo separa claramente contexto e conteúdo. A lateral concentra informações administrativas, enquanto o corpo principal fica livre para leitura.
+              </p>
+              <p>
+                É uma boa escolha para CMS porque permite adicionar ações futuras na sidebar, como histórico, permissões, SEO ou publicação.
+              </p>
+            </div>
+          </section>
+        </main>
+      </article>
+    </section>
+
+    <!-- =======================================================
+      MODEL 5
+    ======================================================== -->
+    <section>
+      <h2 class="layout-title">Modelo 5 — Industrial Brutalism</h2>
+
+      <article class="industrial-brutal">
+        <header class="post-header">
+          <div class="post-title-wrap">
+            <h1 class="post-title">Construindo um CMS moderno com React</h1>
+          </div>
+
+          <div class="post-actions">
+            <button class="post-button">Leitura</button>
+            <button class="post-button">Edição</button>
+          </div>
+        </header>
+
+        <div class="post-body">
+          <section class="post-meta meta-grid">
+            <div class="meta-item">
+              <span>Autor</span>
+              <strong>Johan Olberg</strong>
+            </div>
+            <div class="meta-item">
+              <span>Categoria</span>
+              <strong>Frontend</strong>
+            </div>
+            <div class="meta-item">
+              <span>Status</span>
+              <strong>Publicado</strong>
+            </div>
+            <div class="meta-item">
+              <span>Slug</span>
+              <strong>cms-moderno-react</strong>
+            </div>
+            <div class="meta-item">
+              <span>Data de criação</span>
+              <strong>15/05/2026</strong>
+            </div>
+            <div class="meta-item">
+              <span>Última atualização</span>
+              <strong>15/05/2026</strong>
+            </div>
+          </section>
+
+          <section class="post-description-box">
+            <h3 class="section-label">Descrição</h3>
+            <p class="post-description">
+              Uma variação mais mecânica e pesada, inspirada em painéis industriais, alertas visuais e interfaces administrativas rígidas.
+            </p>
+          </section>
+
+          <section class="post-content-box">
+            <h3 class="section-label">Conteúdo do post</h3>
+            <div class="post-content">
+              <p>
+                Esse estilo funciona bem quando você quer transmitir robustez, sistema interno, ferramenta operacional e controle.
+              </p>
+              <p>
+                O brutalismo aqui aparece com bordas grossas, textura de alerta, cinza industrial e divisões bem explícitas entre as áreas da página.
+              </p>
+            </div>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

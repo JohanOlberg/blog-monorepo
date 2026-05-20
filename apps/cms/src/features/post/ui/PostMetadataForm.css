@@ -1,0 +1,92 @@
+.post-meta-form {
+  padding: 24px;
+  background: #fff;
+  border: 2px solid #111;
+  box-shadow: 5px 5px 0 #111;
+}
+
+.post-meta-form-header {
+  margin-bottom: 28px;
+}
+
+.post-meta-form-header span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+.post-meta-form-header h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 2vw, 2.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.08em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.post-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.post-form-field label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #333;
+}
+
+.post-form-field input,
+.post-form-field textarea,
+.post-form-field select {
+  width: 100%;
+  border: 2px solid #111;
+  padding: 15px;
+  background: #f6f3ec;
+  color: #111;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  outline: none;
+
+  box-shadow:
+    inset 4px 4px 0 rgba(0, 0, 0, 0.18),
+    inset -4px -4px 0 rgba(255, 255, 255, 0.9);
+}
+
+.post-form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.post-form-field input:focus,
+.post-form-field textarea:focus,
+.post-form-field select:focus {
+  background: #fff;
+  box-shadow:
+    inset 5px 5px 0 rgba(0, 0, 0, 0.22),
+    inset -5px -5px 0 rgba(255, 255, 255, 1),
+    4px 4px 0 #111;
+}
+
+.post-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+
+
+@media (max-width: 520px) {
+  .post-form-row {
+    grid-template-columns: 1fr;
+  }
+}
