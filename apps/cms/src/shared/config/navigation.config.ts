@@ -4,10 +4,21 @@ import {
   SquarePen,
   Users,
   UserSquare2,
+  type LucideIcon,
 
 } from "lucide-react";
+import { type UserRole } from "../../features/auth/model/auth.types";
 
-export const navigationItems = [
+type NavigationItem = {
+    id:string
+    label:string
+    path:string
+    icon:LucideIcon
+    type:string
+    roles: UserRole[]
+}
+
+export const navigationItems:NavigationItem[] = [
     {
         id:"dashboard",
         label:"Dashboard",

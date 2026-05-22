@@ -5,8 +5,9 @@ import { AuthorListPage } from "../../features/author/page/AuthorListPage";
 import { UserListPage } from "../../features/user/pages/UserListPage";
 import { PostListPage } from "../../features/post/pages/PostListPage";
 import { PostEditorPage } from "../../features/post/pages/PostEditorPage"
-import {Login} from "../../features/auth/pages/LoginPage";
+import {LoginPage} from "../../features/auth/pages/LoginPage";
 import { PostDetailPage } from "../../features/post/pages/PostDetailPage";
+import { RequireAuth } from "../../shared/auth/RequireAuth";
 
 
 export const router = createBrowserRouter([
@@ -14,15 +15,19 @@ export const router = createBrowserRouter([
 
 {
     path: "/",
-    element: <Login />
+    element: <LoginPage />
 },
 {
     path: "/login",
-    element: <Login />
+    element: <LoginPage />
 },
 {
     path: "/admin",
-    element:<AdminLayout/>,
+    element: (
+      <RequireAuth>
+          <AdminLayout/>
+      </RequireAuth>
+  ),
     children: [
       {
         index: true,

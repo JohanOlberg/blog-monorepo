@@ -5,7 +5,7 @@ import {type  PostUpdate } from "../model/post.types";
 export function usePostUpdate(postId: number) {
   const queryClient = useQueryClient();
     
-  const mutation = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: (data: PostUpdate) => updatePost(postId, data),
 
     onSuccess: () => {
@@ -14,5 +14,5 @@ export function usePostUpdate(postId: number) {
     },
   });
 
-  return mutation;
+  return { mutate, isPending, isError, error } ;
 }   

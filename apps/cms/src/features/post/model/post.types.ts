@@ -1,12 +1,33 @@
+
+
+export type Author = {
+  id: number;
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  updatedAt: Date;
+  userId: number;
+}
+
+export type Category = {
+    id:number
+    title:string
+    color:string  | null;
+    slug:string
+    createdAt: Date;
+    updatedAt: Date ;
+}
+
+
 export type PostListItem  = {
     title: string;
     id: number;
     status: string;
     slug: string;
     description: string;
-    categoryId: number;
+    category: Category;
     content: string;
-    authorId: number;
+    author: Author;
     createdAt: string;
     updatedAt: string;
     publishedAt: string | null;
@@ -20,8 +41,8 @@ export type PostEditorForm = {
   content: string;
   slug: string;
   status: string;
-  authorId: number;
-  categoryId: number;
+  author: Author;
+  category: Category;
   publishedAt: string | null;
 };
 

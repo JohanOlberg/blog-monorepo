@@ -47,9 +47,9 @@ if(!post){throw new Error}
 
 
           <section className="pill-meta pill-meta-asymmetric">
-            <span className="is-large"><b>Author</b>{post.authorId}</span>
+            <span className="is-large"><b>Author</b>{post.author.name}</span>
             <span className="status-badge"><b>Status</b>{post.status}</span>
-            <span><b>Category</b> {post.categoryId}</span>
+            <span><b>Category</b> {post.category.title}</span>
             <span className="is-wide"><b>Slug</b>{post.slug}</span>
             <span><b>Created at</b>{post.createdAt}</span>
             <span><b>Published at</b> {post.publishedAt}</span>

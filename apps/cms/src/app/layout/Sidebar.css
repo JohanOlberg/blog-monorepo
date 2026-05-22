@@ -93,3 +93,46 @@
   color: currentColor;
   flex-shrink: 0;
 }
+
+.sidebar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sidebar__user {
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 20px;
+  margin-top: 30px;
+}
+
+.sidebar__user-info {
+  margin-bottom: 14px;
+}
+
+.sidebar__user-info strong {
+  display: block;
+  font-size: 15px;
+  color: #fff;
+}
+
+.sidebar__user-info span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar__logout {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sidebar__logout:hover {
+  background: #fff;
+  color: #252b3d;
+}

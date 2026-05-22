@@ -81,12 +81,12 @@ export function PostListPage() {
 
           <div className="post-meta post-author">
             <span>Author</span>
-            <strong>{post.authorId}</strong>
+            <strong>{post.author.name}</strong>
           </div>
 
           <div className="post-meta post-category">
             <span>Category</span>
-            <strong>{post.categoryId}</strong>
+            <strong>{post.category.title}</strong>
           </div>
 
           <div className="post-meta post-updated">

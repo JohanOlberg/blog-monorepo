@@ -21,8 +21,8 @@ function toPostEditorForm(post: PostListItem): PostEditorForm {
     content: post.content ?? "",
     slug: post.slug,
     status: post.status,
-    authorId: post.authorId,
-    categoryId: post.categoryId,
+    author: post.author,
+    category: post.category,
     publishedAt:post.publishedAt
   };
 }
