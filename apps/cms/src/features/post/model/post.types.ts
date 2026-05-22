@@ -53,3 +53,8 @@ export type PostUpdate = {
   content: string;
   slug:string
 };
+
+export type ChangeAuthor = {
+  id:number;
+};
+

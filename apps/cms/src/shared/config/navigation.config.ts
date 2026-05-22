@@ -33,7 +33,7 @@ export const navigationItems:NavigationItem[] = [
         path:"/admin/posts",
         icon:FileText,
         type:"ROUTE",
-        roles:[ "AUTHOR"],
+        roles:[ "AUTHOR","EDITOR"],
     },
 
     {

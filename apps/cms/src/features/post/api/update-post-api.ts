@@ -3,10 +3,8 @@ import type { PostUpdate } from "../model/post.types";
 
 export async function updatePost(postId: number, data: PostUpdate) {
   try {
-    // CORREÇÃO: URL termina nas crases, 'data' entra como segundo argumento separado por vírgula
+ 
     const response = await httpClient.put(`/posts/${postId}`, data);
-    
-    // Retorna os dados que o servidor enviou de volta
     return response.data; 
     
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

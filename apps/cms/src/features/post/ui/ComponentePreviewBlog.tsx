@@ -19,7 +19,7 @@ export function PostReadingPreview() {
           aria-label="Informações do post"
         >
           <span className="post-reading-preview__author">
-            {form.authorId ?? "Autor"}
+            {form.author.name ?? "Author"}
           </span>
           <span>{form.publishedAt ?? "Data de criação"}</span>
           <span>{"20mins Tempo de leitura"}</span>
