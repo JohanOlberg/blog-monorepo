@@ -1,6 +1,15 @@
 import { Prisma } from "@prisma/client";
 import { Post, NewPost } from "@post/domain/entities/post.js";
+import type { PostDetailsOutput, PostListOutput } from "@post/application/dto/post.output.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
+
+type PrismaPostWithRelations = Prisma.PostGetPayload<{
+  include: {
+    author: true
+    category: true
+  }
+}>
+
 
 
 
@@ -32,6 +41,38 @@ export function toPrismaUpdate(post: Post) {
     archivedAt: props.archivedAt,
     publishedAt: props.publishedAt,    
     updatedAt: props.updatedAt,  
+  }
+}
+
+  
+export function toPostListOutput(prisma:PrismaPostWithRelations ):PostListOutput {
+      
+  return {
+    id: prisma.id,
+    title: prisma.title,
+    description: prisma.description,
+    slug: prisma.slug,
+    author: prisma.author,
+    createdAt: prisma.createdAt,
+    status: prisma.status,
+    category: prisma.category,
+    content: String(prisma.content), // ToDo: retirar da lista geral, so exibir em detaisl
+  }
+}
+
+  
+export function toPostDetailsOutput(prisma:PrismaPostWithRelations ):PostDetailsOutput {
+      
+  return {
+    id: prisma.id,
+    title: prisma.title,
+    description: prisma.description,
+    slug: prisma.slug,
+    author: prisma.author,
+    createdAt: prisma.createdAt,
+    status: prisma.status,
+    category: prisma.category,
+    content: String(prisma.content),
   }
 }
 

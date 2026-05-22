@@ -8,7 +8,7 @@ export class ListPostsController{
     async handle(request:FastifyRequest, reply:FastifyReply){
         
         const posts = await this.listPostUseCase.execute();
-
+console.log(posts)
         return reply.status(200).send(posts)
 
     }

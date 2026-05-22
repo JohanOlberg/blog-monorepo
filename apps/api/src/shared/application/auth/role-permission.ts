@@ -6,13 +6,7 @@ export const ROLE_PERMISSIONS: Record<UserRoles, Permission[]> = {
     "POST_CREATE",
     "POST_UPDATE"
   ],
-  EDITOR: [
-    "POST_CREATE",
-    "POST_UPDATE",
-    "POST_PUBLISH",
-    "POST_ARCHIVE",
-    "POST_DRAFT"
-  ],
+  
   ADMIN: [
     "POST_CREATE",
     "POST_UPDATE",

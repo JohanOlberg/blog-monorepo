@@ -96,9 +96,8 @@ interface  PostPropsUpdate {
     title:string
     slug:string
     description:string
-    categoryId:number
-    content:string//PostContent 
-    authorId:number
+    content:string
+    
 }
 
 export class Post{
@@ -162,12 +161,7 @@ private constructor(private readonly props:PostProps){}
 
     update(now:Date, post:PostPropsUpdate){
         
-        if(!post.categoryId){
-            throw new CategoryRequiredError();
-        }
-        if(!post.authorId ){
-            throw new AuthorRequiredError();
-        }
+        
         if(!post.description || post.description.trim() === ""){
             throw new DescriptionRequiredError();
         }
@@ -190,9 +184,9 @@ private constructor(private readonly props:PostProps){}
         }
 
         this.props.updatedAt = now
-        this.props.categoryId = post.categoryId
+        
         this.props.content = post.content
-        this.props.authorId = post.authorId
+       
         this.props.description = post.description
         this.props.title = post.title
         this.props.slug =  Slug.createSlug(post.slug).getValue();

@@ -9,7 +9,7 @@ export type UserOutput = {
     status:UserStatus;
     createdAt:Date;
     updatedAt:Date;
-    role:string
+    role:UserRoles
 }
 
 export type LoginUserOutput = {
