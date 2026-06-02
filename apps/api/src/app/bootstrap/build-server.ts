@@ -12,7 +12,7 @@ export function buildServer(){
 const server = fastify({ logger: true })
 server.register(cors, {
   origin: ['http://localhost:5173','http://localhost:5174'], // só permite seu frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 });
 
 server.listen({ port: 3000 }, (err, address) => {

@@ -40,8 +40,10 @@ export function PostEditorMetadataForm(){
         <textarea
           id="description"
           value={form.description}
+          
           onChange={(event) =>
             updateField("description", event.target.value)
+            
           }
         />
       </div>
@@ -53,6 +55,7 @@ export function PostEditorMetadataForm(){
           value={form.slug}
           onChange={(event) => updateField("slug", event.target.value)}
         />
+
       </div>
 
     </aside>
