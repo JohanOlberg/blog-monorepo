@@ -1,6 +1,7 @@
 import { postsRoutes } from "src/features/post/presentation/http/routes/posts-routes.js";
 import type { FastifyInstance } from "fastify";
 import { userRoutes } from "@user/presentation/http/routes/user-routes.js";
+import { categoryRoutes } from "src/features/category/presentation/http/routes/category-routes.js";
 
 
 export function registerRoutes(server:FastifyInstance){
@@ -14,4 +15,5 @@ export function registerRoutes(server:FastifyInstance){
 
     postsRoutes(server)
     userRoutes(server)
+    categoryRoutes(server)
 }

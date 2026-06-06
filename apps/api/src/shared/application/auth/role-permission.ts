@@ -6,11 +6,14 @@ export const ROLE_PERMISSIONS: Record<UserRoles, Permission[]> = {
     "POST_UPDATE",
     "POST_PUBLISH",
     "POST_ARCHIVE",
-    "POST_DRAFT"
+    "POST_DRAFT",
+    
   ],
   AUTHOR: [
     "POST_CREATE",
-    "POST_UPDATE"
+    "POST_UPDATE",
+    "CATEGORY_CREATE",
+    "CATEGORY_UPDATE"
   ],
   
   ADMIN: [
@@ -18,7 +21,14 @@ export const ROLE_PERMISSIONS: Record<UserRoles, Permission[]> = {
     "POST_UPDATE",
     "POST_PUBLISH",
     "POST_ARCHIVE",
+    "POST_DRAFT",
     "USER_CHANGE_ROLE",
-    "AUTHOR_CREATE"
+    "USER_CREATE",
+    "USER_UPDATE",
+    "USER_CHANGE_STATUS",
+    "USER_CHANGE_PASSWORD",
+    "AUTHOR_CREATE",
+    "CATEGORY_CREATE",
+    "CATEGORY_UPDATE"
   ]
 }

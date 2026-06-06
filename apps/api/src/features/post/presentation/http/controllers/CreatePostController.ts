@@ -8,6 +8,5 @@ export class CreatePostController{
         const body = createPostSchema.parse(request.body)
         const postOutput  = await this.createPostUseCase.execute(body);
         return reply.status(201).send(postOutput)
-
     }
 }

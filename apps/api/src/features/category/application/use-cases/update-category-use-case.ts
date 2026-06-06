@@ -2,7 +2,7 @@ import { toListCategoryOutput } from "../mappers/category-output-mappers.js";
 import {type ICategoryRepository } from "../../domain/repositories/ICategoryRepository.js";
 import type { UpdateCategoryInput } from "../dto/category.input.js";
 
-export class CreateCategoryUseCase {
+export class UpdateCategoryUseCase {
     constructor(private iCategoryRepository:ICategoryRepository){}
 
     async execute(input:UpdateCategoryInput, id:number){
@@ -11,6 +11,6 @@ export class CreateCategoryUseCase {
         if(!result){throw new Error("Category not found")}
         result.updateCategory(input)
         const category = await this.iCategoryRepository.update(result)
-        return toListCategoryOutput(category)
+        //return toListCategoryOutput(category)
     }
 } 

@@ -15,3 +15,6 @@ export type Permission =
   | "AUTHOR_CREATE"
   | "AUTHOR_UPDATE"
   | "AUTHOR_CHANGE_STATUS"
+  /*CATEGORY ROLES */
+  | "CATEGORY_CREATE"
+  | "CATEGORY_UPDATE"

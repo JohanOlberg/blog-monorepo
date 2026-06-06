@@ -55,8 +55,7 @@ export function toPostListOutput(prisma:PrismaPostWithRelations ):PostListOutput
     author: prisma.author,
     createdAt: prisma.createdAt,
     status: prisma.status,
-    category: prisma.category,
-    content: String(prisma.content), // ToDo: retirar da lista geral, so exibir em detaisl
+    category: prisma.category
   }
 }
 
