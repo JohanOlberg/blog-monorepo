@@ -4,9 +4,6 @@ import "./PostEditControls.css"
 import { PostStatusWorkflow } from "./PostChangeStatus";
 
 export default function PostEditControlsSimple() {
-  //const { mutate } = useChangePostStatus()
-  //const { form } = usePostEditorContext();
-
   return (
     <section className="post-controls">
 
@@ -72,7 +69,7 @@ export default function PostEditControlsSimple() {
       ====================================================== */}
 
 
-        <PostStatusWorkflow/>
+        <PostStatusWorkflow  />
 
     </section>
   );

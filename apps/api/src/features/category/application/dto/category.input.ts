@@ -5,7 +5,7 @@
  }
 
   export type UpdateCategoryInput = {
-    id:number
+    
     title: string
     slug: string
     color: string

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Category</title>
+
+  <link rel="stylesheet" href="./create-category.css">
+</head>
+<body>
+
+  <main class="page">
+
+    <header class="page-header">
+      <div>
+        <span>CATEGORY / CMS</span>
+        <h1>Create Category</h1>
+        <p>Create a visual identity for your content.</p>
+      </div>
+
+      <button>Create Category</button>
+    </header>
+
+    <section class="category-layout">
+
+      <form class="category-form">
+
+        <div class="form-header">
+          <span>Category Data</span>
+          <h2>New Category</h2>
+        </div>
+
+        <label>
+          Title
+          <input type="text" placeholder="Frontend">
+        </label>
+
+        <label>
+          Slug
+          <div class="slug-row">
+            <input type="text" value="frontend">
+            <button type="button">Edit</button>
+          </div>
+        </label>
+
+        <label>
+          Description
+          <textarea placeholder="Small description for this category"></textarea>
+        </label>
+
+      </form>
+
+      <aside class="color-panel">
+
+        <div class="form-header">
+          <span>Visual Identity</span>
+          <h2>Color</h2>
+        </div>
+
+        <div class="current-color">
+          <div class="color-preview"></div>
+
+          <div>
+            <strong>#2afc98</strong>
+            <small>Auto generated</small>
+          </div>
+        </div>
+
+        <div class="color-grid">
+          <button style="background:#2afc98"></button>
+          <button style="background:#ffb347"></button>
+          <button style="background:#bba7ff"></button>
+          <button style="background:#ff66c4"></button>
+          <button style="background:#38b6ff"></button>
+          <button style="background:#ff5f5f"></button>
+          <button style="background:#ffe44d"></button>
+          <button style="background:#00d1b2"></button>
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -16,9 +16,9 @@ export function categoryRoutes(app: FastifyInstance){
     app.register(async (protectedRoutes) => {
       protectedRoutes.addHook("preHandler", authGuard)
     
-      protectedRoutes.post("/category", { preHandler:  requirePermission("CATEGORY_CREATE")}, createCategoryController.handle.bind(createCategoryController))
-      protectedRoutes.put("/category/:id", { preHandler:  requirePermission("CATEGORY_UPDATE")}, updateCategoryController.handle.bind(updateCategoryController))
+      protectedRoutes.post("/categories", { preHandler:  requirePermission("CATEGORY_CREATE")}, createCategoryController.handle.bind(createCategoryController))
+      protectedRoutes.put("/categories/:id", { preHandler:  requirePermission("CATEGORY_UPDATE")}, updateCategoryController.handle.bind(updateCategoryController))
     })
-    app.get("/category", listCategoryController.handle.bind(listCategoryController))
-    app.get("/category/:id", getCategoryByIdController.handle.bind(getCategoryByIdController))
+    app.get("/categories", listCategoryController.handle.bind(listCategoryController))
+    app.get("/categories/:id", getCategoryByIdController.handle.bind(getCategoryByIdController))
 } 

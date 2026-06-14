@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Category</title>
+
+  <link rel="stylesheet" href="./edit-category.css">
+</head>
+<body>
+
+  <main class="page">
+
+    <header class="page-header">
+      <div>
+        <span>CATEGORY / CMS</span>
+        <h1>Edit Category</h1>
+        <p>Update category identity and metadata.</p>
+      </div>
+
+      <button>Save Changes</button>
+    </header>
+
+    <section class="edit-layout">
+
+      <form class="edit-form">
+
+        <div class="form-header">
+          <span>Category</span>
+          <h2>Frontend</h2>
+        </div>
+
+        <label>
+          Title
+          <input value="Frontend">
+        </label>
+
+        <label>
+          Slug
+          <div class="slug-row">
+            <input value="frontend">
+            <button type="button">Edit</button>
+          </div>
+        </label>
+
+        <label>
+          Description
+          <textarea>Everything related to frontend engineering and user interfaces.</textarea>
+        </label>
+
+      </form>
+
+      <aside class="settings-panel">
+
+        <div class="form-header">
+          <span>Settings</span>
+          <h2>Visual</h2>
+        </div>
+
+        <div class="active-color">
+          <div class="color-preview"></div>
+
+          <div>
+            <strong>#2afc98</strong>
+            <small>Current color</small>
+          </div>
+        </div>
+
+        <div class="color-grid">
+          <button style="background:#2afc98"></button>
+          <button style="background:#ffb347"></button>
+          <button style="background:#bba7ff"></button>
+          <button style="background:#ff66c4"></button>
+          <button style="background:#38b6ff"></button>
+          <button style="background:#ff5f5f"></button>
+          <button style="background:#ffe44d"></button>
+          <button style="background:#00d1b2"></button>
+        </div>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

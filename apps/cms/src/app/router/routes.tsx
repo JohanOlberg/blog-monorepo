@@ -8,6 +8,7 @@ import { PostEditorPage } from "../../features/post/pages/PostEditorPage"
 import {LoginPage} from "../../features/auth/pages/LoginPage";
 import { PostDetailPage } from "../../features/post/pages/PostDetailPage";
 import { RequireAuth } from "../../shared/auth/RequireAuth";
+import { CreatePostPage } from "../../features/post/pages/PostCreatePage";
 
 
 export const router = createBrowserRouter([
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "posts/new",
-        element: (<PostEditorPage/>),
+        element: (<CreatePostPage/>),
       },
       {
         path: "authors",

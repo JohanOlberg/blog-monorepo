@@ -37,13 +37,19 @@
     color: string
  }
 
+   interface CategoryUpdateProps{
+    title: string
+    slug: string
+    color: string
+ }
+
 
  export class Category {
     private constructor(private props:CategoryProps){}
     
     getProps(){return this.props}
 
-    updateCategory(input:CategoryProps){
+    updateCategory(input:CategoryUpdateProps){
         if (!input.title || input.title.trim() === "") {
         throw new Error("Category title is required")
         }
