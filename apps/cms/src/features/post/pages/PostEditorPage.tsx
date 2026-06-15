@@ -134,7 +134,13 @@ function handleSave(dataForm:PostUpdate){
             </div>
           </header>
   
-          <PostEditControlsSimple />
+             <section className="post-controls-grid">
+       
+       
+       
+       
+          <PostEditControlsSimple/>
+          </section>
 
           <section className="post-editor-grid">
             <PostEditorMetadataForm />

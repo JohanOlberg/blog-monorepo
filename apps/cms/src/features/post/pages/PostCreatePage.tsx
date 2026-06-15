@@ -1,10 +1,9 @@
 
-import { CategorySelector } from "../../category/ui/CategorySelector";
-import { PostChangeAuthor } from "../ui/PostChangeAuthor";
+import { PostCreateControls } from "../ui/PostCreateControls";
 import "./PostCreatePage.css";
 
 export function CreatePostPage() {
-  const isPostSaved = false;
+  //const isPostSaved = false;
 
   return (
     <main className="create-post-page">
@@ -18,31 +17,7 @@ export function CreatePostPage() {
         <button className="save-post-button">Save draft</button>
       </header>
 
-      <section className="post-controls-grid">
-        <CategorySelector  />
-
-        <PostChangeAuthor />
-
-        <article className="control-card">
-          <div className="control-header">
-            <span>Status</span>
-            <h2>Draft</h2>
-          </div>
-
-          <div className="status-draft-box">
-            <span className="status-label">Current</span>
-            <strong>Draft</strong>
-            <small>This post must be saved before it can be published.</small>
-          </div>
-
-          <button
-            className="publish-button"
-            disabled={!isPostSaved}
-          >
-            {isPostSaved ? "Publish post" : "Save before publishing"}
-          </button>
-        </article>
-      </section>
+      <PostCreateControls/>
 
       <section className="post-editor-grid">
         <aside className="metadata-panel">

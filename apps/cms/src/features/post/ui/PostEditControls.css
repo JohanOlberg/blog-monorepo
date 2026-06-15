@@ -4,7 +4,8 @@
 
         .post-controls {
            display: grid;
-  grid-template-columns: repeat(2, minmax(360px, 1fr));
+  /*grid-template-columns: 380px 300px minmax(360px, 1fr);*/
+  grid-template-columns: 1.2fr 1fr minmax(360px, 1.3fr);
   gap: 16px;
   align-items: stretch;
         }
