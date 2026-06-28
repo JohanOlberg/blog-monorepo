@@ -1,17 +1,20 @@
+import type { PostEditorForm } from "../model/post.types";
 import "./ComponentePreviewBlog.css"
-import { usePostEditorContext } from "../context/PostEditorContext";
+//import { usePostEditorContext } from "../context/PostEditorContext";
 
+type Props = {
+  post: PostEditorForm;
+};
 
-export function PostReadingPreview() {
-  const { form } = usePostEditorContext();
+export function PostReadingPreview({ post }: Props) {
 
   return (
     <article className="post-reading-preview">
       <header className="post-reading-preview__header">
-        <h1 className="post-reading-preview__title">{form.title}</h1>
+        <h1 className="post-reading-preview__title">{post.title}</h1>
 
         <p className="post-reading-preview__description">
-          {form.description}
+          {post.description}
         </p>
 
         <div
@@ -19,9 +22,9 @@ export function PostReadingPreview() {
           aria-label="Informações do post"
         >
           <span className="post-reading-preview__author">
-            {form.author.name ?? "Author"}
+            {post.author.name ?? "Author"}
           </span>
-          <span>{form.publishedAt ?? "Data de criação"}</span>
+          <span>{post.publishedAt ?? "Data de criação"}</span>
           <span>{"20mins Tempo de leitura"}</span>
         </div>
       </header> 
@@ -30,7 +33,7 @@ export function PostReadingPreview() {
 
       <section
         className="post-reading-preview__content"
-        dangerouslySetInnerHTML={{ __html: form.content }}
+        dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </article>
   );

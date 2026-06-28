@@ -13,7 +13,11 @@ export class PrismaPostRepository implements IPostRepository{
         }
         const post = await prisma.post.findUnique({
             include: {
-            author: true,
+            author: {
+                include: {
+                user: true,
+                },
+            },
             category:true 
         },
             where:{
@@ -29,7 +33,11 @@ export class PrismaPostRepository implements IPostRepository{
         async findAll(): Promise<PostListOutput[]> {
         const posts = await prisma.post.findMany({
         include: {
-            author: true,
+            author: {
+                include: {
+                user: true,
+                },
+            },
             category:true 
         }
     });

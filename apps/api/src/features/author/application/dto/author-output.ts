@@ -11,3 +11,13 @@ export type  AuthorOutput = {
     userId:number
     status : AuthorStatus
 }
+
+export type AuthorPostOutput = {
+  id: number;
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  userId: number;
+  email: string;
+  status : AuthorStatus
+};

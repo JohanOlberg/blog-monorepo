@@ -7,6 +7,6 @@ export class GetAllAuthorsUseCase{
     async execute(){
         const result = await this.authorRepository.findAll()
          if(!result){return []}
-        return result.map(toAuthorOutput)
+        return result
     }
 }

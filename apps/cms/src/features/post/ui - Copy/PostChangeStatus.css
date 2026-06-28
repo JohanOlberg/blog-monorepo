@@ -1,0 +1,110 @@
+.status-workflow {
+  display: grid;
+  gap: 7px;
+}
+
+.status-card {
+  border: 3px solid #111;
+  text-align: left;
+  box-shadow: 4px 4px 0 #111;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.status-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111;
+}
+
+.status-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #111;
+}
+
+.status-card--current {
+  padding: 18px;
+  animation: statusEnter 220ms ease;
+  cursor: default;
+}
+.status-card--current:hover {
+  transform: none;
+   box-shadow: 4px 4px 0 #111;
+}
+.status-card--current:active {
+  transform: none;
+   box-shadow: 4px 4px 0 #111;
+}
+
+.status-card--current strong {
+  display: block;
+  font-size: 28px;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.status-card--current small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.status-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.status-card--option {
+  padding: 14px;
+  animation: statusEnter 220ms ease;
+}
+
+.status-card--option strong {
+  display: block;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.status-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status-draft {
+  background: #d9d9d9;
+  color: #111;
+}
+
+.status-published {
+  background: #2afc98;
+  color: #111;
+}
+
+.status-archived {
+  background: #3b3b3b;
+  color: #fff;
+}
+
+@keyframes statusEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

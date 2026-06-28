@@ -1,15 +1,14 @@
-import type {FastifyRequest, FastifyReply } from "fastify";
-import { createAuthorSchema } from "../schemas/create-author-schema.js";
-import type { CreateAuthorUseCase } from "@author/application/use-cases/create-author-use-case.js";
+import type { FastifyRequest, FastifyReply } from "fastify";
+import { CreateAuthorUseCase } from "@author/application/use-cases/create-author-use-case.js";
+import { createAuthorSchema } from "../schemas/create-author.schemas.js";
 
+export class CreateAuthorController {
+  constructor(private createAuthorUseCase: CreateAuthorUseCase) {}
 
-export class CreateAuthorController{
-    constructor(private readonly createuthorUseCase:CreateAuthorUseCase){}
-    async handle(request:FastifyRequest, reply:FastifyReply){
+  async handle(request: FastifyRequest, reply: FastifyReply) {
+    const body = createAuthorSchema.parse(request.body);
+    const author = await this.createAuthorUseCase.execute(body);
 
-            const body = createAuthorSchema.parse(request.body)
-            const authorOutput = await this.createuthorUseCase.execute(body)
-            return reply.status(201).send(authorOutput)
-        
-    }
+    return reply.status(201).send(author);
+  }
 }

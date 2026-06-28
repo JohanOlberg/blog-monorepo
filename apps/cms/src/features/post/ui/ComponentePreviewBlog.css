@@ -1,34 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;500;600;700;800;900&display=swap");
 
-    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;500;600;700;800;900&display=swap');
-.modal-overlay-blur {
+.blog-preview-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px); /* Cria o efeito de desfoque de fundo */
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
-.modal-content-bento {
-  all: unset; /* Proteção contra o CSS Brutalista */
+.blog-preview-modal-content {
   width: 80%;
   height: 85%;
-  background: #fdfdfd; /* Fundo soft light do blog */
-  border-radius: 16px; /* Estilo bento */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  background: #fdfdfd;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   overflow-y: auto;
   padding: 32px;
+  position: relative;
 }
+
+.blog-preview-actions {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
+
+  background: #fdfdfd;
+  padding: 12px 0;
+}
+
+.blog-preview-action-button {
+  border: 2px solid #111;
+  padding: 13px 18px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.blog-preview-action-button--edit {
+  background: #2afc98;
+}
+
+.blog-preview-action-button--close:hover {
+  background: #ff4b4b;
+}
+
+
+
 .post-reading-preview {
   background: #ffffff;
   color: #111827;
   font-family: "Mona Sans", Inter, system-ui, sans-serif;
   padding-bottom: 80px;
+  text-align: left;
 }
 
 .post-reading-preview__header {
@@ -155,6 +191,12 @@
 }
 
 @media (max-width: 768px) {
+  .blog-preview-modal-content {
+    width: calc(100% - 28px);
+    height: calc(100% - 28px);
+    padding: 18px;
+  }
+
   .post-reading-preview__header {
     padding: 48px 24px 32px;
   }

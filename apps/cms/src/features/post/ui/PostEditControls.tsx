@@ -1,30 +1,34 @@
-import "./PostEditControls.css"
+import "./PostEditControls.css";
 import { CategorySelector } from "../../category/ui/CategorySelector";
 import { PostStatusWorkflow } from "./PostChangeStatus";
-import { PostChangeAuthor } from "./PostChangeAuthor";
+import { AuthorSelector } from "../../author/ui/AuthorSelector";
+import type { Category } from "../model/post.types";
+import type { Author } from "../../author/model/author.types";
 
-export default function PostEditControlsSimple() {
+type PostEditControlsSimpleProps = {
+  postId: number;
+  currentCategory: Category;
+  currentAuthor: Author;
+};
+
+export default function PostEditControlsSimple({
+  postId,
+  currentCategory,
+  currentAuthor,
+}: PostEditControlsSimpleProps) {
   return (
-    <section className="post-controls">
+    <section className="post-edit-controls">
+      <CategorySelector
+        postId={postId}
+        currentCategory={currentCategory}
+      />
 
+      <AuthorSelector
+        postId={postId}
+        currentAuthor={currentAuthor}
+      />
 
-      {/* =====================================================
-        CATEGORY
-      ====================================================== */}
-        <CategorySelector/>
-
-      {/* =====================================================
-        AUTHOR
-      ====================================================== */}
-
-      <PostChangeAuthor />
-
-      {/* =====================================================
-        STATUS
-      ====================================================== */}
-
-       <PostStatusWorkflow  />
-
+      <PostStatusWorkflow />
     </section>
   );
 }

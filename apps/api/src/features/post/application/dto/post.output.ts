@@ -4,10 +4,15 @@ import {type PostStatus } from "../../domain/value-objects/post-status.js";
 export type Author = {
   id: number;
   name: string;
-  bio: string | null;
   avatarUrl: string | null;
-  updatedAt: Date;
   userId: number;
+  email:string
+}
+
+export type User = {
+    id:number;
+    name: string;
+    email:string
 }
 
 export type Category = {

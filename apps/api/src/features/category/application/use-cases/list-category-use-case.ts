@@ -7,6 +7,6 @@ export class ListCategoryUseCase {
     async execute(){
         const result = await this.iCategoryRepository.findAll()
         if(!result){throw new Error("Category not found")}
-        return result.map(toListCategoryOutput)
+        return result//.map(toListCategoryOutput)
     }
 } 

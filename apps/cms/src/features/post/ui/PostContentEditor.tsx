@@ -63,7 +63,7 @@ export function PostContentEditor() {
         </div>
       </header>
 
-      <div className="post-editor-surface">
+      <div className="post-content-editor-surface">
         <EditorContent editor={editor} />
       </div>
     </section>

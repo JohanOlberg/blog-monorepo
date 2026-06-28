@@ -1,18 +1,15 @@
-import { error } from "console"
 import {type AuthorStatus } from "../types/author-status.js"
 
-interface  AuthorCreateProps {
-    name:string
-    email:string
-    bio:string | null
-    avatarUrl:string | null
-    userId: number
-    status : AuthorStatus // verificar se tenho esse campo no banco e criar um enum la
+interface AuthorCreateProps {
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  userId: number;
+  status: AuthorStatus;
 }
 
 interface  AuthorCreateInput{
     name:string
-    email:string
     bio:string | null
     avatarUrl:string | null
     userId: number
@@ -25,36 +22,33 @@ export class NewAuthor{
     getProps(){return this.props}
 
     static create(input:AuthorCreateInput){
-        if(!input.name || input.name.trim() === ""){throw error }
-        if(!input.email || input.email.trim() === ""){throw error}
-        if(!input.userId || input.userId <= 0){throw error}
+        if(!input.name || input.name.trim() === ""){throw new Error("Author name is required")}
+        if(!input.userId || input.userId <= 0){throw new Error("Author name is required")}
 
         return new NewAuthor(
             {
-                ...input, status:"INACTIVE"
+                ...input, status:"ACTIVE"
             }
         )
     }
 }
 
 
-interface  AuthorProps {
-    name:string
-    id:number
-    email:string
-    bio:string | null
-    avatarUrl:string | null
-    createdAt: Date
-    updatedAt: Date
-    userId:number
-    status : AuthorStatus
+interface AuthorProps {
+  id: number;
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+  status: AuthorStatus;
 }
 
-interface  AuthorPropsUpdate {
-    name:string
-    email:string
-    bio:string | null
-    avatarUrl:string | null
+interface AuthorPropsUpdate {
+  name: string;
+  bio: string | null;
+  avatarUrl: string | null;
 }
 
 export class Author{
@@ -68,10 +62,8 @@ export class Author{
 
     update(now:Date, props:AuthorPropsUpdate){
 
-        if(!props.name || props.name.trim() === ""){throw error }
-        if(!props.email || props.email.trim() === ""){throw error}        
-
-        this.props.email = props.email
+        if(!props.name || props.name.trim() === ""){throw new Error("Author name is required") }
+        
         this.props.name = props.name
         this.props.bio = props.bio 
         this.props.avatarUrl = props.avatarUrl 
@@ -80,26 +72,26 @@ export class Author{
 
     activate(now:Date){
 
-        if(this.props.status === "ACTIVE"){throw error}
-        if(!this.props.bio || this.props.bio.trim() === ""){throw error} 
-        if(!this.props.avatarUrl || this.props.avatarUrl.trim() === ""){throw error}
+        //if(this.props.status === "ACTIVE"){throw new Error("Author status is required")}
+        if(!this.props.bio || this.props.bio.trim() === ""){throw new Error("Author bio is required")} 
+        if(!this.props.avatarUrl || this.props.avatarUrl.trim() === ""){throw new Error("Author avatar is required")}
 
-        this.props.status = "ACTIVE"
+        //this.props.status = "ACTIVE"
         this.props.updatedAt = now        
     }
 
     deactivate(now:Date){
 
-        if(this.props.status === "INACTIVE"){throw error}
+        //if(this.props.status === "INACTIVE"){throw new Error("Author status is required")}
 
-        this.props.status = "INACTIVE"
+        //this.props.status = "INACTIVE"
         this.props.updatedAt = now        
     }
 
     changeUser(now:Date, userId:number){
 
-        if (!userId || userId <= 0) {throw error}
-        if (userId != this.props.userId) {throw error}
+        if (!userId || userId <= 0) {throw new Error("Author userId is required")}
+        if (userId != this.props.userId) {throw new Error("Author userId is required")}
         this.props.userId = userId
         this.props.updatedAt = now
     }

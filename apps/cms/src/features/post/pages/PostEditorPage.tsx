@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { usePostById } from "../hooks/usePostById";
 import { PostEditorContext } from "../context/PostEditorContext";
 import type { PostEditorForm, PostUpdate } from "../model/post.types";
 import type { PostListItem } from "../model/post.types";
 import { PostEditorMetadataForm } from "../ui/PostMetadataForm";
-import {PostContentEditor} from "../ui/PostContentEditor"
-
+import { PostContentEditor } from "../ui/PostContentEditor";
 import "./PostEditorPage.css";
 import PostEditControlsSimple from "../ui/PostEditControls";
 import { usePostUpdate } from "../hooks/usePostUpdate";
@@ -23,17 +22,15 @@ function toPostEditorForm(post: PostListItem): PostEditorForm {
     status: post.status,
     author: post.author,
     category: post.category,
-    publishedAt:post.publishedAt
+    publishedAt: post.publishedAt,
   };
 }
-
 
 export function PostEditorPage() {
   const { postId } = useParams();
   const parsedPostId = Number(postId);
   const result = usePostById(parsedPostId);
 
-  
   if (!postId || Number.isNaN(parsedPostId)) {
     return <p>ID inválido.</p>;
   }
@@ -51,32 +48,27 @@ export function PostEditorPage() {
   }
 
   return <PostEditorLoaded post={result.data} />;
-
-  
 }
-
-
-
 
 function PostEditorLoaded({ post }: { post: PostListItem }) {
   const [form, setForm] = useState<PostEditorForm>(() =>
     toPostEditorForm(post)
   );
+
   const [modalAberto, setModalAberto] = useState(false);
-  
-   const { mutate, isPending  } = usePostUpdate(Number(post.id))  
+  const { mutate, isPending } = usePostUpdate(Number(post.id));
 
-function handleSave(dataForm:PostUpdate){
+  function handleSave(dataForm: PostUpdate) {
+    const postMainContentUpdate = {
+      id: dataForm.id,
+      title: dataForm.title,
+      description: dataForm.description,
+      content: dataForm.content ?? "",
+      slug: dataForm.slug,
+    };
 
-  const PostMainContentUpdate  = {
-        id : dataForm.id,
-        title:  dataForm.title,
-        description: dataForm.description,
-        content:  dataForm.content ?? "",
-        slug: dataForm.slug
-      }
-    mutate(PostMainContentUpdate )
-}
+    mutate(postMainContentUpdate);
+  }
 
   function updateField<K extends keyof PostEditorForm>(
     field: K,
@@ -87,11 +79,6 @@ function handleSave(dataForm:PostUpdate){
       [field]: value,
     }));
   }
-   
-
-
-
-
 
   return (
     <PostEditorContext.Provider value={{ form, updateField }}>
@@ -106,47 +93,72 @@ function handleSave(dataForm:PostUpdate){
               </p>
             </div>
 
-            <div className="post-editor-actions">
-              <button onClick={() => setModalAberto(true)} className="post-editor-button secondary">
+
+          </header>
+
+          <PostEditControlsSimple 
+          postId={post.id}
+          currentCategory={post.category}
+          currentAuthor={post.author}
+          />
+
+          <section className="post-editor-main-grid">
+            <PostEditorMetadataForm />
+            <PostContentEditor />
+          </section>
+                      <div className="post-editor-actions">
+              <button
+                onClick={() => setModalAberto(true)}
+                className="post-editor-button secondary"
+                type="button"
+              >
                 Preview
               </button>
 
-              {/* O Modal que sugeriu com o fundo em Blur */}
-      {modalAberto && (
-        <div className="modal-overlay-blur" onClick={() => setModalAberto(false)}>
-          {/* O stopPropagation impede que o modal feche ao clicar no conteúdo */}
-          <div className="modal-content-bento" onClick={(e) => e.stopPropagation()}>
-            <button className="botao-fechar" onClick={() => setModalAberto(false)}>Close ×</button>
-            
-            {/* O conteúdo do Blog isolado com os dados do Contexto */}
-            <PostReadingPreview />
-          </div>
-        </div>
-      )}
+              {modalAberto && (
+                <div
+                  className="blog-preview-modal-overlay"
+                  onClick={() => setModalAberto(false)}
+                >
+                  <div
+                    className="blog-preview-modal-content"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <div className="blog-preview-actions">
+                      <Link to={`/admin/posts/${form.id}/edit`}>
+                        <button className="blog-preview-action-button blog-preview-action-button--edit">
+                          Save and Exit
+                        </button>
+                      </Link>
+                       <Link to={`/admin/posts/${form.id}/edit`}>
+                        <button className="blog-preview-action-button blog-preview-action-button--edit">
+                          Save
+                        </button>
+                      </Link>
+                      <button
+                        className="blog-preview-action-button blog-preview-action-button--close"
+                        onClick={() => setModalAberto(false)}
+                        type="button"
+                      >
+                        Close ×
+                      </button>
+                    </div>
+                    <PostReadingPreview post = {form}/>
+                  </div>
+                </div>
+              )}
 
               <button
                 className="post-editor-button primary"
                 onClick={() => handleSave(form)}
                 disabled={isPending}
+                type="button"
               >
-                 {isPending ? "Saving..." : "Save changes"}
+                {isPending ? "Saving..." : "Save changes"}
               </button>
             </div>
-          </header>
-  
-             <section className="post-controls-grid">
-       
-       
-       
-       
-          <PostEditControlsSimple/>
-          </section>
-
-          <section className="post-editor-grid">
-            <PostEditorMetadataForm />
-            <PostContentEditor />
-          </section>
         </section>
+        
       </main>
     </PostEditorContext.Provider>
   );

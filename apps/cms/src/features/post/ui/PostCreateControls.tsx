@@ -1,30 +1,13 @@
 import { CategorySelector } from "../../category/ui/CategorySelector";
-import { PostChangeAuthor } from "./PostChangeAuthor";
 import { PostCreateStatus } from "./PostCreateStatus";
+import "./PostCreateControls.css";
 
-export function PostCreateControls(){
-
-return (
-
-    <section className="post-controls">
-
-
-        {/* =====================================================
-            CATEGORY
-        ====================================================== */}
-            <CategorySelector/>
-
-        {/* =====================================================
-            AUTHOR
-        ====================================================== */}
-
-        <PostChangeAuthor />
-
-        {/* =====================================================
-            STATUS
-        ====================================================== */}
-        <PostCreateStatus isPostSaved={false} canPublish={false} />
-
+export function PostCreateControls() {
+  return (
+    <section className="post-create-controls">
+      <CategorySelector />
+    
+      <PostCreateStatus isPostSaved={false} canPublish={false} />
     </section>
-)
+  );
 }

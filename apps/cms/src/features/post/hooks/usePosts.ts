@@ -10,6 +10,5 @@ export function usePosts (){
     gcTime: 1000 * 60 * 10, 
     refetchOnWindowFocus: false
 });
-
-return { data, isLoading, isError, error }
+    return { data, isLoading, isError, error }
 }

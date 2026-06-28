@@ -1,41 +1,31 @@
-
-
-export type Author = {
-  id: number;
-  name: string;
-  bio: string | null;
-  avatarUrl: string | null;
-  updatedAt: Date;
-  userId: number;
-}
+import type { Author } from "../../author/model/author.types";
 
 export type Category = {
-    id:number
-    title:string
-    color:string  | null;
-    slug:string
-    createdAt: Date;
-    updatedAt: Date ;
-}
+  id: number;
+  title: string;
+  color: string | null;
+  slug: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
-
-export type PostListItem  = {
-    title: string;
-    id: number;
-    status: string;
-    slug: string;
-    description: string;
-    category: Category;
-    content: string;
-    author: Author;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string | null;
-    archivedAt: string | null;
+export type PostListItem = {
+  title: string;
+  id: number;
+  status: string;
+  slug: string;
+  description: string;
+  category: Category;
+  content: string;
+  author: Author;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string | null;
+  archivedAt: string | null;
 };
 
 export type PostEditorForm = {
-  id:number;
+  id: number;
   title: string;
   description: string;
   content: string;
@@ -47,14 +37,19 @@ export type PostEditorForm = {
 };
 
 export type PostUpdate = {
-  id:number;
+  id: number;
   title: string;
   description: string;
   content: string;
-  slug:string
+  slug: string;
 };
 
-export type ChangeAuthor = {
-  id:number;
+export type ChangeAuthorInput = {
+  postId: number;
+  authorId: number;
 };
 
+export type ChangeCategoryInput = {
+  postId: number;
+  categoryId: number;
+};

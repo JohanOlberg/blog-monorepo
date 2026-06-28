@@ -2,14 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getPostById } from "../api/get-post-by-id-api";
 import {type  PostListItem } from "../model/post.types";
  
-export function usePostById (postId:number){
-  
+export function usePostById (postId:number | null){
+
   const { data, isLoading, isError, error } = useQuery<PostListItem>({
     queryKey: ["posts", postId],
-    queryFn: () => getPostById(postId),
+    queryFn: () => getPostById(postId!),
     staleTime: 1000 * 60 * 5, 
     gcTime: 1000 * 60 * 10, 
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
+    enabled: !!postId
 });
 
 return { data, isLoading, isError, error }

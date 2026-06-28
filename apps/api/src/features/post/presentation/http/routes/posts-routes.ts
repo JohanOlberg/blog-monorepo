@@ -6,6 +6,8 @@ import { makeUpdatePostController } from "@post/presentation/factory/make-update
 import { makeArchivePostController } from "@post/presentation/factory/make-archive-post-controller.js";
 import { makePublishPostController } from "@post/presentation/factory/make-publish-post-controller.js";
 import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
+import { makeChangePostCategoryController } from "@post/presentation/factory/make-change-post-category-controller.js"
+import { makeChangePostAuthorController } from "@post/presentation/factory/make-change-post-author-controller.js"
 import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
 import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
 
@@ -19,6 +21,8 @@ export async function postsRoutes(app: FastifyInstance) {
   const archivePostController = makeArchivePostController()
   const publishPostController = makePublishPostController()
   const draftPostController = makeDraftPostController()
+  const changePostCategoryController = makeChangePostCategoryController()
+  const changePostAuthorController = makeChangePostAuthorController()
 
 app.register(async (protectedRoutes) => {
   protectedRoutes.addHook("preHandler", authGuard)
@@ -28,6 +32,8 @@ app.register(async (protectedRoutes) => {
   protectedRoutes.patch("/posts/:id/archive", { preHandler:  requirePermission("POST_ARCHIVE")}, archivePostController.handle.bind(archivePostController))
   protectedRoutes.patch("/posts/:id/draft", { preHandler:  requirePermission("POST_DRAFT")}, draftPostController.handle.bind(draftPostController))
   protectedRoutes.patch("/posts/:id/publish", { preHandler: requirePermission("POST_PUBLISH")},  publishPostController.handle.bind(publishPostController))
+  protectedRoutes.patch("/posts/:id/category",{ preHandler: requirePermission("POST_UPDATE") },changePostCategoryController.handle.bind(changePostCategoryController))
+  protectedRoutes.patch("/posts/:id/author",{ preHandler: requirePermission("POST_UPDATE") },changePostAuthorController.handle.bind(changePostAuthorController))
 })
 app.get("/posts", listPostsController.handle.bind(listPostsController))
 app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))

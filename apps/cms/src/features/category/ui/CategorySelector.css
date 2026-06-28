@@ -44,6 +44,13 @@
   gap: 12px;
 }
 
+.category-main-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
+}
+
 .category-color {
   width: 24px;
   height: 24px;

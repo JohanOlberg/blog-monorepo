@@ -1,44 +1,45 @@
-
 import { PostCreateControls } from "../ui/PostCreateControls";
 import "./PostCreatePage.css";
 
 export function CreatePostPage() {
-  //const isPostSaved = false;
-
   return (
-    <main className="create-post-page">
-      <header className="create-post-header">
+    <main className="post-create-page">
+      <header className="post-create-header">
         <div>
-          <span>CMS / Create Post</span>
-          <h1>Create New Post</h1>
-          <p>Start as draft. Save the post before publishing.</p>
+          <span className="post-create-header__label">CMS / Create Post</span>
+          <h1 className="post-create-header__title">Create New Post</h1>
+          <p className="post-create-header__description">
+            Start as draft. Save the post before publishing.
+          </p>
         </div>
 
-        <button className="save-post-button">Save draft</button>
+        <button className="post-create-save-button" type="button">
+          Save draft
+        </button>
       </header>
 
-      <PostCreateControls/>
+      <PostCreateControls />
 
-      <section className="post-editor-grid">
-        <aside className="metadata-panel">
-          <label>
+      <section className="post-create-editor-grid">
+        <aside className="post-create-metadata-panel">
+          <label className="post-create-field">
             Title
             <input placeholder="Post title" />
           </label>
 
-          <label>
+          <label className="post-create-field">
             Slug
             <input placeholder="generated-from-title" />
           </label>
 
-          <label>
+          <label className="post-create-field">
             Description
             <textarea placeholder="Short post description" />
           </label>
         </aside>
 
-        <section className="content-panel">
-          <label>
+        <section className="post-create-content-panel">
+          <label className="post-create-field">
             Content
             <textarea placeholder="Write your post content here..." />
           </label>

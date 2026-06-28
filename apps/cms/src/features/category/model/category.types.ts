@@ -2,7 +2,7 @@
 export type categoryUpdate = {
     title:string,
     slug:string,
-    color:string
+    color:string  | null
 }
 
 

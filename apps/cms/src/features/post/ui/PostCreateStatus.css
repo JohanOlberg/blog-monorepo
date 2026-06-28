@@ -5,27 +5,9 @@
   box-shadow: 6px 6px 0 #111;
 }
 
-.post-create-status__header {
-  margin-bottom: 16px;
-}
-
-.post-create-status__header span {
-  display: block;
-  margin-bottom: 6px;
-  color: #555;
-  font-size: 11px;
-  font-weight: 1000;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.post-create-status__header strong {
-  display: block;
-  font-size: 24px;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-}
+.post-create-status__header { margin-bottom: 16px; }
+.post-create-status__header span { display: block; margin-bottom: 6px; color: #555; font-size: 11px; font-weight: 1000; letter-spacing: .14em; text-transform: uppercase; }
+.post-create-status__header strong { display: block; font-size: 24px; line-height: .9; letter-spacing: -.05em; text-transform: uppercase; }
 
 .post-create-status__current {
   border: 3px solid #111;
@@ -43,25 +25,12 @@
   padding: 3px 7px;
   font-size: 10px;
   font-weight: 1000;
-  letter-spacing: 0.12em;
+  letter-spacing: .12em;
   text-transform: uppercase;
 }
 
-.post-create-status__current strong {
-  display: block;
-  font-size: 28px;
-  line-height: 0.9;
-  text-transform: uppercase;
-}
-
-.post-create-status__current small {
-  display: block;
-  margin-top: 8px;
-  color: #333;
-  font-size: 12px;
-  font-weight: 800;
-  line-height: 1.35;
-}
+.post-create-status__current strong { display: block; font-size: 28px; line-height: .9; text-transform: uppercase; }
+.post-create-status__current small { display: block; margin-top: 8px; color: #333; font-size: 12px; font-weight: 800; line-height: 1.35; }
 
 .post-create-status__publish {
   width: 100%;
@@ -74,27 +43,9 @@
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: 4px 4px 0 #111;
-  transition:
-    transform 140ms ease,
-    background 140ms ease,
-    box-shadow 140ms ease;
+  transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease;
 }
 
-.post-create-status__publish:hover:not(:disabled) {
-  background: #fffc31;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #111;
-}
-
-.post-create-status__publish:active:not(:disabled) {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 #111;
-}
-
-.post-create-status__publish:disabled {
-  background: #bdbdbd;
-  color: #555;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
-}
+.post-create-status__publish:hover:not(:disabled) { background: #fffc31; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #111; }
+.post-create-status__publish:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 2px 2px 0 #111; }
+.post-create-status__publish:disabled { background: #bdbdbd; color: #555; cursor: not-allowed; box-shadow: none; transform: none; }

@@ -1,20 +1,8 @@
-
 import { usePostEditorContext } from "../context/PostEditorContext";
 import "./PostMetadataForm.css"
+import { convertToSlug } from "../../../shared/util/convert-to-slug";
 
 
-function convertToSlug(text:string) {
-  return text
-    .toString()  
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim() 
-    .replace(/[^a-z0-9 -]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');   
-  }
-    
 export function PostEditorMetadataForm(){
   const { form, updateField } = usePostEditorContext();
     return (
@@ -40,10 +28,10 @@ export function PostEditorMetadataForm(){
         <textarea
           id="description"
           value={form.description}
-          
+
           onChange={(event) =>
             updateField("description", event.target.value)
-            
+
           }
         />
       </div>

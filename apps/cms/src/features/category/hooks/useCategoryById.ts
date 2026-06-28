@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCategoryById } from "../api/get-category-by-id.js"
-import { Category } from "../model/category.types.js"
+import { getCategoryById } from "../api/get-category-by-id-api.js"
+import { type Category } from "../model/category.types.js"
 
 export function useCategoryById(categoryId:number){
   

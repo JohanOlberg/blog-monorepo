@@ -56,9 +56,7 @@ export class PrismaCategoryRepository implements ICategoryRepository{
 
     async findAll(): Promise<CategoryOutput[]> {
         const result = await prisma.category.findMany()
-        if(!result){
-            throw new Error("Category Not Found!")
-        }
+        
         return result.map(toCategoryListOutput) 
     }
 }

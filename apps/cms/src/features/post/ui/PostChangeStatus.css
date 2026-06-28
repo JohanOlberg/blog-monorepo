@@ -1,75 +1,99 @@
-.status-workflow {
+.post-status-control-card {
+  border: 3px solid #111;
+  background: #f7f4ee;
+  padding: 18px;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.post-status-control-header {
+  margin-bottom: 16px;
+}
+
+.post-status-control-header span {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.post-status-control-header h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.post-status-workflow {
   display: grid;
   gap: 7px;
 }
 
-.status-card {
+.post-status-card {
   border: 3px solid #111;
   text-align: left;
   box-shadow: 4px 4px 0 #111;
   cursor: pointer;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    opacity 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
 }
 
-.status-card:hover {
+.post-status-card:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 #111;
 }
 
-.status-card:active {
+.post-status-card:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #111;
 }
 
-.status-card--current {
+.post-status-card--current {
   padding: 18px;
-  animation: statusEnter 220ms ease;
+  animation: postStatusEnter 220ms ease;
   cursor: default;
 }
-.status-card--current:hover {
+
+.post-status-card--current:hover,
+.post-status-card--current:active {
   transform: none;
-   box-shadow: 4px 4px 0 #111;
-}
-.status-card--current:active {
-  transform: none;
-   box-shadow: 4px 4px 0 #111;
+  box-shadow: 4px 4px 0 #111;
 }
 
-.status-card--current strong {
+.post-status-card--current strong {
   display: block;
   font-size: 28px;
   line-height: 0.9;
   text-transform: uppercase;
 }
 
-.status-card--current small {
+.post-status-card--current small {
   display: block;
   margin-top: 6px;
   font-size: 12px;
   font-weight: 800;
 }
 
-.status-options {
+.post-status-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
 }
 
-.status-card--option {
+.post-status-card--option {
   padding: 14px;
-  animation: statusEnter 220ms ease;
+  animation: postStatusEnter 220ms ease;
 }
 
-.status-card--option strong {
+.post-status-card--option strong {
   display: block;
   font-size: 18px;
   text-transform: uppercase;
 }
 
-.status-label {
+.post-status-label {
   display: inline-block;
   margin-bottom: 10px;
   border: 2px solid #111;
@@ -82,22 +106,22 @@
   text-transform: uppercase;
 }
 
-.status-draft {
+.post-status-draft {
   background: #d9d9d9;
   color: #111;
 }
 
-.status-published {
+.post-status-published {
   background: #2afc98;
   color: #111;
 }
 
-.status-archived {
+.post-status-archived {
   background: #3b3b3b;
   color: #fff;
 }
 
-@keyframes statusEnter {
+@keyframes postStatusEnter {
   from {
     opacity: 0;
     transform: translateY(8px) scale(0.98);

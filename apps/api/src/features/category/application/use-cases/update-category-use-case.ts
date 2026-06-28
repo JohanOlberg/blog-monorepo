@@ -11,6 +11,6 @@ export class UpdateCategoryUseCase {
         if(!result){throw new Error("Category not found")}
         result.updateCategory(input)
         const category = await this.iCategoryRepository.update(result)
-        return toListCategoryOutput(category)
+        return toListCategoryOutput(result)
     }
 } 

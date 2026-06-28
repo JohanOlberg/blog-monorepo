@@ -3,13 +3,16 @@ import { Post, NewPost } from "@post/domain/entities/post.js";
 import type { PostDetailsOutput, PostListOutput } from "@post/application/dto/post.output.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
-type PrismaPostWithRelations = Prisma.PostGetPayload<{
+export type PrismaPostWithRelations = Prisma.PostGetPayload<{
   include: {
-    author: true
-    category: true
-  }
-}>
-
+    author: {
+      include: {
+        user: true;
+      };
+    };
+    category: true;
+  };
+}>;
 
 
 
@@ -52,7 +55,13 @@ export function toPostListOutput(prisma:PrismaPostWithRelations ):PostListOutput
     title: prisma.title,
     description: prisma.description,
     slug: prisma.slug,
-    author: prisma.author,
+    author: {
+              id: prisma.author.id,
+              name: prisma.author.name,
+              avatarUrl: prisma.author.avatarUrl,
+              userId: prisma.author.userId,
+              email: prisma.author.user.email,
+            },
     createdAt: prisma.createdAt,
     status: prisma.status,
     category: prisma.category
@@ -67,7 +76,13 @@ export function toPostDetailsOutput(prisma:PrismaPostWithRelations ):PostDetails
     title: prisma.title,
     description: prisma.description,
     slug: prisma.slug,
-    author: prisma.author,
+    author: {
+              id: prisma.author.id,
+              name: prisma.author.name,
+              avatarUrl: prisma.author.avatarUrl,
+              userId: prisma.author.userId,
+              email: prisma.author.user.email,              
+            },
     createdAt: prisma.createdAt,
     status: prisma.status,
     category: prisma.category,

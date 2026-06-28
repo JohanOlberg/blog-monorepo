@@ -158,6 +158,24 @@ private constructor(private readonly props:PostProps){}
         this.props.archivedAt = null 
         this.props.publishedAt = null
     }
+    
+    changeCategory(now: Date, categoryId: number) {
+        if (!categoryId) {
+            throw new CategoryRequiredError()
+        }
+
+        this.props.categoryId = categoryId
+        this.props.updatedAt = now
+    }
+
+    changeAuthor(now: Date, authorId: number) {
+        if (!authorId) {
+            throw new AuthorRequiredError()
+        }
+
+        this.props.authorId = authorId
+        this.props.updatedAt = now
+    }
 
     update(now:Date, post:PostPropsUpdate){
         
@@ -192,7 +210,7 @@ private constructor(private readonly props:PostProps){}
         this.props.slug =  Slug.createSlug(post.slug).getValue();
     }
     
-    static restore(post:PostProps){
+        static restore(post:PostProps){
         return new Post(post)
     }
 }

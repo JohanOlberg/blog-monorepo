@@ -7,6 +7,9 @@ export const ROLE_PERMISSIONS: Record<UserRoles, Permission[]> = {
     "POST_PUBLISH",
     "POST_ARCHIVE",
     "POST_DRAFT",
+    "CATEGORY_CREATE",
+    "CATEGORY_UPDATE",
+    "AUTHOR_CREATE",
     
   ],
   AUTHOR: [

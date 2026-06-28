@@ -6,7 +6,7 @@ import { UserListPage } from "../../features/user/pages/UserListPage";
 import { PostListPage } from "../../features/post/pages/PostListPage";
 import { PostEditorPage } from "../../features/post/pages/PostEditorPage"
 import {LoginPage} from "../../features/auth/pages/LoginPage";
-import { PostDetailPage } from "../../features/post/pages/PostDetailPage";
+//import { PostDetailPage } from "../../features/post/pages/PostDetailPage";
 import { RequireAuth } from "../../shared/auth/RequireAuth";
 import { CreatePostPage } from "../../features/post/pages/PostCreatePage";
 
@@ -38,10 +38,10 @@ export const router = createBrowserRouter([
         path: "posts",
         element: (<PostListPage/>),
       },
-      {
+      /*{
         path: "posts/:postId",
         element: (<PostDetailPage/>),
-      },
+      },*/
       {
         path: "posts/:postId/edit",
         element: (<PostEditorPage/>),

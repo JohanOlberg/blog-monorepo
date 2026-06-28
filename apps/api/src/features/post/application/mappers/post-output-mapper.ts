@@ -15,7 +15,8 @@ export function toPostOutput (post: Post): PostOutput  {
         updatedAt:props.updatedAt ,
         publishedAt:props.publishedAt,
         archivedAt:props.archivedAt,
-        content:props.content
+        content:props.content,
+        
     }
 }
 
@@ -27,8 +28,9 @@ export function toPostListOutput (post: PostListOutput)  {
         status:props.status,
         description:props.description,
         slug:props.slug,
-        category:props.category,  
-        author:props.author , 
+        category:props.category,
+        author:props.author ,  
+        email:props.author.email , 
         createdAt:props.createdAt ,
     }
 }
@@ -43,7 +45,8 @@ export function toPostDetailsOutput (post: PostDetailsOutput)  {
         content:props.content,
         slug:props.slug,
         category:props.category,  
-        author:props.author , 
+        author:props.author ,
+        email:props.author.email, 
         createdAt:props.createdAt ,
     }
 }

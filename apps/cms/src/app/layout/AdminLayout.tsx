@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./Sidebar.tsx";
-import { Footer } from "./Footer.tsx";
+
 import "./AdminLayout.css"
 import { PageContainer } from "../../shared/ui/PageContainer.tsx";
 
@@ -19,7 +19,7 @@ export function AdminLayout() {
           </PageContainer>
           
         </main>
-        <Footer/>
+        
       </div>
       
     </div>

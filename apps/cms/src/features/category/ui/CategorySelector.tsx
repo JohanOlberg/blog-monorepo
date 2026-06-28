@@ -1,6 +1,36 @@
 import "./CategorySelector.css";
+import type { Category } from "../../post/model/post.types"
+import { useCategory } from "../hooks/useCategory";
+import { useChangeCategory } from "../../post/hooks/useChangeCategory";
+import { useState } from "react";
+import {CategoryEditModal} from "./CategoryEditModal.js";
 
-export function CategorySelector() {
+type categorySelectorProps = {
+  postId?: number;
+  currentCategory?: Category;
+};
+
+export function CategorySelector({ postId, currentCategory }: categorySelectorProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+  const result = useCategory();
+  const { mutate, isPending } = useChangeCategory();
+
+  function handleEditClick(category: Category) {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
+  }
+
+  function handleChangeCategory(categoryId: number) {
+    if (!postId) return;
+
+    mutate({
+      postId,
+      categoryId,
+    });
+  }
+
   return (
     <section className="category-widget">
       <header className="category-widget__header">
@@ -8,111 +38,75 @@ export function CategorySelector() {
         <strong>Content Identity</strong>
       </header>
 
-      <div className="category-current">
-        <div className="category-main-info">
-          <span className="category-color" style={{ background: "#2afc98" }} />
+      {currentCategory ? (
+        <div className="category-current">
+          <div className="category-main-info">
+            <span
+              className="category-color"
+              style={{ backgroundColor: `${currentCategory.color}` }}
+            />
 
-          <div>
-            <strong>Frontend</strong>
-            <small>Current category</small>
+            <div>
+              <strong>{currentCategory.title}</strong>
+              <small>Current category</small>
+            </div>
+          </div>
+
+          <button
+            className="category-small-btn"
+            onClick={() => handleEditClick(currentCategory)}
+          >
+            Edit
+          </button>
+        </div>
+      ) : (
+        <div className="category-current">
+          <div className="category-main-info">
+            <span className="category-color category-color--empty" />
+
+            <div>
+              <strong>No category selected</strong>
+              <small>Select a category below</small>
+            </div>
           </div>
         </div>
-
-        <button className="category-small-btn">Edit</button>
-      </div>
+      )}
 
       <div className="category-list">
-        <article className="category-item">
-          <div className="category-main-info">
-            <span className="category-color" style={{ background: "#bba7ff" }} />
+        {result.data
+          ?.filter((category) => category.id !== currentCategory?.id)
+          .map((category) => (
+            <article className="category-item" key={category.id}>
+              <div className="category-main-info">
+                <span
+                  className="category-color"
+                  style={{ backgroundColor: `${category.color}` }}
+                />
 
-            <div>
-              <strong>Architecture</strong>
-              <small>architecture</small>
-            </div>
-          </div>
+                <div>
+                  <strong>{category.title}</strong>
+                  <small>{category.slug}</small>
+                </div>
+              </div>
 
-          <button className="category-small-btn">Edit</button>
-        </article>
-
-        <article className="category-form">
-          <label>
-            Title
-            <input defaultValue="Architecture" />
-          </label>
-
-          <label>
-            Slug
-            <input defaultValue="architecture" />
-          </label>
-
-          <label>
-            Color
-            <div className="category-colors">
-              <button style={{ background: "#2afc98" }} />
-              <button style={{ background: "#bba7ff" }} />
-              <button style={{ background: "#ffb347" }} />
-              <button style={{ background: "#ff66c4" }} />
-            </div>
-          </label>
-
-          <button className="category-save-btn">Save</button>
-        </article>
-
-        <article className="category-item">
-          <div className="category-main-info">
-            <span className="category-color" style={{ background: "#ffb347" }} />
-
-            <div>
-              <strong>Backend</strong>
-              <small>backend</small>
-            </div>
-          </div>
-
-          <button className="category-small-btn">Edit</button>
-        </article>
-
-        <article className="category-item">
-          <div className="category-main-info">
-            <span className="category-color" style={{ background: "#ff66c4" }} />
-
-            <div>
-              <strong>UX/UI</strong>
-              <small>ux-ui</small>
-            </div>
-          </div>
-
-          <button className="category-small-btn">Edit</button>
-        </article>
+              <button
+                className="category-small-btn"
+                onClick={() => handleChangeCategory(category.id)}
+                disabled={isPending}
+              >
+                Select
+              </button>
+            </article>
+          ))}
       </div>
 
-      <article className="category-create">
-        <button className="category-create-btn">+ Create category</button>
-
-        <div className="category-form category-form--create">
-          <label>
-            Title
-            <input placeholder="New category" />
-          </label>
-
-          <label>
-            Slug
-            <input placeholder="new-category" />
-          </label>
-
-          <label>
-            Color
-            <div className="category-colors">
-              <button style={{ background: "#2afc98" }} />
-              <button style={{ background: "#bba7ff" }} />
-              <button style={{ background: "#ffb347" }} />
-              <button style={{ background: "#ff66c4" }} />
-            </div>
-          </label>
-
-          <button className="category-save-btn">Save</button>
-        </div>
-      </article>
+      {isModalOpen && selectedCategory && postId && (
+        <CategoryEditModal
+          category={selectedCategory}
+          onClose={() => setIsModalOpen(false)}
+          postId={postId}
+        />
+      )}
     </section>
   );
 }

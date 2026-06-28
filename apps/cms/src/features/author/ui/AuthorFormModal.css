@@ -1,0 +1,127 @@
+.author-form-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(17, 17, 17, 0.55);
+  padding: 24px;
+}
+
+.author-form-modal {
+  width: min(620px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: #f7f1e8;
+  border: 4px solid #111;
+  box-shadow: 12px 12px 0 #111;
+  padding: 30px;
+}
+
+.author-form-modal__header {
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 4px solid #111;
+}
+
+.author-form-modal__header span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.author-form-modal__header h2 {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 0.95;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.author-form-modal__form {
+  display: grid;
+  gap: 18px;
+}
+
+.author-form-modal__field {
+  display: grid;
+  gap: 8px;
+}
+
+.author-form-modal__field span {
+  font-size: 0.82rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.author-form-modal__field input,
+.author-form-modal__field textarea,
+.author-form-modal__field select {
+  width: 100%;
+  border: 4px solid #111;
+  background: #fff;
+  box-shadow: 5px 5px 0 #111;
+  padding: 13px 14px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #111;
+  outline: none;
+}
+
+.author-form-modal__field input,
+.author-form-modal__field select {
+  min-height: 54px;
+}
+
+.author-form-modal__field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.author-form-modal__field input:focus,
+.author-form-modal__field textarea:focus,
+.author-form-modal__field select:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #111;
+}
+
+.author-form-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 22px;
+  border-top: 4px solid #111;
+}
+
+.author-form-modal__button {
+  min-height: 54px;
+  min-width: 140px;
+  border: 4px solid #111;
+  box-shadow: 5px 5px 0 #111;
+  padding: 0 20px;
+  font-size: 0.9rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.author-form-modal__button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.author-form-modal__button--primary {
+  background: #111;
+  color: #fff;
+}
+
+.author-form-modal__button--secondary {
+  background: #fff;
+  color: #111;
+}

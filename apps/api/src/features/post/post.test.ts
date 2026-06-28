@@ -5,7 +5,9 @@ import { UpdatePostUseCase } from "./application/use-cases/update-post-use-case.
 import { type UpdatePostInput } from "./presentation/http/schemas/update-post.schema.js";
 import { type CreatePostInput } from "./presentation/http/schemas/create-post.schema.js";
 
-const now = new Date()
+import { ChangePostCategoryUseCase } from "./application/use-cases/change-post-category-use-case.js";
+
+//const now = new Date()
 
 
 /*
@@ -19,7 +21,7 @@ const input:CreatePostInput = {
 }
 */
 
-
+/*
 const inputUpdate:UpdatePostInput = {
   title: "Meu Novo post",
   content:"teste de update ZOD",
@@ -40,9 +42,9 @@ console.log(postCreate.getProps())
 
 
 
-
-const updatePostUseCase = new UpdatePostUseCase(repository)
-const postUpdate = await updatePostUseCase.execute(inputUpdate, 2)
+const repository = new PrismaPostRepository()
+const updatePostUseCase = new ChangePostCategoryUseCase(repository)
+const postUpdate = await updatePostUseCase.execute(1, 2)
 console.log(postUpdate.getProps())
 
 
