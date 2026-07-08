@@ -5,17 +5,17 @@ import { AuthorSelector } from "../../author/ui/AuthorSelector";
 import type { Category } from "../model/post.types";
 import type { Author } from "../../author/model/author.types";
 
-type PostEditControlsSimpleProps = {
+type PostEditControlsProps = {
   postId: number;
   currentCategory: Category;
   currentAuthor: Author;
 };
 
-export default function PostEditControlsSimple({
+export default function PostEditControls({
   postId,
   currentCategory,
   currentAuthor,
-}: PostEditControlsSimpleProps) {
+}: PostEditControlsProps) {
   return (
     <section className="post-edit-controls">
       <CategorySelector

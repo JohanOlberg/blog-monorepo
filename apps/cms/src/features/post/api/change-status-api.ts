@@ -10,6 +10,7 @@ export async function movePostToDraft(postId: number) {
     const response = await httpClient.patch(`/posts/${postId}/draft`);
     return response.data; 
 }
+
 export async function archivedPost(postId: number) {
     const response = await httpClient.patch(`/posts/${postId}/archive`);
     return response.data; 

@@ -41,7 +41,7 @@ export class NewUser{
         }
 
         return new NewUser({
-            ...newUser, status:"ACTIVE", role:"USER"
+            ...newUser, status:"ACTIVE", role:"ADMIN"
         })
         
     }

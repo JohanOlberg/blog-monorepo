@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AdminLayout } from "../layout/AdminLayout";
 import { Dashboard } from "../../features/dashboard/pages/DashboardPage";
-import { AuthorListPage } from "../../features/author/page/AuthorListPage";
-import { UserListPage } from "../../features/user/pages/UserListPage";
+
 import { PostListPage } from "../../features/post/pages/PostListPage";
 import { PostEditorPage } from "../../features/post/pages/PostEditorPage"
 import {LoginPage} from "../../features/auth/pages/LoginPage";
-//import { PostDetailPage } from "../../features/post/pages/PostDetailPage";
 import { RequireAuth } from "../../shared/auth/RequireAuth";
 import { CreatePostPage } from "../../features/post/pages/PostCreatePage";
+import { AuthorsPage } from "../../features/author/page/AuthorsPages";
+import { UsersPage } from "../../features/user/pages/UsersPage";
 
 
 export const router = createBrowserRouter([
@@ -52,11 +52,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "authors",
-        element: (<AuthorListPage/>),
+        element: (<AuthorsPage/>),
       },
       {
         path: "users",
-        element: (<UserListPage/>),
+        element: (<UsersPage/>),
       },
     ],
   },

@@ -5,6 +5,11 @@ export type categoryUpdate = {
     color:string  | null
 }
 
+export type categoryCreateInput = {
+    title:string,
+    slug:string,
+    color:string  | null
+}
 
 export type Category = {
     id:number

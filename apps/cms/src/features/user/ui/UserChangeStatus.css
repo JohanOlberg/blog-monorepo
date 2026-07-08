@@ -1,0 +1,134 @@
+.user-status-control-card {
+  border: 3px solid #111;
+  background: #f7f4ee;
+  padding: 18px;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.user-status-control-header {
+  margin-bottom: 16px;
+}
+
+.user-status-control-header span {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.user-status-control-header h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.user-status-workflow {
+  display: grid;
+  gap: 7px;
+}
+
+.user-status-card {
+  border: 3px solid #111;
+  text-align: left;
+  box-shadow: 4px 4px 0 #111;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.user-status-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111;
+}
+
+.user-status-card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #111;
+}
+
+.user-status-card--current {
+  padding: 18px;
+  animation: postStatusEnter 220ms ease;
+  cursor: default;
+}
+
+.user-status-card--current:hover,
+.user-status-card--current:active {
+  transform: none;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.user-status-card--current strong {
+  display: block;
+  font-size: 28px;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.user-status-card--current small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.user-status-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.user-status-card--option {
+  padding: 14px;
+  animation: postStatusEnter 220ms ease;
+}
+
+.user-status-card--option strong {
+  display: block;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.user-status-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.user-status-draft {
+  background: #d9d9d9;
+  color: #111;
+}
+
+.user-status-published {
+  background: #2afc98;
+  color: #111;
+}
+
+.user-status-archived {
+  background: #3b3b3b;
+  color: #fff;
+}
+
+@keyframes postStatusEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -51,7 +51,7 @@ export const navigationItems:NavigationItem[] = [
         path:"/admin/users",
         icon:Users,
         type:"ROUTE",
-        roles: ["ADMIN"]
+        roles: ["ADMIN","AUTHOR","EDITOR"]
     },
 
     {

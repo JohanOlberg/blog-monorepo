@@ -5,10 +5,12 @@ import { ROLE_PERMISSIONS } from "@shared/application/auth/role-permission.js"
 export function requirePermission(permission: Permission) {
   return async function (request: FastifyRequest, reply: FastifyReply) {
     const user = request.user
-
+   
     if (!user) {
       return reply.status(401).send({ message: "Unauthorized" })
     }
+
+    
 
     const role = user.role
 

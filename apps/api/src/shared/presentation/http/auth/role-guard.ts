@@ -13,4 +13,5 @@ export function requireRole(allowedRoles: UserRoles[]) {
       return reply.status(403).send({ message: "Forbidden" })
     }
   }
+  
 }

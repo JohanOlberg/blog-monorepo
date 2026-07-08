@@ -2,15 +2,15 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { usePostById } from "../hooks/usePostById";
+import { usePostUpdate } from "../hooks/usePostUpdate";
 import { PostEditorContext } from "../context/PostEditorContext";
-import type { PostEditorForm, PostUpdate } from "../model/post.types";
-import type { PostListItem } from "../model/post.types";
+import type { PostEditorForm, PostUpdate, PostListItem } from "../model/post.types";
+
 import { PostEditorMetadataForm } from "../ui/PostMetadataForm";
 import { PostContentEditor } from "../ui/PostContentEditor";
-import "./PostEditorPage.css";
 import PostEditControlsSimple from "../ui/PostEditControls";
-import { usePostUpdate } from "../hooks/usePostUpdate";
 import { PostReadingPreview } from "../ui/ComponentePreviewBlog";
+import "./PostEditorPage.css";
 
 function toPostEditorForm(post: PostListItem): PostEditorForm {
   return {

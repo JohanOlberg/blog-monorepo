@@ -18,7 +18,6 @@ export async function authGuard(request:FastifyRequest, reply:FastifyReply){
 
      try {
         const payload = tokenService.verify(token)
-        
         request.user = {
             id: payload.sub,
             email: payload.email,

@@ -1,0 +1,165 @@
+.authors-list {
+  width: 100%;
+}
+
+.authors-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 1rem 1.25rem;
+
+  border-bottom: 4px solid #111;
+  background: #f2e7ff;
+}
+
+.authors-list__header h2 {
+  margin: 0;
+
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.authors-list__header span {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+
+  border: 3px solid #111;
+  background: #fff;
+
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.authors-list__items {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.authors-list__items li:not(:last-child) {
+  border-bottom: 3px solid #111;
+}
+
+.authors-list__item {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 0.875rem;
+
+  padding: 1rem;
+
+  border: 0;
+  background: transparent;
+  color: #111;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.authors-list__item:hover {
+  background: #f7f1e8;
+}
+
+.authors-list__item--selected {
+  background: #ffe1a8;
+}
+
+.authors-list__item--selected:hover {
+  background: #ffe1a8;
+}
+
+.authors-list__item:focus-visible {
+  outline: 4px solid #5d43d6;
+  outline-offset: -4px;
+}
+
+.authors-list__avatar {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  place-items: center;
+
+  border: 3px solid #111;
+  background: #b9a4ff;
+
+  font-weight: 900;
+}
+
+.authors-list__information {
+  display: grid;
+  min-width: 0;
+  gap: 0.3rem;
+}
+
+.authors-list__name {
+  overflow: hidden;
+
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authors-list__email {
+  overflow: hidden;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authors-list__status {
+  width: fit-content;
+  margin-top: 0.25rem;
+  padding: 0.2rem 0.45rem;
+
+  border: 2px solid #111;
+
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.authors-list__status--active {
+  background: #b9f6ca;
+}
+
+.authors-list__status--inactive {
+  background: #ffe1a8;
+}
+
+.authors-list__status--blocked {
+  background: #ffaaa5;
+}
+
+.authors-list__feedback {
+  display: grid;
+  min-height: 12rem;
+  place-content: center;
+  gap: 0.5rem;
+
+  padding: 2rem;
+
+  text-align: center;
+}
+
+.authors-list__feedback strong {
+  text-transform: uppercase;
+}
+
+.authors-list__feedback p {
+  max-width: 16rem;
+  margin: 0;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+}

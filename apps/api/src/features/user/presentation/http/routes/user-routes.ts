@@ -11,6 +11,7 @@ import { makeListUserController } from "@user/presentation/factory/make-list-use
 import { makeChangePasswordUserController } from "@user/presentation/factory/make-change-password-user-controller.js";
 import { makeChangeUserRoleController } from "@user/presentation/factory/make-change-role-user-controller.js";
 import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
+import { listUserRolesController } from "../controllers/ListUserRolesController.js";
 
 
 export async function userRoutes(app: FastifyInstance){
@@ -25,6 +26,11 @@ export async function userRoutes(app: FastifyInstance){
     const changePasswordUserController = makeChangePasswordUserController()
     const changeUserRoleController = makeChangeUserRoleController()
 
+
+    
+    app.get("/users",  { preHandler: authGuard }, listUserController.handle.bind(listUserController));
+    app.get("/users/roles",  { preHandler: authGuard }, listUserRolesController.handle.bind(listUserRolesController));
+    app.get("/users/by-email", { preHandler: authGuard }, getByEmailUserController.handle.bind(getByEmailUserController));
     app.post("/login", loginUserController.handle.bind(loginUserController));
     app.post("/users",  { preHandler: [authGuard, requirePermission("USER_CREATE")]}, createUserController.handle.bind(createUserController));
     app.patch("/users/:id/activate",  { preHandler: [authGuard, requirePermission("USER_CHANGE_STATUS")] }, activateUserController.handle.bind(activateUserController));
@@ -33,8 +39,7 @@ export async function userRoutes(app: FastifyInstance){
     app.patch("/users/:id/role",  { preHandler: [authGuard, requirePermission("USER_CHANGE_ROLE")]}, changeUserRoleController.handle.bind(changeUserRoleController));
     app.put("/users/:id",  { preHandler: [authGuard, requirePermission("USER_UPDATE")]}, updateUserController.handle.bind(updateUserController));
     app.patch("/users/:id/password",  { preHandler: [authGuard, requirePermission("USER_CHANGE_PASSWORD")]}, changePasswordUserController.handle.bind(changePasswordUserController));
-    app.get("/users",  { preHandler: authGuard }, listUserController.handle.bind(listUserController));
-    app.get("/users/by-email?email=", { preHandler: authGuard }, getByEmailUserController.handle.bind(getByEmailUserController));
+    
 
 }
 

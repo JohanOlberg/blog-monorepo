@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { Author } from "../model/author.types";
-//import { useCreateAuthor } from "../hooks/useCreateAuthor";
+import type { Author, AuthorFormState } from "../model/author.types";
+import { useAuthorCreate } from "../hooks/useAuthorCreate";
 import { useAuthorUpdate } from "../hooks/useAuthorUpdate";
 import "./AuthorFormModal.css";
 
@@ -10,52 +10,55 @@ type AuthorFormModalProps = {
 };
 
 export function AuthorFormModal({ author, onClose }: AuthorFormModalProps) {
+ 
   const isEditMode = Boolean(author);
 
-  const [name, setName] = useState(author?.name ?? "");
-  const [bio, setBio] = useState(author?.bio ?? "");
-  const [avatarUrl, setAvatarUrl] = useState(author?.avatarUrl ?? "");
-  const [status, setStatus] = useState(author?.status ?? "ACTIVE");
-  const [userId, setUserId] = useState(author?.userId?.toString() ?? "");
+  const [form, setForm] = useState<AuthorFormState>({
+      name: author?.name ?? "",
+      bio: author?.bio ?? "",
+      avatarUrl: author?.avatarUrl ?? "",
+      status: author?.status ?? "ACTIVE",
+      userId: author?.userId ?? null,
+  });
 
-  //const createAuthor = useCreateAuthor();
-  if(!author){throw new Error("erroS")}
+
   const updateAuthor = useAuthorUpdate(author?.id);
 
-  //const isPending = createAuthor.isPending || updateAuthor.isPending;
-const isPending = updateAuthor.isPending;
+  const createAuthor = useAuthorCreate();
+
+  const isPending = createAuthor.isPending || updateAuthor.isPending;
+
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (isEditMode && author) {
-      updateAuthor.mutate(
-        {
-          name,
-          bio: bio.trim() === "" ? null : bio,
-          avatarUrl: avatarUrl.trim() === "" ? null : avatarUrl,
-          status,
-        },
-        {
-          onSuccess: onClose,
-        }
-      );
-
-      return;
+    if (isEditMode) {
+        updateAuthor.mutate(
+          {
+            name: form?.name ?? "",
+            bio: form?.bio ?? "",
+            avatarUrl: form?.avatarUrl ?? "",        
+          },
+          {
+            onSuccess: onClose,
+          }
+        );
+    } else {
+      if (!form.userId) return;
+        createAuthor.mutate(
+          {
+            name: form.name,
+            bio: form?.bio ?? "",
+            avatarUrl: form?.avatarUrl ?? "",
+            userId: form.userId ,
+            status: form.status ?? "ACTIVE",
+          },
+          {
+            onSuccess: onClose,
+          }
+        );
     }
-/*
-    createAuthor.mutate(
-      {
-        name,
-        bio: bio.trim() === "" ? null : bio,
-        avatarUrl: avatarUrl.trim() === "" ? null : avatarUrl,
-        userId: Number(userId),
-      },
-      {
-        onSuccess: onClose,
-      }
-    );*/
   }
-
   return (
     <div className="author-form-modal-overlay">
       <div className="author-form-modal">
@@ -68,8 +71,8 @@ const isPending = updateAuthor.isPending;
           <label className="author-form-modal__field">
             <span>Name</span>
             <input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
+              value={form.name}
+              onChange={(event) => setForm({...form, name: event.target.value})}
               placeholder="Author name"
             />
           </label>
@@ -77,8 +80,8 @@ const isPending = updateAuthor.isPending;
           <label className="author-form-modal__field">
             <span>Bio</span>
             <textarea
-              value={bio}
-              onChange={(event) => setBio(event.target.value)}
+              value={form.bio}
+              onChange={(event) => setForm({...form, bio: event.target.value})}
               placeholder="Short author bio"
               rows={4}
             />
@@ -87,18 +90,25 @@ const isPending = updateAuthor.isPending;
           <label className="author-form-modal__field">
             <span>Avatar</span>
             <input
-              value={avatarUrl}
-              onChange={(event) => setAvatarUrl(event.target.value)}
+              value={form.avatarUrl}
+              onChange={(event) => setForm({...form, avatarUrl: event.target.value})}
               placeholder="Initials, image URL, or empty"
             />
           </label>
 
           {!isEditMode && (
             <label className="author-form-modal__field">
-              <span>User ID</span>
+              <span>Linked Account</span>
               <input
-                value={userId}
-                onChange={(event) => setUserId(event.target.value)}
+                value={Number(form.userId)}
+                onChange={(event) =>
+                  setForm({
+                    ...form,
+                    userId: event.target.value
+                      ? Number(event.target.value)
+                      : null,
+                  })
+                }
                 placeholder="Linked user id"
                 type="number"
               />
@@ -109,9 +119,9 @@ const isPending = updateAuthor.isPending;
             <label className="author-form-modal__field">
               <span>Status</span>
               <select
-                value={status}
+                value={form.status}
                 onChange={(event) =>
-                  setStatus(event.target.value as Author["status"])
+                  setForm({...form, status: event.target.value as Author["status"]})
                 }
               >
                 <option value="ACTIVE">ACTIVE</option>
@@ -143,4 +153,4 @@ const isPending = updateAuthor.isPending;
       </div>
     </div>
   );
-}
+  }
