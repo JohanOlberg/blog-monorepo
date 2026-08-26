@@ -1,9 +1,9 @@
 
 export const routes={
     home:'/',
-    posts:{
+    postsItem:{
         list:'/',
-        detailPath: '/posts/:id',
-        detail:(id:string)=>`/posts/${id}`,
+        detailPath: '/posts/:slug',
+        detail: (slug: string) => `/posts/${slug}`,
     },
 }

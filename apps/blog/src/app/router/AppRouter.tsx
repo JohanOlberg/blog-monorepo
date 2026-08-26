@@ -1,6 +1,7 @@
 import {  Route, Routes } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
-import { PostListPage } from '../../pages/PostListPage/PostListPage'
+
+import { BoxListContainer } from "../../features/post/list/components/BoxListContainer";
 import {NotFoundPage} from  '../../pages/NotFoundPage/NotFoundPage'
 import { routes } from './routes'
 
@@ -9,9 +10,7 @@ return (
 
         <Routes>
             <Route element={<MainLayout />}>
-                {/* <Route path={routes.home} element={<HomePage />} /> */}
-                <Route path={routes.posts.list} element={<PostListPage/>} />
-                {/* <Route path={routes.posts.detailPath} element={<PostPageDetail/>}/> */}
+                {<Route path={routes.home} element={<BoxListContainer/>} />}
                 <Route path="*" element={<NotFoundPage />} />
             </Route>
         </Routes>

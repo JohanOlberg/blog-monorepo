@@ -1,4 +1,4 @@
-import {type Post} from '@blog/domain'
+/*import {type Post} from '@blog/domain'
 import {type PostViewModel } from '../viewmodel/post.view-model'
 
 export function toPostViewModel(post: Post): PostViewModel {
@@ -10,4 +10,4 @@ export function toPostViewModel(post: Post): PostViewModel {
     formattedDate: post.date,
     likes:post.likes,
   };
-}
+}*/
