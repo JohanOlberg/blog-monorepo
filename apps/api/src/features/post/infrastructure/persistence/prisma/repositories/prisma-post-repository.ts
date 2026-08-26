@@ -1,10 +1,27 @@
 import { Post, NewPost } from "@post/domain/entities/post.js";
 import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
-import { toPrismaCreate, toDomain, toPrismaUpdate, toPostListOutput, toPostDetailsOutput } from "../mappers/prisma-post-mapper.js";
+import { toPrismaCreate, toDomain, toPrismaUpdate, toPostListOutput, toPostDetailsOutput, toPostListPublishedOutput } from "../mappers/prisma-post-mapper.js";
 import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
-import type { PostDetailsOutput, PostListOutput } from "@post/application/dto/post.output.js";
+import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "@post/application/dto/post.output.js";
 
 export class PrismaPostRepository implements IPostRepository{
+
+    async findAllPublished(): Promise<PostListPublishedOutput[]> {
+        const posts = await prisma.post.findMany({
+        include: {
+            author: {
+                include: {
+                user: true,
+                },
+            },
+            category:true 
+        },
+        where:{
+                status: "PUBLISHED"
+            },
+    });
+        return posts.map(toPostListPublishedOutput)
+    }
 
 
     async findByIdDetails(id: number): Promise<PostDetailsOutput | null> {

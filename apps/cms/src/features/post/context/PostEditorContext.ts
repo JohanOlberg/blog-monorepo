@@ -1,12 +1,12 @@
 import { createContext, useContext } from "react";
 
-import type { PostEditorForm } from "../model/post.types";
+import type { PostFormState } from "../model/post.types";
 
 type PostEditorContextValue ={
-    form: PostEditorForm,
-    updateField: <k extends keyof  PostEditorForm>(
+    form: PostFormState,
+    updateField: <k extends keyof  PostFormState>(
         field: k,
-        value:PostEditorForm[k]
+        value:PostFormState[k]
     )=> void
 }
 

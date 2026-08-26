@@ -2,12 +2,17 @@ import {  useMutation, useQueryClient  } from "@tanstack/react-query";
 import { updateCategory } from "../api/update-category-api";
 import type { categoryUpdate } from "../model/category.types";
 
-export function useCategoryUpdate(categoryId: number){
+export function useCategoryUpdate(categoryId?: number){
     const queryClient = useQueryClient();
 
     const { mutate, isPending, isError, error } = useMutation({
         
-        mutationFn: (data: categoryUpdate) => updateCategory(categoryId, data),
+        mutationFn: (data: categoryUpdate) => {
+          
+          if (!categoryId) {
+            throw new Error("Author id is required");
+          }
+          return updateCategory(categoryId, data)},
     
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ["categories"] });

@@ -8,6 +8,8 @@ import { makePublishPostController } from "@post/presentation/factory/make-publi
 import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
 import { makeChangePostCategoryController } from "@post/presentation/factory/make-change-post-category-controller.js"
 import { makeChangePostAuthorController } from "@post/presentation/factory/make-change-post-author-controller.js"
+import { makeGetPostBySlugController } from "@post/presentation/factory/make-get-post-by-slug-controller.js";
+import { makeGetPostPublished } from "@post/presentation/factory/make-get-post-published.js";
 import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
 import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
 
@@ -21,6 +23,8 @@ export async function postsRoutes(app: FastifyInstance) {
   const archivePostController = makeArchivePostController()
   const publishPostController = makePublishPostController()
   const draftPostController = makeDraftPostController()
+  const getPostBySlugController = makeGetPostBySlugController()
+  const getPostPublished = makeGetPostPublished()
   const changePostCategoryController = makeChangePostCategoryController()
   const changePostAuthorController = makeChangePostAuthorController()
 
@@ -37,4 +41,7 @@ app.register(async (protectedRoutes) => {
 })
 app.get("/posts", listPostsController.handle.bind(listPostsController))
 app.get("/posts/:id", getPostByIdController.handle.bind(getPostByIdController))
+/**BLOG ROUTES */
+app.get("/public/posts", getPostPublished.handle.bind(getPostPublished))
+app.get("/public/posts/:slug", getPostBySlugController.handle.bind(getPostBySlugController))
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"update-author-use-case.d.ts","sourceRoot":"","sources":["update-author-use-case.ts"],"names":[],"mappings":"AAEA,OAAO,EAAC,KAAM,iBAAiB,EAAE,MAAM,gDAAgD,CAAC;AACxF,OAAO,KAAK,EAAE,iBAAiB,EAAE,MAAM,wBAAwB,CAAC;AAEhE,qBAAa,uBAAuB;IACpB,OAAO,CAAC,gBAAgB;gBAAhB,gBAAgB,EAAC,iBAAiB;IAEhD,OAAO,CAAC,KAAK,EAAC,iBAAiB,EAAC,EAAE,EAAC,MAAM;;;;;;;;;;CASlD"}

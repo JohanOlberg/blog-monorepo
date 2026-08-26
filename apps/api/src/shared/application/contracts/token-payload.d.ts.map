@@ -1,0 +1,1 @@
+{"version":3,"file":"token-payload.d.ts","sourceRoot":"","sources":["token-payload.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,SAAS,EAAE,MAAM,kCAAkC,CAAA;AACjE,MAAM,MAAM,YAAY,GAAG;IACvB,GAAG,EAAC,MAAM,CAAC;IACX,KAAK,EAAC,MAAM,CAAC;IACb,IAAI,CAAC,EAAC,SAAS,CAAC;CACnB,CAAA"}

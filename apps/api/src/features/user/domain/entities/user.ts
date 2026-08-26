@@ -113,11 +113,8 @@ export class User{
         this.props.updatedAt = now
     }
 
-    changeRole(now: Date, newRole: UserRoles, id:number){
+    changeRole(now: Date, newRole: UserRoles){
         if(this.props.role === newRole){throw new InvalidUserRoleError()}
-        
-        if(this.props.id === id){throw new InvalidUserRoleError()}
-        
         this.props.role = newRole
         this.props.updatedAt = now
     }

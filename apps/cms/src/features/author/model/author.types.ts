@@ -8,6 +8,7 @@ export type Author = {
   userId: number;
   status: AuthorStatus;
   email: string;
+  updatedAt:string
 };
 
 export type AuthorUpdate = {

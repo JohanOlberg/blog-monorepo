@@ -10,7 +10,7 @@ export function useCategoryCreate(){
         mutationFn: (data: categoryCreateInput) => createCategory(data),
     
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["authors"] });
+          queryClient.invalidateQueries({ queryKey: ["categories"] });
         },
        
       });

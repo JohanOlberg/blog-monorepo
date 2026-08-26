@@ -6,7 +6,7 @@ export class CreateCategoryController{
     constructor(private createCategoryUseCase:CreateCategoryUseCase){}
     async handle(request:FastifyRequest, reply:FastifyReply){
         const body = createCategorySchemas.parse(request.body)
-        const category = this.createCategoryUseCase.execute(body)
+        const category = await this.createCategoryUseCase.execute(body)
         return reply.status(201).send(category)
     }
 }

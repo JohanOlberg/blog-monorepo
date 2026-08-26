@@ -27,6 +27,9 @@ export function AuthorsPage() {
       </main>
     );
   }
-  const sortedAuthors = [...authors].sort((a, b) => a.id - b.id);
+const sortedAuthors = [...authors].sort((a, b) => {
+  return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+});
+
   return <AuthorsPageContent authors={sortedAuthors} />;
 }

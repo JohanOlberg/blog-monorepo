@@ -22,7 +22,7 @@ export function PostReadingPreview({ post }: Props) {
           aria-label="Informações do post"
         >
           <span className="post-reading-preview__author">
-            {post.author.name ?? "Author"}
+            {post.author?.name ?? "Author"}
           </span>
           <span>{post.publishedAt ?? "Data de criação"}</span>
           <span>{"20mins Tempo de leitura"}</span>

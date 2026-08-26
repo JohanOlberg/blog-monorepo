@@ -1,12 +1,12 @@
 import "./AuthorSelector.css";
 import type { Author } from "../model/author.types";
 import { useAuthors } from "../hooks/useAuthor";
-import { useChangeAuthor } from "../../post/hooks/useChangeAuthor";
 
 type AuthorSelectorProps = {
-  postId?: number;
-  currentAuthor?: Author;
-  onSelectAuthor?: (author: Author) => void;
+  currentAuthor: Author | null;
+  mode: "CREATE" | "EDIT";
+  isSaving?: boolean;
+  onChangeAuthor: (author: Author) => void;
 };
 
 function getInitials(name: string) {
@@ -18,26 +18,15 @@ function getInitials(name: string) {
     .join("");
 }
 
-
 export function AuthorSelector({
-  postId,
   currentAuthor,
-  onSelectAuthor,
+  isSaving = false,
+  onChangeAuthor,
 }: AuthorSelectorProps) {
   const { data: authors, isLoading, isError } = useAuthors();
-  const { mutate, isPending } = useChangeAuthor();
 
   function handleSelectAuthor(author: Author) {
-    if (postId) {
-      mutate({
-        postId,
-        authorId: author.id,
-      });
-
-      return;
-    }
-
-    onSelectAuthor?.(author);
+    onChangeAuthor(author);
   }
 
   if (isLoading) {
@@ -67,7 +56,7 @@ export function AuthorSelector({
         <div className="author-current">
           <div className="author-main-info">
             <div className="authors-avatar">
-              {currentAuthor.avatarUrl}
+              {currentAuthor.avatarUrl || getInitials(currentAuthor.name)}
             </div>
 
             <div>
@@ -80,7 +69,7 @@ export function AuthorSelector({
       ) : (
         <div className="author-current">
           <div className="author-main-info">
-            <span className="author-avatar author-avatar--empty">?</span>
+            <span className="author-avatar author-avatar--empty" />
 
             <div>
               <strong>No author selected</strong>
@@ -109,8 +98,9 @@ export function AuthorSelector({
 
               <button
                 className="author-small-btn"
+                type="button"
                 onClick={() => handleSelectAuthor(author)}
-                disabled={isPending}
+                disabled={isSaving}
               >
                 Select
               </button>

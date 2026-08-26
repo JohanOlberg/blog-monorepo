@@ -8,11 +8,12 @@ export type Category = {
   createdAt: Date;
   updatedAt: Date;
 };
+export type PostStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED"
 
 export type PostListItem = {
   title: string;
   id: number;
-  status: string;
+  status: PostStatus;
   slug: string;
   description: string;
   category: Category;
@@ -24,20 +25,33 @@ export type PostListItem = {
   archivedAt: string | null;
 };
 
-export type PostEditorForm = {
-  id: number;
+export type PostFormState = {
+  id: number | null;
   title: string;
   description: string;
   content: string;
   slug: string;
-  status: string;
-  author: Author;
-  category: Category;
+  status: PostStatus;
+  author: Author | null;
+  category: Category | null;
   publishedAt: string | null;
 };
 
+export type PostCreateForm = PostFormState;
+
+export type PostEditorForm = PostFormState;
+
+export type PostCreateInput = {
+  title: string;
+  description: string;
+  content: string;
+  slug: string;
+  authorId: number;
+  categoryId: number;
+};
+
 export type PostUpdate = {
-  id: number;
+  id: number | null;
   title: string;
   description: string;
   content: string;

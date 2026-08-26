@@ -28,10 +28,12 @@ export function UsersPage() {
       </main>
     );
   }
-
+  const sortedUsers = [...users].sort((a, b) => {
+  return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+});
   return(
 
-    <UsersPageContent users={users} />
+    <UsersPageContent users={sortedUsers} />
  )
    
 }

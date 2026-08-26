@@ -1,0 +1,1 @@
+{"version":3,"file":"ListAuthorController.d.ts","sourceRoot":"","sources":["ListAuthorController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EAAE,oBAAoB,EAAE,MAAM,uDAAuD,CAAC;AAE7F,qBAAa,oBAAoB;IACnB,OAAO,CAAC,oBAAoB;gBAApB,oBAAoB,EAAE,oBAAoB;IAExD,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAK1D"}

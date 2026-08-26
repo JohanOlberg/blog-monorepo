@@ -1,0 +1,1 @@
+{"version":3,"file":"ChangeAuthorUserController.d.ts","sourceRoot":"","sources":["ChangeAuthorUserController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EAAE,uBAAuB,EAAE,MAAM,8DAA8D,CAAC;AAIvG,qBAAa,0BAA0B;IACzB,OAAO,CAAC,uBAAuB;gBAAvB,uBAAuB,EAAE,uBAAuB;IAE9D,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAW1D"}

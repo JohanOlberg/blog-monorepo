@@ -10,7 +10,7 @@ export class ChangeUserRoleUseCase{
         const now = new Date()
         const result = await this.userRepository.findById(newRole.id)
         if(!result){throw new UserNotFoundError()}
-        result.changeRole(now,newRole.role,newRole.id)
+        result.changeRole(now,newRole.role)
         await this.userRepository.update(result)
         return toUserOutput(result)
     }

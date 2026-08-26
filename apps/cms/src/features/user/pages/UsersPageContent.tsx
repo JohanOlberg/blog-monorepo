@@ -13,13 +13,18 @@ import { UserForm } from "../ui/UserForm";
 import { ChangePassword } from "../ui/ChangePassword";
 import { UserStatusWorkflow } from "../ui/UserChangeStatus";
 import { UserChangeRoles } from "../ui/UserChangeRoles";
+import { UserDisableRoles } from "../ui/UserDisableRoles";
+import { useUserChangePassword } from "../hooks/useUserChangePassword";
 
 import { useChangeUserStatus } from "../hooks/useUserChangeStatus"; 
 import { useUserCreate } from "../hooks/useUserCreate";
 import { useUserUpdate } from "../hooks/useUserUpdate";
 import { useListRoles } from "../hooks/useUserListRoles";
+import {useUserChangeRole} from "../hooks/useUserChangeRole";
 
 import "./UsersPageContent.css"
+import { getApiErrorMessage } from "../../../shared/api/getApiErrorMessage";
+import { FeedbackMessage } from "../../../shared/ui/FeedbackMessage";
 
 
 type UsersPageContentProps = {
@@ -64,6 +69,11 @@ export function UsersPageContent({
 
   const {data :  UserRoleOption = [], } =  useListRoles()
 
+  const { mutate : changeRole } = useUserChangeRole()
+
+  const {mutate : changePassword} = useUserChangePassword()
+
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error', msg: string } | null>(null);
 
   const [pageMode, setPageMode] = useState<UserPageMode>(() =>
     firstUser
@@ -78,7 +88,7 @@ export function UsersPageContent({
   const selectedUserId = pageMode.type === "EDIT" ? pageMode.userId : null;
 
 
-  const {mutate : userUpdate} = useUserUpdate(selectedUserId)
+  const {mutate : userUpdate} = useUserUpdate()
 
   const [form, setForm] = useState<UserFormData>(() =>
     firstUser
@@ -90,15 +100,45 @@ export function UsersPageContent({
 
   const isSaving = false;
 
-  function handleChangePassword(){}
+  function handleChangePassword(data:{userId: number, password: string}){
+    changePassword(data,{
+        onSuccess: () => {
+          setFeedback({
+            type: "success",
+            msg: "Changed Password successfully.",
+          });
+        },
+        onError: (error) => {
+            setFeedback({
+              type: "error",
+              msg: getApiErrorMessage(error),
+            });
+        },
+      })
+  }
 
   function handleChangeStatus(status:userStatus){
-    
-    changeStatus({selectedUserId, status})
-    setForm((currentForm) => ({
-  ...currentForm,
-  status,
-}));
+    if (selectedUserId === null) {return;}
+
+    changeStatus({selectedUserId, status},{
+        onSuccess: () => {
+          setForm((currentForm) => ({
+            ...currentForm,
+            status,
+          }));
+          setFeedback({
+            type: "success",
+            msg: "Changed Status successfully.",
+          });
+        },
+        onError: (error) => {
+            setFeedback({
+              type: "error",
+              msg: getApiErrorMessage(error),
+            });
+        },
+      }
+    )
   }
 
   function handleCreateUser() {
@@ -114,10 +154,7 @@ export function UsersPageContent({
       (user) => user.id === userId,
     );
 
-    if (!selectedUser) {
-      return;
-    }
-
+    if (!selectedUser) {return;}
     setPageMode({
       type: "EDIT",
       userId,
@@ -127,21 +164,64 @@ export function UsersPageContent({
   }
 
   function handleChangeRole(role:userRoles){
-    setForm((currentForm) => ({
-  ...currentForm,
-  role,
-}));
+    if (selectedUserId === null) {
+    return;}
+    changeRole({userId:selectedUserId, role:role},{
+        onSuccess: () => {
+          setForm((currentForm) => ({
+            ...currentForm,
+            role,
+          }));
+          setFeedback({
+            type: "success",
+            msg: "Changed Roles successfully.",
+          });
+        },
+        onError: (error) => {
+            setFeedback({
+              type: "error",
+              msg: getApiErrorMessage(error),
+            });
+        },
+      }
+    )
   }
 
 
   function handleSubmitUser(formData: UserFormData) {
     if (pageMode.type === "CREATE") {
-      userCreate(formData)
+      userCreate(formData,{
+        onSuccess: () => {
+          setFeedback({
+            type: "success",
+            msg: "User created successfully.",
+          });
+        },
+        onError: (error) => {
+            setFeedback({
+              type: "error",
+              msg: getApiErrorMessage(error),
+            });
+          },
+      });
       return;
     }
-
-    userUpdate(formData)
-    
+    userUpdate({userId: pageMode.userId,
+    data: formData,},{
+        onSuccess: () => {
+          setFeedback({
+            type: "success",
+            msg: "User edited successfully.",
+          });
+        },
+        onError: (error) => {
+            setFeedback({
+              type: "error",
+              msg: getApiErrorMessage(error),
+            });
+        },
+      });
+      return;
   }
 
   function handleCancelUser() {
@@ -156,8 +236,6 @@ export function UsersPageContent({
     if (!selectedUser) {
       return;
     }
-
-    //UserRoleOption?.map(role=> role.value)
 
     setForm(createFormFromUser(selectedUser));
   }
@@ -190,6 +268,16 @@ export function UsersPageContent({
         )}
       </header>
 
+      {feedback && (
+        <FeedbackMessage 
+          key={feedback.msg} 
+          type={feedback.type} 
+          message={feedback.msg} 
+          onClose={() => setFeedback(null)} 
+          duration={2000}
+        />
+      )}
+
       <section className="settings-page__content">
         <aside className="settings-page__list-panel">
           <UsersList
@@ -200,14 +288,17 @@ export function UsersPageContent({
         </aside>
         <section className="user-editor-layout">
           <section className="user-editor-layout__quick-actions">
-            <UserStatusWorkflow 
-              mode={pageMode.type}
-              isSaving={isPending}
-              currentUserStatus={form.status}
-              onChangeStatus={handleChangeStatus}
-              />
-              <UserChangeRoles 
-              mode={pageMode.type}
+
+            {pageMode.type === "EDIT" ? (
+              <UserStatusWorkflow 
+                isSaving={isPending}
+                currentUserStatus={form.status}
+                onChangeStatus={handleChangeStatus}
+                />
+            ):(
+              <UserDisableRoles/>
+              )}
+              <UserChangeRoles
               roles = {UserRoleOption}
               isSaving={isPending}
               currentRoleValue ={form.role}
@@ -215,12 +306,14 @@ export function UsersPageContent({
               />
           </section>
         
-
-        <ChangePassword
-        userId={selectedUserId}
-        onChangePassword={handleChangePassword}
-        />
-
+        {pageMode.type === "EDIT" && selectedUserId !=null ?(
+          <ChangePassword
+          key={`password-${selectedUserId}`} 
+          userId={selectedUserId}
+          isSaving={isSaving}
+          onChangePassword={handleChangePassword}
+          />
+        ):<></>}
 
         <section className="settings-page__editor-panel">
           <UserForm

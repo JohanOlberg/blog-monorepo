@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { Post, NewPost } from "@post/domain/entities/post.js";
-import type { PostDetailsOutput, PostListOutput } from "@post/application/dto/post.output.js";
+import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "@post/application/dto/post.output.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
 export type PrismaPostWithRelations = Prisma.PostGetPayload<{
@@ -63,6 +63,26 @@ export function toPostListOutput(prisma:PrismaPostWithRelations ):PostListOutput
               email: prisma.author.user.email,
             },
     createdAt: prisma.createdAt,
+    status: prisma.status,
+    category: prisma.category
+  }
+}
+
+export function toPostListPublishedOutput(prisma:PrismaPostWithRelations ):PostListPublishedOutput {
+      
+  return {
+    id: prisma.id,
+    title: prisma.title,
+    description: prisma.description,
+    slug: prisma.slug,
+    author: {
+              id: prisma.author.id,
+              name: prisma.author.name,
+              avatarUrl: prisma.author.avatarUrl,
+              userId: prisma.author.userId,
+              email: prisma.author.user.email,
+            },
+    publishedAt: prisma.publishedAt,
     status: prisma.status,
     category: prisma.category
   }

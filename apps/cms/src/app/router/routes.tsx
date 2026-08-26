@@ -9,6 +9,7 @@ import { RequireAuth } from "../../shared/auth/RequireAuth";
 import { CreatePostPage } from "../../features/post/pages/PostCreatePage";
 import { AuthorsPage } from "../../features/author/page/AuthorsPages";
 import { UsersPage } from "../../features/user/pages/UsersPage";
+import { CategoryPage } from "../../features/category/pages/CategoryPage";
 
 
 export const router = createBrowserRouter([
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "users",
         element: (<UsersPage/>),
+      },
+      {
+        path: "category",
+        element: (<CategoryPage/>),
       },
     ],
   },

@@ -9,7 +9,10 @@ import type {
 import { useAuthorCreate } from "../hooks/useAuthorCreate";
 import { useAuthorUpdate } from "../hooks/useAuthorUpdate";
 import { useUser } from "../../user/hooks/useUser";
+import { UserSelector } from "../../user/ui/UserSelector";
 
+import { FeedbackMessage } from "../../../shared/ui/FeedbackMessage";
+import { getApiErrorMessage } from "../../../shared/api/getApiErrorMessage";
 
 
 type AuthorPageMode =
@@ -47,8 +50,9 @@ function createFormFromAuthor(author: Author): AuthorFormData {
 export function AuthorsPageContent({
   authors,
 }: AuthorsPageContentProps) {
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error', msg: string } | null>(null);
   const firstAuthor = authors[0] ?? null;
-  const { data: usersList, isLoading, isError } = useUser();
+  const { data: usersList, isLoading :userLoding, isError:userError } = useUser();
   const {mutate : createAuthor} = useAuthorCreate()
   const [pageMode, setPageMode] = useState<AuthorPageMode>(() =>
     firstAuthor
@@ -67,7 +71,6 @@ export function AuthorsPageContent({
     
   const {
   mutate: updateAuthor,
-  //isPending: isUpdatingAuthor,
 } = useAuthorUpdate(selectedAuthorId);
 
   
@@ -80,6 +83,19 @@ export function AuthorsPageContent({
 
 
   const isSaving = false;
+
+  const usersListitem = usersList?.map((user) => (
+    {
+      id:user.id, 
+      name: user.name, 
+      email: user.email,
+      status: user.status
+
+    }))
+
+  function SelectUser(id:number){
+    setForm({...form, userId : id})
+  }
 
   function handleCreateAuthor() {
     setPageMode({
@@ -108,11 +124,41 @@ export function AuthorsPageContent({
 
   function handleSubmitAuthor(formData: AuthorFormData) {
     if (pageMode.type === "CREATE") {
-       createAuthor(formData) 
-      return;
+      createAuthor(formData, {
+        onSuccess:(data:Author) => {
+          setFeedback({type:"success",msg:"Sucefull to create a New Author!"})
+          setForm(createFormFromAuthor(data))
+          setPageMode({
+            type: "EDIT",
+            authorId:data.id,
+          })
+        },
+        onError: (error) => {
+          setFeedback({
+            type: "error",
+            msg: getApiErrorMessage(error),
+          });
+        }
+      })
+     return;
     }
-    updateAuthor(formData)
-  }
+      
+     updateAuthor(formData, {
+        onSuccess:() => {
+          setFeedback({type:"success",msg:"Sucefull edited Author!"})
+          //setForm(createFormFromAuthor(formData))
+          
+        },
+        onError: (error) => {
+          setFeedback({
+            type: "error",
+            msg: getApiErrorMessage(error),
+          });
+        }
+      })
+    }
+    
+  
 
   function handleCancelAuthor() {
     if (pageMode.type === "CREATE") {
@@ -130,8 +176,10 @@ export function AuthorsPageContent({
 
     setForm(createFormFromAuthor(selectedAuthor));
   }
+  
 
   return (
+    
     <main className="settings-page">
       <header className="settings-page__header">
         <div className="settings-page__heading">
@@ -158,7 +206,15 @@ export function AuthorsPageContent({
           </button>
         )}
       </header>
-
+        {feedback && (
+        <FeedbackMessage 
+          key={feedback.msg} 
+          type={feedback.type} 
+          message={feedback.msg} 
+          onClose={() => setFeedback(null)} 
+          duration={2000}
+        />
+      )}
       <section className="settings-page__content">
         <aside className="settings-page__list-panel">
           <AuthorsList
@@ -167,18 +223,32 @@ export function AuthorsPageContent({
             onSelectAuthor={handleSelectAuthor}
           />
         </aside>
-
-        <section className="settings-page__editor-panel">
-          <AuthorForm
-            mode={pageMode.type}
-            form={form}
-            users={usersList?.map((user) => ({id:user.id, name: user.name, email: user.email })) ?? []}
-            isSaving={isSaving}
-            onFormChange={setForm}
-            onSubmit={handleSubmitAuthor}
-            onCancel={handleCancelAuthor}
-          />
+        <section className="user-editor-layout">
+          {pageMode.type === "CREATE" ? (
+          <section className="settings-page__editor-panel">
+            <UserSelector
+              currentUser={form.userId}
+              isError={userError}
+              isLoading= {userLoding}
+              onSelectUser={SelectUser}
+              users={usersListitem??[]}
+            />
+          </section>
+          ):(<></>)
+          }
+          <section className="settings-page__editor-panel">
+            <AuthorForm
+              mode={pageMode.type}
+              form={form}
+              isSaving={isSaving}
+              onFormChange={setForm}
+              onSubmit={handleSubmitAuthor}
+              onCancel={handleCancelAuthor}
+            />
+          </section>
         </section>
+      
+        
       </section>
     </main>
   );

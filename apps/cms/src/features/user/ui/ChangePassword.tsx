@@ -1,52 +1,39 @@
-import {
-  type ChangeEvent,
-  type FormEvent,
-  useState,
-} from "react";
+import {useState, type ChangeEvent, type FormEvent} from "react";
 
 import "./ChangePassword.css";
 
 type ChangePasswordProps = {
-  userId: number | null;
-  isSaving?: boolean;
+  userId: number;
+  isSaving: boolean;
   onChangePassword: (data: {
     userId: number;
     password: string;
   }) => void;
 };
 
-export function ChangePassword({
-  userId,
-  isSaving = false,
-  onChangePassword,
-}: ChangePasswordProps) {
-  const [password, setPassword] = useState("");
+export function ChangePassword({userId,  isSaving = false,  onChangePassword,}: ChangePasswordProps) {
+  const [password, setPassword] = useState<string>()
 
-  const isDisabled = userId === null || isSaving;
+  const isDisabled = isSaving;
 
-  function handlePasswordChange(
-    event: ChangeEvent<HTMLInputElement>,
-  ) {
-    setPassword(event.target.value);
-  }
 
+   function handlePasswordChange(event: ChangeEvent<HTMLInputElement>) {
+      setPassword(event.target.value)
+   }
+  
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (userId === null) {
+
+    if (!password) {
       return;
     }
-
-    if (password.trim().length === 0) {
-      return;
-    }
-
+      
     onChangePassword({
       userId,
       password,
     });
-
-    setPassword("");
+    setPassword("")
   }
 
   return (
@@ -71,11 +58,7 @@ export function ChangePassword({
           <input
             type="password"
             value={password}
-            placeholder={
-              userId === null
-                ? "Select a user first"
-                : "Type a new password"
-            }
+            placeholder={"Type a new password"}
             disabled={isDisabled}
             onChange={handlePasswordChange}
           />
@@ -84,7 +67,7 @@ export function ChangePassword({
         <button
           className="change-password-box__button"
           type="submit"
-          disabled={isDisabled || password.trim().length === 0}
+          disabled={isDisabled}
         >
           {isSaving ? "Saving..." : "Save"}
         </button>

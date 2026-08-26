@@ -1,34 +1,36 @@
 import "./CategorySelector.css";
-import type { Category } from "../../post/model/post.types"
+import type { Category } from "../../post/model/post.types.js";
 import { useCategory } from "../hooks/useCategory";
-import { useChangeCategory } from "../../post/hooks/useChangeCategory";
 import { useState } from "react";
-import {CategoryEditModal} from "./CategoryEditModal.js";
+import { CategoryEditModal } from "./CategoryEditModal.js";
 
-type categorySelectorProps = {
+type CategorySelectorProps = {
   postId?: number;
-  currentCategory?: Category;
+  currentCategory: Category | null;
+  mode: "CREATE" | "EDIT";
+  isSaving?: boolean;
+  onChangeCategory: (category: Category) => void;
 };
 
-export function CategorySelector({ postId, currentCategory }: categorySelectorProps) {
+export function CategorySelector({
+  postId,
+  currentCategory,
+  mode,
+  isSaving,
+  onChangeCategory,
+}: CategorySelectorProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
   const result = useCategory();
-  const { mutate, isPending } = useChangeCategory();
 
   function handleEditClick(category: Category) {
     setSelectedCategory(category);
     setIsModalOpen(true);
   }
 
-  function handleChangeCategory(categoryId: number) {
-    if (!postId) return;
-
-    mutate({
-      postId,
-      categoryId,
-    });
+  function handleSelectCategory(category: Category) {
+    onChangeCategory(category);
   }
 
   return (
@@ -43,7 +45,7 @@ export function CategorySelector({ postId, currentCategory }: categorySelectorPr
           <div className="category-main-info">
             <span
               className="category-color"
-              style={{ backgroundColor: `${currentCategory.color}` }}
+              style={{ backgroundColor: currentCategory.color || "transparente"}}
             />
 
             <div>
@@ -54,6 +56,7 @@ export function CategorySelector({ postId, currentCategory }: categorySelectorPr
 
           <button
             className="category-small-btn"
+            type="button"
             onClick={() => handleEditClick(currentCategory)}
           >
             Edit
@@ -80,7 +83,7 @@ export function CategorySelector({ postId, currentCategory }: categorySelectorPr
               <div className="category-main-info">
                 <span
                   className="category-color"
-                  style={{ backgroundColor: `${category.color}` }}
+                  style={{ backgroundColor: category.color ? category.color:"transparent" }}
                 />
 
                 <div>
@@ -91,8 +94,9 @@ export function CategorySelector({ postId, currentCategory }: categorySelectorPr
 
               <button
                 className="category-small-btn"
-                onClick={() => handleChangeCategory(category.id)}
-                disabled={isPending}
+                type="button"
+                onClick={() => handleSelectCategory(category)}
+                disabled={isSaving}
               >
                 Select
               </button>
@@ -100,7 +104,7 @@ export function CategorySelector({ postId, currentCategory }: categorySelectorPr
           ))}
       </div>
 
-      {isModalOpen && selectedCategory && postId && (
+      {isModalOpen && selectedCategory && mode === "EDIT" && postId && (
         <CategoryEditModal
           category={selectedCategory}
           onClose={() => setIsModalOpen(false)}

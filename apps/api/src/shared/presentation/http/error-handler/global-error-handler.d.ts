@@ -1,0 +1,3 @@
+import type { FastifyRequest, FastifyReply } from "fastify";
+export declare function globalErrorHandler(error: unknown, request: FastifyRequest, reply: FastifyReply): FastifyReply<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("http").IncomingMessage, import("http").ServerResponse<import("http").IncomingMessage>, unknown, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown>;
+//# sourceMappingURL=global-error-handler.d.ts.map

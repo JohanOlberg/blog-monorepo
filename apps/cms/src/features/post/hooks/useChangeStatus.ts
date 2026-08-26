@@ -1,18 +1,20 @@
 import {  useMutation, useQueryClient  } from "@tanstack/react-query";
 import { publishPost, movePostToDraft, archivedPost } from "../api/change-status-api";
+import {type  PostStatus } from "../model/post.types";
 
-
+/*
 type ChangeStatus = 
 | "DRAFT"
 | "PUBLISHED"
 | "ARCHIVED"
-
+*/
+ 
 type ChangePostStatusInput = {
     postId: number;
-    status: ChangeStatus;
+    status: PostStatus;
 }
 
-const mapActionStatus: Record<ChangeStatus,(id:number)=>Promise<unknown>>={
+const mapActionStatus: Record<PostStatus,(id:number)=>Promise<unknown>>={
     PUBLISHED:(id:number)=> publishPost(id),
     DRAFT:(id:number)=> movePostToDraft(id),
     ARCHIVED:(id:number)=> archivedPost(id),

@@ -27,8 +27,10 @@ export function PostContentEditor() {
 
     // Carrega o conteúdo inicial vindo do form.
     // Esse effect roda quando o editor fica pronto.
+   if (!editor.isFocused) {
     editor.commands.setContent(form.content);
-  }, [editor]);
+  }
+}, [editor, form.content]);
   return (
     <section className="post-content-editor">
       <header className="post-content-editor-header">

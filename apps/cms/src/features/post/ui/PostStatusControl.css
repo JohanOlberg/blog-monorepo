@@ -1,0 +1,179 @@
+.post-status-control-card {
+  border: 3px solid #111;
+  background: #f7f4ee;
+  padding: 18px;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.post-status-control-header {
+  margin-bottom: 16px;
+}
+
+.post-status-control-header span {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.post-status-control-header h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.post-status-workflow {
+  display: grid;
+  gap: 12px;
+}
+
+.post-status-card {
+  border: 3px solid #111;
+  text-align: left;
+  box-shadow: 4px 4px 0 #111;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.post-status-card--current {
+  padding: 18px;
+  animation: postStatusEnter 220ms ease;
+  cursor: default;
+}
+
+.post-status-card--current:hover,
+.post-status-card--current:active {
+  transform: none;
+  box-shadow: 4px 4px 0 #111;
+}
+
+.post-status-card--current strong {
+  display: block;
+  font-size: 28px;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.post-status-card--current small {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.post-status-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.post-status-card--option {
+  padding: 14px;
+  cursor: pointer;
+  animation: postStatusEnter 220ms ease;
+}
+
+.post-status-card--option:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111;
+}
+
+.post-status-card--option:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #111;
+}
+
+.post-status-card--option:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.post-status-card--option strong {
+  display: block;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.post-status-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.post-status-draft {
+  background: #d9d9d9;
+  color: #111;
+}
+
+.post-status-published {
+  background: #2afc98;
+  color: #111;
+}
+
+.post-status-archived {
+  background: #3b3b3b;
+  color: #fff;
+}
+
+.post-status-publish-button {
+  width: 100%;
+  border: 3px solid #111;
+  background: #2afc98;
+  color: #111;
+  padding: 12px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #111;
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.post-status-publish-button:hover:not(:disabled) {
+  background: #fffc31;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111;
+}
+
+.post-status-publish-button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #111;
+}
+
+.post-status-publish-button:disabled {
+  background: #bdbdbd;
+  color: #555;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+@keyframes postStatusEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

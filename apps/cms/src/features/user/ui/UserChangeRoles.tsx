@@ -4,12 +4,12 @@ import type{ UserRoleOption, userRoles } from "../model/user.types.js";
 type rolesSelectorProps = {
     roles: UserRoleOption[]
     currentRoleValue?: userRoles;
-    mode: "CREATE" | "EDIT"
+    
     isSaving: boolean
     onChangeRole: (data:userRoles)=>void
 };
 
-export function UserChangeRoles({ currentRoleValue, mode, isSaving, onChangeRole, roles}: rolesSelectorProps) {
+export function UserChangeRoles({ currentRoleValue, isSaving, onChangeRole, roles}: rolesSelectorProps) {
   
 const otherRoles = roles.filter(
     (role) => role.value !== currentRoleValue
@@ -17,8 +17,6 @@ const otherRoles = roles.filter(
 
 
 const currentRole = roles.filter((role)=> role.value === currentRoleValue)  
-
-//const currentRole = roles[currentRoleValue]  
 
 function handleChangeRoles(role:userRoles){
     onChangeRole(role)
@@ -36,7 +34,7 @@ function handleChangeRoles(role:userRoles){
       
       {currentRole && currentRole.length > 0 ? (
       currentRole?.map((current) => (
-        <div className="category-current">
+        <div key={`current-${current.value}`} className="category-current">
           <div className="category-main-info">
             <span
               className={ `category-color ${current.className}` }

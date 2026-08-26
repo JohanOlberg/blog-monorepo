@@ -1,0 +1,1 @@
+{"version":3,"file":"DeactivateAuthorController.d.ts","sourceRoot":"","sources":["DeactivateAuthorController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EAAE,2BAA2B,EAAE,MAAM,6DAA6D,CAAC;AAG1G,qBAAa,0BAA0B;IACzB,OAAO,CAAC,uBAAuB;gBAAvB,uBAAuB,EAAE,2BAA2B;IAElE,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAM1D"}

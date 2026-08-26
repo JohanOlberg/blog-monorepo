@@ -6,10 +6,12 @@ import { NavLink } from "react-router-dom";
 export function Sidebar() {
     const user = useAuthStore(state => state.user);
     const logout = useAuthStore(state => state.logout);
-
+    
+    if (!user) return null;
     const allowedRoutes = navigationItems.filter(
       route => route.roles.includes(user.role)
     )
+    
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">

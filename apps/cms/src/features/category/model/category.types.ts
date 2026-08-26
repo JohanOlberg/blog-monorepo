@@ -19,3 +19,17 @@ export type Category = {
     createdAt: Date;
     updatedAt: Date ;
 }
+
+export type categoryFormData = {
+    //id:number
+    title:string
+    color:string  | null;
+    slug:string
+}
+
+export type categoryFormDataItem = {
+    id:number
+    title:string
+    color:string  | null;
+    slug:string
+}

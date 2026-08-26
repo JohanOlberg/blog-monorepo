@@ -33,7 +33,7 @@ export const navigationItems:NavigationItem[] = [
         path:"/admin/posts",
         icon:FileText,
         type:"ROUTE",
-        roles:[ "AUTHOR","EDITOR"],
+        roles:["ADMIN","AUTHOR","EDITOR"]
     },
 
     {
@@ -42,7 +42,7 @@ export const navigationItems:NavigationItem[] = [
         path:"/admin/posts/new",
         icon:SquarePen,
         type:"ROUTE",
-        roles: ["AUTHOR","EDITOR"]
+        roles: ["ADMIN","AUTHOR","EDITOR"]
     },
 
     {
@@ -58,6 +58,16 @@ export const navigationItems:NavigationItem[] = [
         id:"authors",
         label:"Authors",
         path:"/admin/authors",
+        icon:UserSquare2,
+        type:"ROUTE",
+        roles: ["ADMIN","AUTHOR","EDITOR"]
+    }
+    ,
+
+    {
+        id:"category",
+        label:"Categories",
+        path:"/admin/category",
         icon:UserSquare2,
         type:"ROUTE",
         roles: ["ADMIN","AUTHOR","EDITOR"]

@@ -1,0 +1,1 @@
+{"version":3,"file":"BlockUserController.d.ts","sourceRoot":"","sources":["BlockUserController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAC,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAE3D,OAAO,EAAE,gBAAgB,EAAE,MAAM,oDAAoD,CAAC;AAEtF,qBAAa,mBAAmB;IAChB,OAAO,CAAC,QAAQ,CAAC,gBAAgB;gBAAhB,gBAAgB,EAAC,gBAAgB;IACxD,MAAM,CAAC,OAAO,EAAC,cAAc,EAAE,KAAK,EAAC,YAAY;CAK1D"}

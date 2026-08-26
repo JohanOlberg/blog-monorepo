@@ -1,9 +1,9 @@
-import type { UserList } from "../model/user.types";
+import type { UserListItem } from "../model/user.types";
 
 import "../../author/ui/authorsList.css";
 
 type UsersListProps = {
-  users: UserList[];
+  users: UserListItem[];
   selectedUserId: number | null;
   onSelectUser: (userId: number) => void;
 };

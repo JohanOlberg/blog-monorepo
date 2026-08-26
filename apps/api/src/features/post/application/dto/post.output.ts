@@ -50,6 +50,18 @@ export type PostListOutput = {
     createdAt: Date;
 };
 
+export type PostListPublishedOutput = {
+    title: string;
+    id: number;
+    status: PostStatus;
+    slug: string;
+    description: string;
+    category: Category;
+    author: Author;
+    publishedAt:Date | null
+};
+
+
 export type PostDetailsOutput = {
     title: string;
     id: number;

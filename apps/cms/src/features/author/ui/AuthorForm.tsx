@@ -3,13 +3,13 @@ import {
   type FormEvent,
 } from "react";
 
-import type{AuthorFormData, UserOption } from "../model/author.types";
+import type{AuthorFormData,  } from "../model/author.types";
 import "./AuthorForm.css";
 
 type AuthorFormProps = {
   mode: "CREATE" | "EDIT";
   form: AuthorFormData;
-  users: UserOption[];
+  //users: UserOption[];
   isSaving?: boolean;
   onFormChange: (formData: AuthorFormData) => void;
   onSubmit: (formData: AuthorFormData) => void;
@@ -19,7 +19,6 @@ type AuthorFormProps = {
 export function AuthorForm({
   mode,
   form,
-  users,
   isSaving = false,
   onFormChange,
   onSubmit,
@@ -35,15 +34,6 @@ export function AuthorForm({
   onFormChange({
     ...form,
     [name]: value,
-  });
-}
-
-  function handleUserChange(event: ChangeEvent<HTMLSelectElement>) {
-  const userId = event.target.value;
-
-  onFormChange({
-    ...form,
-    userId: Number(userId) 
   });
 }
 
@@ -96,23 +86,6 @@ export function AuthorForm({
           />
         </label>
 
-        <label className="author-form__field">
-          <span>Linked user</span>
-
-          <select
-            value={form.userId ?? ""}
-            disabled={isSaving}
-            onChange={handleUserChange}
-          >
-            <option value="">Select a user</option>
-
-            {users.map((user) => (
-              <option key={user.id} value={user.id}>
-                {user.name} — {user.email}
-              </option>
-            ))}
-          </select>
-        </label>
       </div>
 
       <footer className="author-form__actions">

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import "./UserChangeStatus.css";
 
 const statusOptions = {
@@ -26,13 +24,12 @@ const statusOptions = {
 type UserStatus = keyof typeof statusOptions;
 
 type UserStatusWorkflowProps ={
-    mode: "CREATE" | "EDIT"
     currentUserStatus: UserStatus
     isSaving: boolean
     onChangeStatus: (data:UserStatus)=>void
 }
 
-export function UserStatusWorkflow({mode, currentUserStatus, isSaving, onChangeStatus}:UserStatusWorkflowProps) {
+export function UserStatusWorkflow({ currentUserStatus, isSaving, onChangeStatus}:UserStatusWorkflowProps) {
   
   const otherStatuses = Object.keys(statusOptions).filter(
     (status) => status !== currentUserStatus

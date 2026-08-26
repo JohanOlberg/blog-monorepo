@@ -1,0 +1,101 @@
+/* FeedbackMessage.css */
+
+/* Faixa fixa que cruza o topo do Viewport (VH) */
+.feedback-overlay {
+  position: fixed !important; /* Garante prioridade absoluta de posicionamento */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 20px 0; /* Espaçamento interno vertical */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* z-index ultra alto para rasgar qualquer elemento da página */
+  z-index: 999999 !important; 
+  
+  /* Fundo meio transparente com desfoque de vidro (Glassmorphism + Brutalism) */
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  -webkit-backdrop-filter: blur(8px) !important; /* Suporte para Safari */
+  backdrop-filter: blur(8px) !important;
+  
+  /* Linha preta brutalista que corta o ecrã de ponta a ponta */
+  border-bottom: 3px solid #1e1e1e;
+}
+
+/* O card de mensagem */
+.feedback-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  color: #1e1e1e;
+  max-width: 90%;
+  background-color: #ffffff;
+  
+  /* Cantos 100% retos e sem arredondar */
+  border: 4px solid #1e1e1e;
+  border-radius: 0px !important; 
+  
+  /* Sombra sólida brutalista */
+  box-shadow: 4px 4px 0px 0px #1e1e1e;
+}
+
+/* Cores de Fundo Soft Brutalism */
+.feedback-box.success {
+  background-color: #c3f4d1;
+  /* Animação normal de descida para sucesso */
+  animation: brutalSlideDown 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.feedback-box.error {
+  background-color: #ffa5a5;
+  /* Animação combinada: desce E treme agressivamente de forma reta */
+  animation: brutalSlideDown 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
+             brutalShake 0.4s ease-in-out 0.2s; /* Começa logo após descer */
+}
+
+/* Caixa do ícone */
+.feedback-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background-color: #ffffff;
+  border: 2px solid #1e1e1e;
+  border-radius: 0px !important;
+  flex-shrink: 0;
+}
+
+.feedback-text {
+  text-align: left;
+  word-break: break-word;
+}
+
+/* --- ANIMAÇÕES BRUTALISTAS (Sem suavizações exageradas) --- */
+
+@keyframes brutalSlideDown {
+  from {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Tremor puramente horizontal e seco (Estilo Brutalista) */
+@keyframes brutalShake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}

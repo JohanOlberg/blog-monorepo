@@ -5,8 +5,6 @@ import type {
 
 import type {
   UserFormData,
-  userRoles,
-  userStatus,
 } from "../model/user.types";
 
 import "../../author/ui/AuthorForm.css";
@@ -20,17 +18,6 @@ type UserFormProps = {
   onCancel: () => void;
 };
 
-const roleOptions: userRoles[] = [
-  "ADMIN",
-  "EDITOR",
-  "AUTHOR",
-];
-
-const statusOptions: userStatus[] = [
-  "ACTIVE",
-  "INACTIVE",
-  "BLOCKED",
-];
 
 export function UserForm({
   mode,
@@ -50,25 +37,6 @@ export function UserForm({
       [name]: value,
     });
   }
-
-  function handleRoleChange(
-    event: ChangeEvent<HTMLSelectElement>,
-  ) {
-    onFormChange({
-      ...form,
-      role: event.target.value as userRoles,
-    });
-  }
-
-  function handleStatusChange(
-    event: ChangeEvent<HTMLSelectElement>,
-  ) {
-    onFormChange({
-      ...form,
-      status: event.target.value as userStatus,
-    });
-  }
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -100,7 +68,7 @@ export function UserForm({
             onChange={handleInputChange}
           />
         </label>
-
+        
         <label className="author-form__field">
           <span>Email</span>
 
@@ -113,7 +81,20 @@ export function UserForm({
             onChange={handleInputChange}
           />
         </label>
-
+        {mode === "EDIT" ? (<></> ) :
+         (<label className="author-form__field">
+          <span>Password</span>
+       
+          <input
+            name="password"
+            type="password"
+            value={form.password}
+            placeholder="********"
+            disabled={isSaving}
+            onChange={handleInputChange}
+          />
+        </label>
+        )}
       </div>
 
       <footer className="author-form__actions">
