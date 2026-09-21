@@ -124,7 +124,7 @@ private constructor(private readonly props:PostProps){}
         if(!this.props.title || this.props.title.trim() === ""){
             throw new TitleRequiredError();
         }
-        if(this.props.title.length <= 10 || this.props.title.length > 30){
+        if(this.props.title.length <= 10 || this.props.title.length >= 31){
             throw new TitleLengthError();
         }
         if(this.props.description.length <= 30 || this.props.description.length > 100){

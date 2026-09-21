@@ -21,13 +21,15 @@ export type Pattern =
 |"pattern-r"
 |"pattern-s"
 
+type Area = "box-1"|"box-2"|"box-3"|"box-4"
+
 type SlotContent =
   | { kind: "post"; data: PostListItem }
-  | { kind: "logo"; variant: "compact" | "detailed" } // compact = 1 box, detailed = 2+ box
+  | { kind: "logo"; variant: "box" | "standard" | "extends"; } 
   | { kind: "nav" }
 
 export type PostSlot = {
-  area: string
+  area: Area
   content: SlotContent  // exige um campo "content", não "post"
 }
 export type PatternGroup = { patternName: Pattern, slots: PostSlot[] }
@@ -36,7 +38,7 @@ export type PatternGroup = { patternName: Pattern, slots: PostSlot[] }
  export type kindOfPatterns = "POST"|"NAV"|"LOGO"
 
 export interface ItemPattern {
-  area: string;
+  area: Area;
   colunm: number;
   row: number;
   role:kindOfPatterns[]
@@ -106,8 +108,8 @@ export const patternComposition: Record<Pattern, ItemPattern[]> = {
 "pattern-q": [{area:"box-1", colunm:2, row:1, role:["POST",]}, 
               {area:"box-2", colunm:2, row:1, role:["NAV"]}], 
 
-"pattern-r": [{area:"box-1", colunm:2, row:1, role:["LOGO",]}, 
-              {area:"box-2", colunm:2, row:1, role:["POST"]}], 
+"pattern-r": [{area:"box-1", colunm:2, row:1, role:["POST",]}, 
+              {area:"box-2", colunm:2, row:1, role:["LOGO"]}], 
 
 "pattern-s": [{area:"box-1", colunm:4, row:1, role:["POST"]}],
 

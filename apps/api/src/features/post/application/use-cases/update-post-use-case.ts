@@ -13,13 +13,10 @@ export class UpdatePostUseCase{
 
         if(!result){ throw new PostNotFoundError()}
             
-            const slugAlredyExist = await this.iPostRepository.findBySlug(input.slug)
+            const slugAlreadyExist = await this.iPostRepository.findBySlug(input.slug)
             
-            if(slugAlredyExist){
-                const slugResult = slugAlredyExist.getProps()
-                if(slugResult.id !== id){
-                    throw new SlugAlreadyExistsError()
-                }
+            if(slugAlreadyExist && slugAlreadyExist.id !== id){
+                throw new SlugAlreadyExistsError()
             }
             const now = new Date()
             result.update(now , input)

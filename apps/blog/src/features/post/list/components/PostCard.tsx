@@ -1,64 +1,72 @@
-import type { CSSProperties } from "react";
-import type { PostListItem } from "../model/public-post-summary";
-
+import { Link } from "react-router-dom";
 import styles from "./PostCard.module.css";
 
-interface PostCardProps {
-  post: PostListItem;
-}
 
-const dateFormatter = new Intl.DateTimeFormat("en-GB", {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-});
+type PostCardProps = {
+  slug:string
+  title: string;
+  description: string;
+  author: string;
+  publishedAt: string;
+  category: {
+    title: string;
+    color: string;
+  };
+};
 
-export function PostCard({ post }: PostCardProps) {
-  const date = new Date(post.createdAt);
-
-  const formattedDate = Number.isNaN(date.getTime())
-    ? null
-    : dateFormatter.format(date);
-
+export function PostCard({
+  slug,
+  title,
+  description,
+  author,
+  publishedAt,
+  category,
+}: PostCardProps) {
   return (
+    <Link style={{"textDecoration":"none"}} to={`/posts/${slug}`}>
     <article
-      className={styles.card}
-      style={
-        {
-          "--category-color": post.category.color,
-        } as CSSProperties
-      }
+      className={styles["post-card"]}
+      style={{
+        "--category-color": category.color,
+      } as React.CSSProperties}
     >
-      <header className={styles.header}>
-        <span className={styles.category}>
-          {post.category.title}
+      <header className={styles["post-card__header"]}>
+        <span className={styles["post-card__category"]}>
+          {category.title}
         </span>
+
+        <time
+          className={styles["post-card__date"]}
+          dateTime={publishedAt}
+        >
+          {new Date(publishedAt).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          })}
+        </time>
       </header>
 
-      <div className={styles.content}>
-        <h2 className={styles.title}>
-          {post.title}
+      <div className={styles["post-card__content"]}>
+        <h2 className={styles["post-card__title"]}>
+          {title}
         </h2>
 
-        <p className={styles.description}>
-          {post.description}
+        <p className={styles["post-card__description"]}>
+          {description}
         </p>
       </div>
 
-      <footer className={styles.meta}>
-        <span className={styles.author}>
-          by <strong>{post.author.name}</strong>
+      <footer className={styles["post-card__footer"]}>
+        <span className={styles["post-card__author"]}>
+          By {author}
         </span>
 
-        {formattedDate && (
-          <time
-            className={styles.date}
-            dateTime={date.toISOString()}
-          >
-            {formattedDate}
-          </time>
-        )}
+        <span className={styles["post-card__arrow"]}>
+          →
+        </span>
       </footer>
     </article>
+    </Link>
   );
 }

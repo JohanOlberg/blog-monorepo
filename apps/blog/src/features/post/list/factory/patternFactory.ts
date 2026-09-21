@@ -21,7 +21,6 @@ const patternsWithRole = allPatterns
   
   let availablePatterns = patternsWithRole.filter(pattern => !patternHistory.includes(pattern));
 
-  console.log(patternsWithRole)
 
   if (patternsWithRole.length === 0) {
   const fallbackPatterns = allPatterns.filter(pattern =>
@@ -35,7 +34,6 @@ const patternsWithRole = allPatterns
 
   if (availablePatterns.length === 0) {
     const lastPattern = patternHistory.at(-1); ;
-      console.log(`${lastPattern} - lastPattern`)
     const filtered = patternsWithRole.filter(k => k !== lastPattern);
     
     availablePatterns = filtered.length > 0 

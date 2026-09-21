@@ -1,240 +1,298 @@
-.card {
-  --category-color: #7c3aed;
-
-  container-type: inline-size;
-  container-name: post-card;
-
-  position: relative;
+.post-card {
+  --card-padding: clamp(18px, 2cqw, 28px);
 
   width: 100%;
   height: 100%;
+
   min-width: 0;
+  min-height: 0;
 
   box-sizing: border-box;
 
+  padding:
+    var(--card-padding)
+    calc(
+      var(--card-padding) +
+      var(--safe-right, 0px)
+    )
+    var(--card-padding)
+    calc(
+      var(--card-padding) +
+      var(--safe-left, 0px)
+    );
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
-  gap: 14px;
-
-  padding: 18px;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--category-color) 18%, #15171b),
-      #15171b 65%
-    );
-
-  color: #f5f5f5;
-
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--category-color) 45%,
-      #2b2e34
-    );
+  color: #111;
 }
 
 
-/*
- * CATEGORY ACCENT
- */
-.card::before {
-  content: "";
+/* =====================================
+   HEADER
+===================================== */
+.post-card__header {
+  min-width: 0;
 
-  position: absolute;
-
-  top: 0;
-  left: 0;
-  bottom: 0;
-
-  width: 5px;
-
-  background: var(--category-color);
-}
-
-
-/*
- * HEADER
- */
-.header {
   display: flex;
   align-items: center;
-
-  min-width: 0;
-}
-
-
-/*
- * CATEGORY
- */
-.category {
-  max-width: 100%;
-
-  padding: 4px 8px;
-
-  overflow: hidden;
-
-  font-size: 0.7rem;
-  font-weight: 700;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  color: var(--category-color);
-
-  border: 1px solid var(--category-color);
-
-  background:
-    color-mix(
-      in srgb,
-      var(--category-color) 12%,
-      transparent
-    );
-}
-
-
-/*
- * CONTENT
- */
-.content {
-  min-width: 0;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-
-  justify-content: center;
+  justify-content: space-between;
 
   gap: 10px;
+
+  margin-bottom: clamp(
+    14px,
+    1.8cqw,
+    24px
+  );
 }
 
+.post-card__category {
+  min-width: 0;
 
-/*
- * TITLE
- */
-.title {
-  margin: 0;
+  padding: 6px 12px;
 
-  overflow: hidden;
+  border: 1px solid currentColor;
+  border-radius: 999px;
 
   font-size: clamp(
-    1.1rem,
-    4cqw,
-    2.3rem
+    0.65rem,
+    1.1cqw,
+    0.76rem
   );
 
   font-weight: 700;
-  line-height: 1.05;
 
-  letter-spacing: -0.025em;
+  letter-spacing: 0.08em;
 
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
-/*
- * DESCRIPTION
- *
- * Por padrão escondemos.
- * Em cards maiores ela aparece.
- */
-.description {
-  display: none;
+.post-card__date {
+  flex-shrink: 0;
+
+  font-size: clamp(
+    0.68rem,
+    1.05cqw,
+    0.78rem
+  );
+
+  opacity: 0.65;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.post-card__content {
+  width: 100%;
+  min-width: 0;
+}
+
+.post-card__title {
+  width: 100%;
+  max-width: none;
 
   margin: 0;
 
-  color: #b9bcc4;
+  font-size: clamp(
+    1.4rem,
+    5.5cqw,
+    2.65rem
+  );
 
-  font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+
+  overflow-wrap: break-word;
+
+  transition: transform 220ms ease;
+}
+
+.box:hover .post-card__title {
+  transform: translateX(4px);
+}
+.post-card__description {
+  width: 100%;
+  max-width: none;
+
+  margin: clamp(
+    9px,
+    1.2cqw,
+    14px
+  ) 0 0;
+
+  font-size: clamp(
+    0.76rem,
+    1.45cqw,
+    0.98rem
+  );
+
+  line-height: 1.35;
+
+  opacity: 0.72;
+
+  overflow-wrap: break-word;
 }
 
 
-/*
- * META
- */
-.meta {
-  display: flex;
+/* =====================================
+   FOOTER
+===================================== */
+.post-card__footer {
+  width: 100%;
+  min-width: 0;
 
+  margin-top: auto;
+
+  /*
+    antes estava grande demais
+  */
+  padding-top: clamp(
+    10px,
+    1.4cqw,
+    18px
+  );
+
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
   gap: 10px;
-
-  min-width: 0;
-
-  color: #8e929b;
-
-  font-size: 0.72rem;
 }
 
 
-.author {
+.post-card__author {
   min-width: 0;
 
-  overflow: hidden;
+  font-size: clamp(
+    0.75rem,
+    1.2cqw,
+    0.9rem
+  );
 
+  font-weight: 600;
+
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 
-.author strong {
-  color: #d8dae0;
-  font-weight: 600;
+.post-card__arrow {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(0,0,0,0.5);
+
+  border-radius: 50%;
+
+  font-size: 1.2rem;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.post-card:hover .post-card__arrow {
+  transform: rotate(-45deg);
+
+  background: #111;
+  color: white;
 }
 
 
-.date {
-  flex-shrink: 0;
-  white-space: nowrap;
-}
+/* =====================================
+   MEDIUM CARD
+===================================== */
+@container (max-width: 500px) {
 
-
-/*
- * CARD MÉDIO
- *
- * Normalmente uma box de 2 colunas.
- */
-@container post-card (min-width: 380px) {
-
-  .description {
-    display: -webkit-box;
-
-    overflow: hidden;
-
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  .post-card {
+    --card-padding: 20px;
   }
 
-}
-
-
-/*
- * CARD GRANDE
- *
- * Normalmente patterns E/F/G.
- */
-@container post-card (min-width: 600px) {
-
-  .description {
-    font-size: 1rem;
-
-    -webkit-line-clamp: 3;
+  .post-card__header {
+    margin-bottom: 18px;
   }
 
-  .meta {
+  .post-card__title {
+    width: 100%;
+    max-width: none;
+
+    font-size: 1.65rem;
+  }
+
+  .post-card__description {
+    width: 100%;
+    max-width: none;
+
+    margin-top: 10px;
+
     font-size: 0.8rem;
+  }
+
+  .post-card__footer {
+    padding-top: 12px;
+  }
+}
+
+
+/* =====================================
+   SMALL CARD
+===================================== */
+
+@container (max-width: 340px) {
+
+  .post-card {
+    --card-padding: 16px;
+  }
+
+  .post-card__header {
+    align-items: flex-start;
+
+    margin-bottom: 16px;
+
+    gap: 6px;
+  }
+
+  .post-card__category {
+    padding: 5px 8px;
+
+    font-size: 0.62rem;
+  }
+
+  .post-card__date {
+    font-size: 0.63rem;
+  }
+
+  .post-card__title {
+    font-size: 1.4rem;
+  }
+
+  .post-card__description {
+    margin-top: 8px;
+
+    font-size: 0.75rem;
+
+    line-height: 1.3;
+  }
+
+  .post-card__footer {
+    padding-top: 12px;
   }
 
 }

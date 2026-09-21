@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { Post, NewPost } from "@post/domain/entities/post.js";
-import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "@post/application/dto/post.output.js";
+import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "@post/application/dto/post.output.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
 export type PrismaPostWithRelations = Prisma.PostGetPayload<{
@@ -61,6 +61,7 @@ export function toPostListOutput(prisma:PrismaPostWithRelations ):PostListOutput
               avatarUrl: prisma.author.avatarUrl,
               userId: prisma.author.userId,
               email: prisma.author.user.email,
+              bio: prisma.author.bio
             },
     createdAt: prisma.createdAt,
     status: prisma.status,
@@ -81,6 +82,7 @@ export function toPostListPublishedOutput(prisma:PrismaPostWithRelations ):PostL
               avatarUrl: prisma.author.avatarUrl,
               userId: prisma.author.userId,
               email: prisma.author.user.email,
+              bio: prisma.author.bio
             },
     publishedAt: prisma.publishedAt,
     status: prisma.status,
@@ -101,7 +103,8 @@ export function toPostDetailsOutput(prisma:PrismaPostWithRelations ):PostDetails
               name: prisma.author.name,
               avatarUrl: prisma.author.avatarUrl,
               userId: prisma.author.userId,
-              email: prisma.author.user.email,              
+              email: prisma.author.user.email,    
+              bio: prisma.author.bio          
             },
     createdAt: prisma.createdAt,
     status: prisma.status,
@@ -110,6 +113,27 @@ export function toPostDetailsOutput(prisma:PrismaPostWithRelations ):PostDetails
   }
 }
 
+export function toPostItemDetailsOutput(prisma:PrismaPostWithRelations ):PostDetailPublishedOutput {
+      
+  return {
+    id: prisma.id,
+    title: prisma.title,
+    description: prisma.description,
+    slug: prisma.slug,
+    author: {
+              id: prisma.author.id,
+              name: prisma.author.name,
+              avatarUrl: prisma.author.avatarUrl,
+              userId: prisma.author.userId,
+              email: prisma.author.user.email,    
+              bio: prisma.author.bio          
+            },
+    publishedAt: prisma.publishedAt,
+    status: prisma.status,
+    category: prisma.category,
+    content: String(prisma.content),
+  }
+}
 
   
 export function toDomain(prisma:PrismaPost ):Post {

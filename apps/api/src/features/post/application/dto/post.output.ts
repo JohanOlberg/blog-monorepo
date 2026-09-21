@@ -6,7 +6,8 @@ export type Author = {
   name: string;
   avatarUrl: string | null;
   userId: number;
-  email:string
+  email:string;
+  bio:string  | null
 }
 
 export type User = {
@@ -61,6 +62,18 @@ export type PostListPublishedOutput = {
     publishedAt:Date | null
 };
 
+export type PostDetailPublishedOutput = {
+    title: string;
+    id: number;
+    status: PostStatus;
+    slug: string;
+    description: string;
+    category: Category;
+    author: Author;
+    publishedAt:Date | null
+     content: string;
+};
+
 
 export type PostDetailsOutput = {
     title: string;
@@ -73,5 +86,3 @@ export type PostDetailsOutput = {
     author: Author;
     createdAt: Date;
 };
-
-

@@ -1,0 +1,1495 @@
+/* ================================================== */
+/* ROOT */
+/* ================================================== */
+
+.about {
+  --bg: #08071c;
+  --surface: #111027;
+  --surface-soft: #16142e;
+
+  --text: #f4f2ff;
+  --muted: #aaa6c2;
+
+  --cyan: #23d7ff;
+  --pink: #ff3ea5;
+  --purple: #9c5cff;
+  --yellow: #ffc46b;
+
+  --page-width: 1500px;
+  --page-gutter: clamp(24px, 7vw, 140px);
+
+  /*
+    ISSO É O ÚNICO VALOR QUE VOCÊ PRECISA ALTERAR
+    CASO QUEIRA O H1 MAIS ALTO OU MAIS BAIXO.
+
+    Quanto MAIOR, mais para cima o título vai.
+  */
+  --hero-title-lift: clamp(
+    3rem,
+    5vw,
+    6rem
+  );
+
+  width: 100%;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  color: var(--text);
+
+  background: var(--bg);
+}
+
+
+/* ================================================== */
+/* HERO */
+/* ================================================== */
+
+/*
+  HERO É UMA GRID DE UMA ÚNICA CÉLULA.
+
+  A imagem ocupa 1 / 1.
+  O título ocupa 1 / 1.
+
+  Portanto:
+
+  IMAGEM
+    +
+  TÍTULO
+
+  estão literalmente no mesmo espaço.
+*/
+
+.hero {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  width: 100%;
+
+  background: var(--bg);
+
+  isolation: isolate;
+}
+
+
+/* ================================================== */
+/* HERO IMAGE */
+/* ================================================== */
+
+.heroImage {
+  grid-column: 1;
+  grid-row: 1;
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  margin: 0;
+
+  /*
+    Não usamos:
+      height: 100%
+      object-fit: cover
+
+    A imagem mantém sua proporção original.
+  */
+}
+
+
+/* ================================================== */
+/* TRANSIÇÃO IMAGEM -> BODY */
+/* ================================================== */
+
+/*
+  Fica ACIMA da imagem,
+  mas ABAIXO do título.
+
+  Não cobre a imagem com uma box.
+
+  Apenas mistura os últimos pixels
+  da imagem com a cor da página.
+*/
+
+.hero::after {
+  content: "";
+
+  grid-column: 1;
+  grid-row: 1;
+
+  align-self: end;
+
+  width: 100%;
+  height: 28%;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(8, 7, 28, 0.08) 25%,
+      rgba(8, 7, 28, 0.35) 55%,
+      rgba(8, 7, 28, 0.75) 82%,
+      var(--bg) 100%
+    );
+}
+
+
+/* ================================================== */
+/* HERO TITLE */
+/* ================================================== */
+
+/*
+  MESMA grid-area DA IMAGEM.
+
+  align-self: end coloca o título
+  na parte inferior dela.
+
+  padding-bottom sobe o H1 DENTRO da imagem.
+
+  Não existe:
+    top
+    bottom
+    absolute
+    margin negativo
+*/
+
+.heroTitle {
+  grid-column: 1;
+  grid-row: 1;
+
+  align-self: end;
+
+  position: relative;
+  z-index: 2;
+
+  width: min(
+    var(--page-width),
+    calc(
+      100% - (var(--page-gutter) * 2)
+    )
+  );
+
+  margin-inline: auto;
+
+  padding-bottom:
+    var(--hero-title-lift);
+
+  /*
+    MUITO IMPORTANTE:
+
+    transparente.
+
+    O background que você vê atrás
+    do H1 continua sendo A IMAGEM.
+  */
+  background: transparent;
+}
+
+
+.heroTitle h1 {
+  width: min(
+    100%,
+    1320px
+  );
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      4.4rem,
+      7.1vw,
+      8.15rem
+    );
+
+  line-height: 0.91;
+
+  letter-spacing: -0.055em;
+
+  text-align: left;
+
+  text-wrap: initial;
+}
+
+
+.heroTitle h1 span {
+  display: block;
+
+  margin-top: 0.08em;
+
+  color: var(--pink);
+}
+
+
+/* ================================================== */
+/* BODY */
+/* ================================================== */
+
+/*
+  O body começa EXATAMENTE depois
+  que a imagem do hero termina.
+
+  Não precisa compensar título nenhum,
+  porque o título está dentro do hero.
+*/
+
+.aboutBody {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  background: var(--bg);
+}
+
+
+/* ================================================== */
+/* SHARED CONTAINER */
+/* ================================================== */
+
+.intro,
+.manifesto,
+.principlesSection,
+.architecture,
+.story,
+.dedication,
+.end {
+  width: min(
+    var(--page-width),
+    calc(
+      100% - (var(--page-gutter) * 2)
+    )
+  );
+
+  margin-inline: auto;
+}
+
+
+/* ================================================== */
+/* LABELS */
+/* ================================================== */
+
+.sectionNumber,
+.endEyebrow {
+  display: block;
+
+  font-family: monospace;
+
+  font-size: 0.78rem;
+
+  letter-spacing: 0.18em;
+
+  color: var(--cyan);
+}
+
+
+.sectionNumber {
+  margin-bottom: 1.5rem;
+}
+
+
+/* ================================================== */
+/* 00 / IDEA */
+/* ================================================== */
+
+.intro {
+  padding:
+    clamp(
+      6rem,
+      9vw,
+      10rem
+    )
+    0
+    clamp(
+      11rem,
+      15vw,
+      15rem
+    );
+}
+
+
+.introContent {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      1rem,
+      2vw,
+      2rem
+    );
+
+  align-items: end;
+}
+
+
+/* -------------------------------------------------- */
+
+.introLead {
+  grid-column: 1 / 8;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      3.6rem,
+      6vw,
+      7rem
+    );
+
+  line-height: 0.94;
+
+  letter-spacing: -0.05em;
+
+  font-weight: inherit;
+}
+
+
+/* -------------------------------------------------- */
+
+.introText {
+  grid-column: 9 / 13;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.35rem;
+
+  padding-bottom: 0.35rem;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.25vw,
+      1.4rem
+    );
+
+  line-height: 1.75;
+}
+
+
+.introText p {
+  margin: 0;
+}
+
+
+/* ================================================== */
+/* 01 / MANIFESTO */
+/* ================================================== */
+
+.manifesto {
+  padding-bottom:
+    clamp(
+      8rem,
+      11vw,
+      11rem
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      1rem,
+      2vw,
+      2rem
+    );
+
+  align-items: end;
+}
+
+
+.manifestoTitle {
+  grid-column: 1 / 8;
+}
+
+
+.manifestoTitle h2 {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      3.5rem,
+      5.6vw,
+      6.5rem
+    );
+
+  line-height: 0.94;
+
+  letter-spacing: -0.05em;
+}
+
+
+.manifestoTitle h2 span {
+  color: var(--purple);
+}
+
+
+/* -------------------------------------------------- */
+
+.manifestoText {
+  grid-column: 9 / 13;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.35rem;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.25vw,
+      1.4rem
+    );
+
+  line-height: 1.75;
+}
+
+
+.manifestoText p {
+  margin: 0;
+}
+
+
+/* ================================================== */
+/* 02 / PRINCIPLES */
+/* ================================================== */
+
+.principlesSection {
+  padding-bottom:
+    clamp(
+      11rem,
+      15vw,
+      16rem
+    );
+}
+
+
+.principlesGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  grid-template-rows:
+    minmax(320px, auto)
+    minmax(290px, auto);
+
+  gap: 14px;
+}
+
+
+/* ================================================== */
+/* PRINCIPLE CARD */
+/* ================================================== */
+
+.systemCard {
+  position: relative;
+
+  min-width: 0;
+
+  padding:
+    clamp(
+      1.75rem,
+      2.5vw,
+      2.5rem
+    );
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border-radius: 12px;
+
+  background: var(--surface);
+
+  overflow: hidden;
+}
+
+
+.cardNumber {
+  position: absolute;
+
+  top: 1.8rem;
+  right: 1.8rem;
+
+  font-family: monospace;
+
+  font-size: 0.85rem;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
+}
+
+
+.cardHeading small {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-family: monospace;
+
+  font-size: 0.8rem;
+
+  letter-spacing: 0.15em;
+
+  color: var(--muted);
+}
+
+
+.cardHeading h3 {
+  margin: 0;
+
+  font-size:
+    clamp(
+      2.6rem,
+      4vw,
+      5rem
+    );
+
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+}
+
+
+.systemCard ul {
+  margin: 4rem 0 0;
+  padding: 0;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.65rem;
+
+  list-style: none;
+}
+
+
+.systemCard li {
+  padding:
+    0.6rem
+    0.9rem;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.14
+    );
+
+  border-radius: 999px;
+
+  color: var(--muted);
+
+  font-size: 1rem;
+}
+
+
+.systemCard p {
+  max-width: 440px;
+
+  margin: 4rem 0 0;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.15vw,
+      1.22rem
+    );
+
+  line-height: 1.7;
+}
+
+
+/* ================================================== */
+/* PRINCIPLE VARIANTS */
+/* ================================================== */
+
+.order {
+  grid-column: span 2;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(
+        35,
+        215,
+        255,
+        0.14
+      ),
+      transparent 58%
+    ),
+    var(--surface);
+}
+
+
+.variation {
+  grid-column: span 2;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(
+        255,
+        62,
+        165,
+        0.14
+      ),
+      transparent 58%
+    ),
+    var(--surface);
+}
+
+
+.rules {
+  grid-column: span 1;
+}
+
+
+.freedom {
+  grid-column: span 3;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(
+        156,
+        92,
+        255,
+        0.16
+      ),
+      transparent 58%
+    ),
+    var(--surface);
+}
+
+
+/* ================================================== */
+/* 03 / SYSTEM */
+/* ================================================== */
+
+.architecture {
+  padding-bottom:
+    clamp(
+      12rem,
+      17vw,
+      18rem
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      1.5rem,
+      3vw,
+      4rem
+    );
+
+  align-items: center;
+}
+
+
+.architectureIntro {
+  grid-column: 1 / 8;
+}
+
+
+.architectureIntro h2 {
+  max-width: 850px;
+
+  margin: 0 0 3rem;
+
+  font-size:
+    clamp(
+      3.8rem,
+      5.8vw,
+      6.7rem
+    );
+
+  line-height: 0.94;
+
+  letter-spacing: -0.05em;
+}
+
+
+.architectureText {
+  max-width: 700px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1rem;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.25vw,
+      1.4rem
+    );
+
+  line-height: 1.75;
+}
+
+
+.architectureText p {
+  margin: 0;
+}
+
+
+/* ================================================== */
+/* FLOW */
+/* ================================================== */
+
+.flow {
+  grid-column: 9 / 13;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+.flowStep {
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+.flowCard {
+  min-height: 108px;
+
+  padding: 1.8rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.11
+    );
+
+  border-radius: 10px;
+
+  background: var(--surface);
+}
+
+
+.flowCard span {
+  font-family: monospace;
+
+  color: var(--muted);
+}
+
+
+.flowCard strong {
+  font-size:
+    clamp(
+      1rem,
+      1.2vw,
+      1.3rem
+    );
+
+  letter-spacing: 0.08em;
+}
+
+
+.arrow {
+  padding:
+    1rem
+    0
+    1rem
+    2rem;
+
+  color: var(--pink);
+
+  font-size: 1.25rem;
+}
+
+
+/* ================================================== */
+/* STORY */
+/* ================================================== */
+
+.story {
+  padding-bottom:
+    clamp(
+      13rem,
+      18vw,
+      19rem
+    );
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      1.25rem,
+      2vw,
+      2rem
+    );
+
+  align-items: start;
+}
+
+
+.story article {
+  min-height: 410px;
+
+  padding:
+    clamp(
+      1.8rem,
+      2.5vw,
+      2.5rem
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border-radius: 12px;
+
+  background: var(--surface);
+}
+
+
+.story article:nth-child(1) {
+  grid-column: 1 / 5;
+}
+
+
+.story article:nth-child(2) {
+  grid-column: 5 / 9;
+
+  transform:
+    translateY(3rem);
+}
+
+
+.story article:nth-child(3) {
+  grid-column: 9 / 13;
+}
+
+
+.story h3 {
+  margin:
+    auto
+    0
+    1.5rem;
+
+  font-size:
+    clamp(
+      2rem,
+      2.5vw,
+      2.8rem
+    );
+
+  line-height: 1.04;
+
+  letter-spacing: -0.035em;
+}
+
+
+.storyText {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.8rem;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.1vw,
+      1.18rem
+    );
+
+  line-height: 1.7;
+}
+
+
+.storyText p {
+  margin: 0;
+}
+
+
+/* ================================================== */
+/* 07 / DEDICATION */
+/* ================================================== */
+
+.dedication {
+  padding:
+    clamp(
+      6rem,
+      9vw,
+      9rem
+    )
+    0
+    clamp(
+      13rem,
+      18vw,
+      19rem
+    );
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+}
+
+
+.dedicationContent {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      12,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      1rem,
+      2vw,
+      2rem
+    );
+
+  align-items: start;
+}
+
+
+.dedicationContent h2 {
+  grid-column: 1 / 7;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      4rem,
+      7vw,
+      8rem
+    );
+
+  line-height: 0.92;
+
+  letter-spacing: -0.055em;
+}
+
+
+.dedicationText {
+  grid-column: 8 / 12;
+
+  padding-top: 0.5rem;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1.4rem;
+
+  color: var(--muted);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.3vw,
+      1.4rem
+    );
+
+  line-height: 1.8;
+}
+
+
+.dedicationText p {
+  margin: 0;
+}
+
+
+/* ================================================== */
+/* END */
+/* ================================================== */
+
+.end {
+  padding-bottom:
+    clamp(
+      5rem,
+      8vw,
+      8rem
+    );
+}
+
+
+.endEyebrow {
+  margin-bottom: 2rem;
+}
+
+
+.end h2 {
+  max-width: 1250px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      4rem,
+      7vw,
+      8rem
+    );
+
+  line-height: 0.91;
+
+  letter-spacing: -0.055em;
+}
+
+
+.end h2 span {
+  display: block;
+
+  color: var(--pink);
+}
+
+
+.signature {
+  margin-top:
+    clamp(
+      6rem,
+      9vw,
+      10rem
+    );
+
+  padding-top: 2rem;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  border-top:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+
+.signature > span {
+  font-family: monospace;
+
+  font-size:
+    clamp(
+      2.8rem,
+      4vw,
+      4rem
+    );
+
+  font-weight: 700;
+
+  color: var(--cyan);
+}
+
+
+.signature small {
+  font-family: monospace;
+
+  letter-spacing: 0.14em;
+
+  color: var(--muted);
+}
+
+
+/* ================================================== */
+/* TABLET */
+/* ================================================== */
+
+@media (max-width: 1000px) {
+  .about {
+    --page-gutter: 32px;
+
+    /*
+      No tablet colocamos o título
+      um pouco mais perto do final.
+    */
+    --hero-title-lift:
+      clamp(
+        2.5rem,
+        5vw,
+        4rem
+      );
+  }
+
+
+  .introLead {
+    grid-column: 1 / 8;
+  }
+
+
+  .introText {
+    grid-column: 8 / 13;
+  }
+
+
+  .manifestoTitle {
+    grid-column: 1 / 8;
+  }
+
+
+  .manifestoText {
+    grid-column: 8 / 13;
+  }
+
+
+  .architectureIntro {
+    grid-column: 1 / 8;
+  }
+
+
+  .flow {
+    grid-column: 8 / 13;
+  }
+
+
+  .dedicationContent h2 {
+    grid-column: 1 / 7;
+  }
+
+
+  .dedicationText {
+    grid-column: 7 / 13;
+  }
+}
+
+
+/* ================================================== */
+/* MOBILE */
+/* ================================================== */
+
+@media (max-width: 760px) {
+  .about {
+    --page-gutter: 20px;
+
+    --hero-title-lift:
+      clamp(
+        1.5rem,
+        5vw,
+        2.5rem
+      );
+  }
+
+
+  /* ================================================= */
+  /* HERO */
+  /* ================================================= */
+
+  .heroTitle h1 {
+    width: 100%;
+
+    font-size:
+      clamp(
+        2.8rem,
+        12vw,
+        5rem
+      );
+
+    line-height: 0.92;
+  }
+
+
+  .hero::after {
+    height: 35%;
+  }
+
+
+  /* ================================================= */
+  /* IDEA */
+  /* ================================================= */
+
+  .intro {
+    padding:
+      6rem
+      0
+      9rem;
+  }
+
+
+  .introContent {
+    grid-template-columns: 1fr;
+
+    gap: 3rem;
+  }
+
+
+  .introLead,
+  .introText {
+    grid-column: auto;
+  }
+
+
+  .introLead {
+    font-size:
+      clamp(
+        3rem,
+        13vw,
+        5rem
+      );
+  }
+
+
+  /* ================================================= */
+  /* MANIFESTO */
+  /* ================================================= */
+
+  .manifesto {
+    grid-template-columns: 1fr;
+
+    gap: 3rem;
+
+    padding-bottom: 9rem;
+  }
+
+
+  .manifestoTitle,
+  .manifestoText {
+    grid-column: auto;
+  }
+
+
+  .manifestoTitle h2 {
+    font-size:
+      clamp(
+        3rem,
+        12vw,
+        5rem
+      );
+  }
+
+
+  /* ================================================= */
+  /* PRINCIPLES */
+  /* ================================================= */
+
+  .principlesSection {
+    padding-bottom: 10rem;
+  }
+
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+
+    grid-template-rows: auto;
+
+    gap: 1rem;
+  }
+
+
+  .order,
+  .variation,
+  .rules,
+  .freedom {
+    grid-column: auto;
+  }
+
+
+  .systemCard {
+    min-height: 300px;
+  }
+
+
+  /* ================================================= */
+  /* SYSTEM */
+  /* ================================================= */
+
+  .architecture {
+    grid-template-columns: 1fr;
+
+    gap: 4rem;
+
+    padding-bottom: 10rem;
+  }
+
+
+  .architectureIntro,
+  .flow {
+    grid-column: auto;
+  }
+
+
+  .architectureIntro h2 {
+    font-size:
+      clamp(
+        3rem,
+        12vw,
+        5rem
+      );
+  }
+
+
+  /* ================================================= */
+  /* STORY */
+  /* ================================================= */
+
+  .story {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+
+    padding-bottom: 10rem;
+  }
+
+
+  .story article:nth-child(1),
+  .story article:nth-child(2),
+  .story article:nth-child(3) {
+    grid-column: auto;
+
+    transform: none;
+  }
+
+
+  .story article {
+    min-height: 320px;
+  }
+
+
+  /* ================================================= */
+  /* DEDICATION */
+  /* ================================================= */
+
+  .dedication {
+    padding:
+      5rem
+      0
+      10rem;
+  }
+
+
+  .dedicationContent {
+    grid-template-columns: 1fr;
+
+    gap: 3rem;
+  }
+
+
+  .dedicationContent h2,
+  .dedicationText {
+    grid-column: auto;
+  }
+
+
+  .dedicationContent h2 {
+    font-size:
+      clamp(
+        3.5rem,
+        15vw,
+        5rem
+      );
+  }
+
+
+  /* ================================================= */
+  /* END */
+  /* ================================================= */
+
+  .end h2 {
+    font-size:
+      clamp(
+        3.2rem,
+        13vw,
+        5rem
+      );
+  }
+
+
+  .signature {
+    margin-top: 6rem;
+  }
+}

@@ -10,7 +10,7 @@ export function useChangeCategory(){
     
         onSuccess: (_, variables) => {
           queryClient.invalidateQueries({ queryKey: ["posts"] });
-          queryClient.invalidateQueries({ queryKey: ["posts",variables.postId] });
+          queryClient.invalidateQueries({ queryKey: [`posts,${variables.postId}`] });
         },
       });
     

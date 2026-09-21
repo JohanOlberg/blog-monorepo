@@ -59,3 +59,8 @@ Thumbs.db
 
 # Preservar declaracoes manuais de tipos
 !/apps/api/src/shared/presentation/http/types/fastify-types.d.ts
+# Cache de compilação do TypeScript
+*.tsbuildinfo
+
+# Imagens antigas da pagina NotFound
+/apps/blog/src/assets/notFound/old/

@@ -8,8 +8,8 @@ let logoUsed: number = 3
 
 let usedPattern: Pattern[] = []
 // na PatternFactory, no return:
-function validaPatterns(qntPosts: number): { patternName: Pattern; area: ItemPattern[], role: kindOfPatterns } {
- 
+function validaPatterns(qntPosts: number, excludeSpecial:boolean): { patternName: Pattern; area: ItemPattern[], role: kindOfPatterns } {
+ if(!excludeSpecial){
   if (navUsed >= 3) {
     navUsed = 0;
     return PatternFactory(usedPattern.slice(-2), "NAV", qntPosts);
@@ -20,10 +20,11 @@ function validaPatterns(qntPosts: number): { patternName: Pattern; area: ItemPat
   }
   navUsed++;
   logoUsed++;
+}
   return PatternFactory(usedPattern.slice(-2), "POST", qntPosts);
 }
 
-export function ComposeLayout(post:PostListItem[]){
+export function ComposeLayout(post:PostListItem[], excludeSpecial:boolean){
 let usedPosts: PostListItem[] = []
 let  remainPosts: PostListItem[] = post;
 let patternGroup:PatternGroup[] =[]
@@ -32,7 +33,7 @@ while(remainPosts.length > 0){
 
 
     //retorno da factory, recebo o nome do patern e o record com as areas
-    const resultFactory = validaPatterns(remainPosts.length)
+    const resultFactory = validaPatterns(remainPosts.length,excludeSpecial)
 
     //insiro o pattern no historico
     usedPattern = [...usedPattern, resultFactory.patternName]
@@ -50,11 +51,23 @@ while(remainPosts.length > 0){
         content: { kind: "post", data: p },
     }));
 
+    type variant = "box" | "standard" | "extends";
+   const logoVariants: Record<number,variant> = {
+  1: "box",
+  2: "standard",
+  3: "extends",
+  4: "extends",
+};
+
     if (specialArea) {
+       
         marrigedPosdPattern.push({
         area: specialArea.area,
         content: resultFactory.role === "LOGO"
-        ? { kind: "logo", variant: "compact" }
+        ? { 
+          kind: "logo", 
+          variant: logoVariants[specialArea.colunm] ?? "standard",
+        }
         : { kind: "nav" },
     });
     }

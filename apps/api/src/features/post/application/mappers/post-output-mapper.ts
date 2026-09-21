@@ -1,6 +1,5 @@
 import { Post } from "@post/domain/entities/post.js"
-import type { PostOutput, PostListOutput, PostDetailsOutput, PostListPublishedOutput } from "@post/application/dto/post.output.js" 
-
+import type { PostOutput, PostListOutput, PostDetailsOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "@post/application/dto/post.output.js"
 export function toPostOutput (post: Post): PostOutput  {
     const props = post.getProps()
     return {
@@ -66,3 +65,18 @@ export function toPostDetailsOutput (post: PostDetailsOutput)  {
     }
 }
 
+export function toPostItemDetailsOutput (post: PostDetailPublishedOutput)  {
+    const props = post
+    return {
+        title:props.title,
+        id:props.id,
+        status:props.status,
+        description:props.description,
+        content:props.content,
+        slug:props.slug,
+        category:props.category,  
+        author:props.author,
+        email:props.author.email, 
+        publishedAt:props.publishedAt,
+    }
+}

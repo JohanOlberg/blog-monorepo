@@ -23,3 +23,9 @@ export type PostListItem = {
   updatedAt: string;
   publishedAt: string ;
 };
+
+export type PostsFilters = {
+  search:string | null,
+  category:string | null,
+  sort:string | null,
+}
