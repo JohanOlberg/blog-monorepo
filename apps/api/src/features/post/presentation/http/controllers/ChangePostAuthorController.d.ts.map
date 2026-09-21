@@ -1,1 +1,0 @@
-{"version":3,"file":"ChangePostAuthorController.d.ts","sourceRoot":"","sources":["ChangePostAuthorController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAA;AAG3D,OAAO,EAAE,uBAAuB,EAAE,MAAM,4DAA4D,CAAA;AAEpG,qBAAa,0BAA0B;IACzB,OAAO,CAAC,uBAAuB;gBAAvB,uBAAuB,EAAE,uBAAuB;IAE9D,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAW1D"}

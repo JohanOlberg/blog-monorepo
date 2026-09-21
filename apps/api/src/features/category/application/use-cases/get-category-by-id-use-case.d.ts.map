@@ -1,1 +1,0 @@
-{"version":3,"file":"get-category-by-id-use-case.d.ts","sourceRoot":"","sources":["get-category-by-id-use-case.ts"],"names":[],"mappings":"AACA,OAAO,EAAC,KAAK,mBAAmB,EAAE,MAAM,kDAAkD,CAAC;AAE3F,qBAAa,sBAAsB;IACnB,OAAO,CAAC,mBAAmB;gBAAnB,mBAAmB,EAAC,mBAAmB;IAErD,OAAO,CAAC,EAAE,EAAC,MAAM;;;;;;CAK1B"}

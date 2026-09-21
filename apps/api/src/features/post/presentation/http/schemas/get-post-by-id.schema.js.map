@@ -1,1 +1,0 @@
-{"version":3,"file":"get-post-by-id.schema.js","sourceRoot":"","sources":["get-post-by-id.schema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAC;AAExB,MAAM,CAAC,MAAM,iBAAiB,GAAG,CAAC,CAAC,MAAM,CAAC;IACxC,EAAE,EAAE,CAAC,CAAC,MAAM,CAAC,MAAM,EAAE,CAAC,GAAG,EAAE,CAAC,QAAQ,EAAE;CACvC,CAAC,CAAC"}

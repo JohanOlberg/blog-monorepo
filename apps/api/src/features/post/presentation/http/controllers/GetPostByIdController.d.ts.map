@@ -1,1 +1,0 @@
-{"version":3,"file":"GetPostByIdController.d.ts","sourceRoot":"","sources":["GetPostByIdController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAC,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC3D,OAAO,EAAE,kBAAkB,EAAE,MAAM,wDAAwD,CAAC;AAI5F,qBAAa,qBAAqB;IAClB,OAAO,CAAC,eAAe;gBAAf,eAAe,EAAE,kBAAkB;IACjD,MAAM,CAAC,OAAO,EAAC,cAAc,EAAE,KAAK,EAAC,YAAY;CAU1D"}

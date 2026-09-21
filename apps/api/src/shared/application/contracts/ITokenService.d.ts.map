@@ -1,1 +1,0 @@
-{"version":3,"file":"ITokenService.d.ts","sourceRoot":"","sources":["ITokenService.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,KAAK,YAAY,EAAC,MAAM,oBAAoB,CAAA;AACpD,MAAM,WAAW,aAAa;IAC1B,IAAI,CAAC,OAAO,EAAE,YAAY,GAAG,MAAM,CAAA;IACnC,MAAM,CAAC,KAAK,EAAE,MAAM,GAAG,YAAY,CAAA;CACtC"}

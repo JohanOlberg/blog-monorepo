@@ -1,1 +1,0 @@
-{"version":3,"file":"change-post-author.schema.js","sourceRoot":"","sources":["change-post-author.schema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAA;AAEvB,MAAM,CAAC,MAAM,sBAAsB,GAAG,CAAC,CAAC,MAAM,CAAC;IAC7C,QAAQ,EAAE,CAAC,CAAC,MAAM,CAAC,MAAM,EAAE,CAAC,GAAG,EAAE,CAAC,QAAQ,EAAE;CAC7C,CAAC,CAAA"}

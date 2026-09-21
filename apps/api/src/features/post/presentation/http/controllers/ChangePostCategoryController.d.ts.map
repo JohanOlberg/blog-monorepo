@@ -1,1 +1,0 @@
-{"version":3,"file":"ChangePostCategoryController.d.ts","sourceRoot":"","sources":["ChangePostCategoryController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAA;AAI3D,OAAO,EAAE,yBAAyB,EAAE,MAAM,8DAA8D,CAAA;AAExG,qBAAa,4BAA4B;IAC3B,OAAO,CAAC,yBAAyB;gBAAzB,yBAAyB,EAAE,yBAAyB;IAElE,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAY1D"}

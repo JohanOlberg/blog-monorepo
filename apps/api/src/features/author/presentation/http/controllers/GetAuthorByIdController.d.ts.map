@@ -1,1 +1,0 @@
-{"version":3,"file":"GetAuthorByIdController.d.ts","sourceRoot":"","sources":["GetAuthorByIdController.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC5D,OAAO,EAAE,oBAAoB,EAAE,MAAM,wEAAwE,CAAA;AAG7G,qBAAa,uBAAuB;IACtB,OAAO,CAAC,oBAAoB;gBAApB,oBAAoB,EAAE,oBAAoB;IAExD,MAAM,CAAC,OAAO,EAAE,cAAc,EAAE,KAAK,EAAE,YAAY;CAM1D"}
