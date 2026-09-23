@@ -15,13 +15,6 @@ server.register(cors, {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 });
 
-server.listen({ port: 3000 }, (err, address) => {
-  if (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
-  console.log(`Servidor rodando em ${address}`);
-});
 server.decorateRequest("user", undefined)
 registerPlugins(server)
 registerRoutes(server)

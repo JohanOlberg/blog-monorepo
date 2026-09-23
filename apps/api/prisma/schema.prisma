@@ -17,7 +17,7 @@ model Author {
   name      String
   bio       String?
   avatarUrl String?
-  status    AuthorStatus @default(ACTIVATE)
+  status    AuthorStatus @default(ACTIVE)
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
 
