@@ -1,5 +1,5 @@
 import type { AuthorListItem } from "../model/author.types";
-import "./authorsList.css";
+import "./AuthorsList.css";
 
 
 
