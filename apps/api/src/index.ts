@@ -3,7 +3,7 @@ import { buildServer } from "./app/bootstrap/build-server.js";
 
 const server = buildServer(Fastify({ logger: true }));
 
-export const start = async () =>{
+const start = async () =>{
     try{
         const port = Number(process.env.PORT) || 3000
         const host = process.env.HOST || "127.0.0.1"
