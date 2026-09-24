@@ -14,8 +14,8 @@ server.register(cors, {
   origin: [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://blog-monorepo-cms.vercel.app",
-    "https://blog-monorepo-blog-ten.vercel.app",
+    "https://archtype-cms.vercel.app",
+    "https://archtype-blog.vercel.app",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 });
