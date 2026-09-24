@@ -1,5 +1,7 @@
-import { buildServer } from "./app/bootstrap/build-server.js"
-const server = buildServer()
+import Fastify from "fastify";
+import { buildServer } from "./app/bootstrap/build-server.js";
+
+const server = buildServer(Fastify({ logger: true }));
 
 export const start = async () =>{
     try{

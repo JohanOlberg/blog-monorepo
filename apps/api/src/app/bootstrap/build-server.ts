@@ -1,4 +1,4 @@
-import fastify from 'fastify'
+import type { FastifyInstance } from "fastify";
 
 import cors from '@fastify/cors';
 import { registerPlugins } from './register-plugins.js'
@@ -7,9 +7,9 @@ import { globalErrorHandler } from '@shared/presentation/http/error-handler/glob
 
 
 
-export function buildServer(){
+export function buildServer(server: FastifyInstance){
     
-const server = fastify({ logger: true })
+
 server.register(cors, {
   origin: ['http://localhost:5173','http://localhost:5174'], // só permite seu frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
