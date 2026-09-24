@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { ChangePasswordUserUseCase } from "@user/application/use-cases/change-password-user-use-case.js";
+import { ChangePasswordUserUseCase } from "../../../application/use-cases/change-password-user-use-case.js";
 import { passwordUserSchema } from "../schemas/change-password-schema.js";
 import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
 

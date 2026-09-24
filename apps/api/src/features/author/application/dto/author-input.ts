@@ -1,4 +1,4 @@
-import type { AuthorStatus } from "@author/domain/types/author-status.js"
+import type { AuthorStatus } from "../../domain/types/author-status.js"
 
 export type CreateAuthorInput = {
     name:string

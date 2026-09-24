@@ -1,4 +1,4 @@
-import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import { type IUserRepository } from "../../domain/repositories/IUserRepository.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
 
 export class ListUserUseCase{

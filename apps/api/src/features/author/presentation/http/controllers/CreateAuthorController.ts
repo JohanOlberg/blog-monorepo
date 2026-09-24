@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { CreateAuthorUseCase } from "@author/application/use-cases/create-author-use-case.js";
+import { CreateAuthorUseCase } from "../../../application/use-cases/create-author-use-case.js";
 import { createAuthorSchema } from "../schemas/create-author.schemas.js";
 
 export class CreateAuthorController {

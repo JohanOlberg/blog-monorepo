@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { CreateCategoryUseCase } from "src/features/category/application/use-cases/create-category-use-case.js";
+import { CreateCategoryUseCase } from "../../../application/use-cases/create-category-use-case.js";
 import { createCategorySchemas } from "../schemas/create-category.schemas.js";
 
 export class CreateCategoryController{

@@ -1,4 +1,4 @@
-import { AppError } from "@shared/kernel/errors/app-error.js"
+import { AppError } from "../../../../shared/kernel/errors/app-error.js"
 
 export class AuthorNotFoundError extends AppError {
   constructor() {

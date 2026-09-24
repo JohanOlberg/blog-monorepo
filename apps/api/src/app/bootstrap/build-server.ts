@@ -3,7 +3,7 @@ import type { FastifyInstance } from "fastify";
 import cors from '@fastify/cors';
 import { registerPlugins } from './register-plugins.js'
 import { registerRoutes } from './register-routes.js'
-import { globalErrorHandler } from '@shared/presentation/http/error-handler/global-error-handler.js'
+import { globalErrorHandler } from '../../shared/presentation/http/error-handler/global-error-handler.js'
 
 
 

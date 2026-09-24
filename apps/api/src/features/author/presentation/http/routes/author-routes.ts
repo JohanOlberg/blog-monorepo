@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
-import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
-import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
+import { requirePermission } from "../../../../../shared/presentation/http/auth/permission-guard.js";
+import { authGuard } from "../../../../../shared/presentation/http/auth/auth-guard.js";
 import { makeCreateAuthorController } from "../../factory/make-create-author-controller.js";
 import { makeGetAuthorByIdController } from "../../factory/make-get-author-by-id-controller.js";
 import { makeUpdateAuthorController } from "../../factory/make-update-author-controller.js";

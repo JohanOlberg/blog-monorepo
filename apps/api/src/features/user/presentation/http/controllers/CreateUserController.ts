@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { CreateUserUseCase } from "@user/application/use-cases/create-user-use-case.js";
+import { CreateUserUseCase } from "../../../application/use-cases/create-user-use-case.js";
 import { createUserSchema } from "../schemas/create-user-schema.js";
 
 

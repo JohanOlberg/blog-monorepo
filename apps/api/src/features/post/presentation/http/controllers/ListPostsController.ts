@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { ListPostsUseCase } from "@post/application/use-cases/list-posts-use-case.js";
+import { ListPostsUseCase } from "../../../application/use-cases/list-posts-use-case.js";
 
 
 

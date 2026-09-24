@@ -1,4 +1,4 @@
-import { userRoles } from "@user/domain/config/roles.js";
+import { userRoles } from "../../../domain/config/roles.js";
 
 import type {FastifyRequest, FastifyReply } from "fastify";
 

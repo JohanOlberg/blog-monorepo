@@ -1,5 +1,5 @@
 
-import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
+import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
 import { PostNotFoundError } from "../errors/post-application-errors.js";
 import { toPostDetailsOutput } from "../mappers/post-output-mapper.js";
 

@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { ArchivePostUseCase } from "@post/application/use-cases/archive-post-use-case.js";
+import { ArchivePostUseCase } from "../../../application/use-cases/archive-post-use-case.js";
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js";
 
 export class ArchivePostController{

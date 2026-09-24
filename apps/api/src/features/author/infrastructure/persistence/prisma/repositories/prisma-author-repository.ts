@@ -1,13 +1,13 @@
-import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
-import { Author, NewAuthor } from "@author/domain/entities/author.js";
-import { type IAuthorRepository } from "@author/domain/repository/IAuthorRepository.js";
+import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
+import { Author, NewAuthor } from "../../../../domain/entities/author.js";
+import { type IAuthorRepository } from "../../../../domain/repository/IAuthorRepository.js";
 import {
   toDomain,
   toPrismaCreate,
   toPrismaUpdate,
   toAuthorListOutput,
 } from "../mappers/prisma-author-mappers.js";
-import type { AuthorOutput } from "@author/application/dto/author-output.js";
+import type { AuthorOutput } from "../../../../application/dto/author-output.js";
 
 export class PrismaAuthorRepository implements IAuthorRepository {
 

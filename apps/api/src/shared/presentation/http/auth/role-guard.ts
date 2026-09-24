@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import type { UserRoles } from "@user/domain/types/user-roles.js"
+import type { UserRoles } from "../../../../features/user/domain/types/user-roles.js"
 
 export function requireRole(allowedRoles: UserRoles[]) {
   return async function (request: FastifyRequest, reply: FastifyReply) {

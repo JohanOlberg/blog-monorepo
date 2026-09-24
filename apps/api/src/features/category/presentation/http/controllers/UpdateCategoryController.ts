@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { UpdateCategoryUseCase } from "src/features/category/application/use-cases/update-category-use-case.js";
+import { UpdateCategoryUseCase } from "../../../application/use-cases/update-category-use-case.js";
 import { updateCategorySchemas } from "../schemas/update-category.schemas.js";
 import { categoryIdParamSchema } from "../schemas/get-by-id-category.schemas.js";
 

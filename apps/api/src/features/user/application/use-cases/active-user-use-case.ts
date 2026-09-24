@@ -1,5 +1,5 @@
-import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
-import { UserNotFoundError } from "@user/application/errors/user-application-errors.js";
+import { type IUserRepository } from "../../domain/repositories/IUserRepository.js";
+import { UserNotFoundError } from "../errors/user-application-errors.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
 
 export class ActivateUserUseCase{

@@ -1,7 +1,7 @@
-import { toAuthorOutput } from "@author/application/mappers/author-output-mappers.js";
+import { toAuthorOutput } from "../mappers/author-output-mappers.js";
 import { UserNotFoundError, AuthorNotFoundError } from "../errors/author-application-erros.js";
-import {type  IAuthorRepository } from "@author/domain/repository/IAuthorRepository.js";
-import type { IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import {type  IAuthorRepository } from "../../domain/repository/IAuthorRepository.js";
+import type { IUserRepository } from "../../../user/domain/repositories/IUserRepository.js";
 
 
 export class ChangeAuthorUserUseCase{

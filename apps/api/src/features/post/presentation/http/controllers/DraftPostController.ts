@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { DraftPostUseCase } from "@post/application/use-cases/draft-post-use-case.js";
+import { DraftPostUseCase } from "../../../application/use-cases/draft-post-use-case.js";
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js";
 
 export class DraftPostController{

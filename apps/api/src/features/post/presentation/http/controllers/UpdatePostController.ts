@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { UpdatePostUseCase } from "@post/application/use-cases/update-post-use-case.js";
+import { UpdatePostUseCase } from "../../../application/use-cases/update-post-use-case.js";
 import { updatePostSchema } from "../schemas/update-post.schema.js";
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js";
 

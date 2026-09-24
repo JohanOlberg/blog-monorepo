@@ -2,7 +2,7 @@ import type { FastifyRequest, FastifyReply } from "fastify"
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js"
 //import { changePostCategorySchema } from "../schemas/change-post-category.schema.js"
 import { changePostCategorySchema } from "../schemas/change-post-category.schema.js"
-import { ChangePostCategoryUseCase } from "@post/application/use-cases/change-post-category-use-case.js"
+import { ChangePostCategoryUseCase } from "../../../application/use-cases/change-post-category-use-case.js"
 
 export class ChangePostCategoryController {
   constructor(private changePostCategoryUseCase: ChangePostCategoryUseCase) {}

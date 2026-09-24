@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import  { NewUser, User } from "@user/domain/entities/user.js";
+import  { NewUser, User } from "../../../../domain/entities/user.js";
 
 type  PrismaUser = Prisma.UserGetPayload<{ include: { authors: true }}>
 

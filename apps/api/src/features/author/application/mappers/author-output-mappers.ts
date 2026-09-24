@@ -1,5 +1,5 @@
-import type { AuthorOutput } from "@author/application/dto/author-output.js";
-import { Author } from "@author/domain/entities/author.js";
+import type { AuthorOutput } from "../dto/author-output.js";
+import { Author } from "../../domain/entities/author.js";
 
 export function toAuthorOutput(author:Author){
     const props = author.getProps()

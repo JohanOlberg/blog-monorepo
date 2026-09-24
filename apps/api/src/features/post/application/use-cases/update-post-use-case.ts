@@ -1,5 +1,5 @@
 
-import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
+import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
 import { PostNotFoundError, SlugAlreadyExistsError } from "../errors/post-application-errors.js";
 import type { UpdatePostInput } from "../dto/post.input.js";
 import { toPostOutput } from "../mappers/post-output-mapper.js";

@@ -1,7 +1,7 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js"
 import { changePostAuthorSchema } from "../schemas/change-post-author.schema.js"
-import { ChangePostAuthorUseCase } from "@post/application/use-cases/change-post-author-use-case.js"
+import { ChangePostAuthorUseCase } from "../../../application/use-cases/change-post-author-use-case.js"
 
 export class ChangePostAuthorController {
   constructor(private changePostAuthorUseCase: ChangePostAuthorUseCase) {}

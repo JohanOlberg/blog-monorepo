@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { Post, NewPost } from "@post/domain/entities/post.js";
-import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "@post/application/dto/post.output.js";
+import { Post, NewPost } from "../../../../domain/entities/post.js";
+import type { PostDetailsOutput, PostListOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "../../../../application/dto/post.output.js";
 type PrismaPost = Prisma.PostGetPayload<{}>;
 
 export type PrismaPostWithRelations = Prisma.PostGetPayload<{

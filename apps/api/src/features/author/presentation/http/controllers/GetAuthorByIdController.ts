@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { GetAuthorByIdUseCase } from "src/features/author/application/use-cases/get-author-by-id-use-case.js"
+import { GetAuthorByIdUseCase } from "../../../application/use-cases/get-author-by-id-use-case.js"
 import { authorIdParamSchema } from "../schemas/get-author-by-id.schemas.js"
 
 export class GetAuthorByIdController {

@@ -1,4 +1,4 @@
-import { type IPostRepository } from "@post/domain/repositories/IPostRepository.js";
+import { type IPostRepository } from "../../domain/repositories/IPostRepository.js";
 import { toPostListOutput } from "../mappers/post-output-mapper.js"
 
 

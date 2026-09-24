@@ -1,4 +1,4 @@
-import { PrismaUserRepository } from "@user/infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
+import { PrismaUserRepository } from "../../../user/infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
 import { CreateAuthorUseCase } from "../../application/use-cases/create-author-use-case.js";
 import { PrismaAuthorRepository } from "../../infrastructure/persistence/prisma/repositories/prisma-author-repository.js";
 import { CreateAuthorController } from "../http/controllers/CreateAuthorController.js";

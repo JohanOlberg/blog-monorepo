@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { ListCategoryUseCase } from "src/features/category/application/use-cases/list-category-use-case.js";
+import { ListCategoryUseCase } from "../../../application/use-cases/list-category-use-case.js";
 
 
 export class ListCategoryController{

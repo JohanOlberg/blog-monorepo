@@ -1,6 +1,6 @@
-import type { PostDetailPublishedOutput, PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "@post/application/dto/post.output.js"
+import type { PostDetailPublishedOutput, PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "../../application/dto/post.output.js"
 import { Post, NewPost } from "../entities/post.js"
-import {type PostsFilters} from "@post/domain/value-objects/post-params-filter.js"
+import {type PostsFilters} from "../value-objects/post-params-filter.js"
 
 export interface IPostRepository {
     

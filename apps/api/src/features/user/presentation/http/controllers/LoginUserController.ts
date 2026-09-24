@@ -1,4 +1,4 @@
-import { LoginUserUseCase } from "@user/application/use-cases/login-user-use-case.js";
+import { LoginUserUseCase } from "../../../application/use-cases/login-user-use-case.js";
 import { loginUserSchema } from "../schemas/login-user-schema.js";
 import type {FastifyRequest, FastifyReply } from "fastify";
 

@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
-import { BlockUserUseCase } from "@user/application/use-cases/block-user-use-case.js";
+import { BlockUserUseCase } from "../../../application/use-cases/block-user-use-case.js";
 
 export class BlockUserController{
     constructor(private readonly blockUserUseCase:BlockUserUseCase){}

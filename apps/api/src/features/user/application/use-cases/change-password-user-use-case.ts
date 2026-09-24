@@ -1,7 +1,7 @@
-import { type ChangeUserPasswordInput } from "@user/application/dto/user.input.js";
-import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import { type ChangeUserPasswordInput } from "../dto/user.input.js";
+import { type IUserRepository } from "../../domain/repositories/IUserRepository.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
-import type { IPasswordHasher } from "@user/application/contracts/IPasswordHasher.js";
+import type { IPasswordHasher } from "../contracts/IPasswordHasher.js";
 import { UserNotFoundError } from "../errors/user-application-errors.js";
 
 

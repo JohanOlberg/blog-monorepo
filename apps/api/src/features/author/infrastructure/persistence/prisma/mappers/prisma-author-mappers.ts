@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { Author, NewAuthor } from "@author/domain/entities/author.js";
-import type { AuthorOutput } from "@author/application/dto/author-output.js";
+import { Author, NewAuthor } from "../../../../domain/entities/author.js";
+import type { AuthorOutput } from "../../../../application/dto/author-output.js";
 
 type PrismaAuthor = Prisma.AuthorGetPayload<{}>;
 

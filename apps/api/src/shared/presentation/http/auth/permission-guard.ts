@@ -1,6 +1,6 @@
 import type { FastifyRequest, FastifyReply } from "fastify"
-import type { Permission } from "@shared/application/auth/permissions.js"
-import { ROLE_PERMISSIONS } from "@shared/application/auth/role-permission.js"
+import type { Permission } from "../../../application/auth/permissions.js"
+import { ROLE_PERMISSIONS } from "../../../application/auth/role-permission.js"
 
 export function requirePermission(permission: Permission) {
   return async function (request: FastifyRequest, reply: FastifyReply) {

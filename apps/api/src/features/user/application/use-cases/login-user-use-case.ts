@@ -1,10 +1,10 @@
-import { type LoginUserInput } from "@user/application/dto/user.input.js";
-import type { IPasswordHasher } from "@user/application/contracts/IPasswordHasher.js";
-import type { ITokenService } from "@shared/application/contracts/ITokenService.js";
-import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import { type LoginUserInput } from "../dto/user.input.js";
+import type { IPasswordHasher } from "../contracts/IPasswordHasher.js";
+import type { ITokenService } from "../../../../shared/application/contracts/ITokenService.js";
+import { type IUserRepository } from "../../domain/repositories/IUserRepository.js";
 import type {  LoginUserOutput, UserOutput } from "../dto/user.output.js";
 import { toUserOutput } from "../mappers/user-output-mapper.js";
-import { InvalidCredentialsError, InvalidUserStatusError } from "@user/domain/errors/user-errors.js";
+import { InvalidCredentialsError, InvalidUserStatusError } from "../../domain/errors/user-errors.js";
 
 
 export class LoginUserUseCase{

@@ -1,8 +1,8 @@
-import { Category, NewCategory } from "src/features/category/domain/entities/category.js";
-import { type ICategoryRepository } from "src/features/category/domain/repositories/ICategoryRepository.js";
+import { Category, NewCategory } from "../../../../domain/entities/category.js";
+import { type ICategoryRepository } from "../../../../domain/repositories/ICategoryRepository.js";
 import { toPrismaCreate,toCategoryListOutput, toPrismaUpdate, toDomain } from "../mappers/prisma-category-mappers.js";
-import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
-import type { CategoryOutput } from "src/features/category/application/dto/category.output.js";
+import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
+import type { CategoryOutput } from "../../../../application/dto/category.output.js";
 
 export class PrismaCategoryRepository implements ICategoryRepository{
 

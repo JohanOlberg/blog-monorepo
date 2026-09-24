@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { ChangeAuthorUserUseCase } from "@author/application/use-cases/change-author-user-use-case.js";
+import { ChangeAuthorUserUseCase } from "../../../application/use-cases/change-author-user-use-case.js";
 import { authorIdParamSchema } from "../schemas/get-author-by-id.schemas.js";
 import { changeAuthorUserSchema } from "../schemas/change-author-user.schemas.js";
 

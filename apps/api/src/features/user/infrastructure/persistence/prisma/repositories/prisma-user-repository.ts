@@ -1,6 +1,6 @@
-import { prisma } from "@shared/infrastructure/database/prisma/prisma-client.js";
-import type { NewUser, User } from "@user/domain/entities/user.js";
-import { type IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
+import type { NewUser, User } from "../../../../domain/entities/user.js";
+import { type IUserRepository } from "../../../../domain/repositories/IUserRepository.js";
 import { toDomain, toPrismaCreate, toPrismaUpdate } from "../mappers/prisma-user-mappers.js";
 
 export class PrismaUserRepository implements IUserRepository{

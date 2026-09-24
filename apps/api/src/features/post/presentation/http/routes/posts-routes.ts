@@ -1,17 +1,17 @@
 import type { FastifyInstance } from "fastify";
 import { makeCreatePostController } from "../../factory/make-create-post-controller.js";
 import { makeListPostsController } from "../../factory/make-list-post-controller.js";
-import { makeGetPostByIdController } from "@post/presentation/factory/make-get-post-by-id-controller.js";
-import { makeUpdatePostController } from "@post/presentation/factory/make-update-post-controller.js";
-import { makeArchivePostController } from "@post/presentation/factory/make-archive-post-controller.js";
-import { makePublishPostController } from "@post/presentation/factory/make-publish-post-controller.js";
-import { makeDraftPostController } from "@post/presentation/factory/make-draft-post-controller.js";
-import { makeChangePostCategoryController } from "@post/presentation/factory/make-change-post-category-controller.js"
-import { makeChangePostAuthorController } from "@post/presentation/factory/make-change-post-author-controller.js"
-import { makeGetPostBySlugController } from "@post/presentation/factory/make-get-post-by-slug-controller.js";
-import { makeGetPostPublished } from "@post/presentation/factory/make-get-post-published.js";
-import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
-import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
+import { makeGetPostByIdController } from "../../factory/make-get-post-by-id-controller.js";
+import { makeUpdatePostController } from "../../factory/make-update-post-controller.js";
+import { makeArchivePostController } from "../../factory/make-archive-post-controller.js";
+import { makePublishPostController } from "../../factory/make-publish-post-controller.js";
+import { makeDraftPostController } from "../../factory/make-draft-post-controller.js";
+import { makeChangePostCategoryController } from "../../factory/make-change-post-category-controller.js"
+import { makeChangePostAuthorController } from "../../factory/make-change-post-author-controller.js"
+import { makeGetPostBySlugController } from "../../factory/make-get-post-by-slug-controller.js";
+import { makeGetPostPublished } from "../../factory/make-get-post-published.js";
+import { requirePermission } from "../../../../../shared/presentation/http/auth/permission-guard.js";
+import { authGuard } from "../../../../../shared/presentation/http/auth/auth-guard.js";
 
 
 

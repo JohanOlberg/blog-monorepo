@@ -1,5 +1,5 @@
-import {type UserStatus } from "@user/domain/types/user-status.js";
-import {type UserRoles } from "@user/domain/types/user-roles.js";
+import {type UserStatus } from "../../domain/types/user-status.js";
+import {type UserRoles } from "../../domain/types/user-roles.js";
 
 export type UserOutput = {
     id:number;

@@ -1,5 +1,5 @@
-import { Post } from "@post/domain/entities/post.js"
-import type { PostOutput, PostListOutput, PostDetailsOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "@post/application/dto/post.output.js"
+import { Post } from "../../domain/entities/post.js"
+import type { PostOutput, PostListOutput, PostDetailsOutput, PostListPublishedOutput, PostDetailPublishedOutput } from "../dto/post.output.js"
 export function toPostOutput (post: Post): PostOutput  {
     const props = post.getProps()
     return {

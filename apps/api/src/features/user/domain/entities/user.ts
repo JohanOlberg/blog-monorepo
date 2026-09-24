@@ -1,5 +1,5 @@
-import { type UserStatus } from "@user/domain/types/user-status.js";
-import {type UserRoles } from "@user/domain/types/user-roles.js";
+import { type UserStatus } from "../types/user-status.js";
+import {type UserRoles } from "../types/user-roles.js";
 import { 
   NameRequiredError,
   EmailRequiredError,

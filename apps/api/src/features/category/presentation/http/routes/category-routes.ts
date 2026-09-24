@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
-import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
-import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
+import { requirePermission } from "../../../../../shared/presentation/http/auth/permission-guard.js";
+import { authGuard } from "../../../../../shared/presentation/http/auth/auth-guard.js";
 import { makeCreateCategoryController } from "../../factory/make-create-category-controller.js";
 import { makeGetCategoryByIdController } from "../../factory/make-get-category-by-id-controller.js";
 import { makeUpdateCategoryController } from "../../factory/make-update-category-controller.js";

@@ -1,4 +1,4 @@
-import type { AuthorOutput } from "@author/application/dto/author-output.js"
+import type { AuthorOutput } from "../../application/dto/author-output.js"
 import { Author, NewAuthor} from "../entities/author.js"
 
 export interface IAuthorRepository {

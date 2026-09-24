@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { Category, NewCategory } from "src/features/category/domain/entities/category.js";
-import type { CategoryOutput } from "src/features/category/application/dto/category.output.js";
+import { Category, NewCategory } from "../../../../domain/entities/category.js";
+import type { CategoryOutput } from "../../../../application/dto/category.output.js";
 type PrismaCategory = Prisma.CategoryGetPayload<{}>
 
 export function toPrismaCreate(category:NewCategory){

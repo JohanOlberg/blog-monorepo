@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { DeactivateAuthorUserUseCase } from "@author/application/use-cases/deactivate-author-use-case.js";
+import { DeactivateAuthorUserUseCase } from "../../../application/use-cases/deactivate-author-use-case.js";
 import { authorIdParamSchema } from "../schemas/get-author-by-id.schemas.js";
 
 export class DeactivateAuthorController {

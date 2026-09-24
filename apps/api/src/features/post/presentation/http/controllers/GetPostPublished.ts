@@ -1,7 +1,7 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { GetPostPublishedUseCase } from "@post/application/use-cases/get-post-published-use-case.js";
+import { GetPostPublishedUseCase } from "../../../application/use-cases/get-post-published-use-case.js";
 import { postByParamsSchema } from "../schemas/get-post-by-params.js";
-import {type PostsFilters} from "@post/domain/value-objects/post-params-filter.js"
+import {type PostsFilters} from "../../../domain/value-objects/post-params-filter.js"
 
 
 export class GetPostPublishedController{

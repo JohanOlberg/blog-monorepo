@@ -1,5 +1,5 @@
-import { User } from "@user/domain/entities/user.js";
-import {type UserOutput} from "@user/application/dto/user.output.js"
+import { User } from "../../domain/entities/user.js";
+import {type UserOutput} from "../dto/user.output.js"
 
 export function toUserOutput(user:User):UserOutput{
     const props = user.getProps()

@@ -3,13 +3,13 @@ import {
   SlugAlreadyExistsError,
   PostNotFoundError,
 
-} from "@post/application/errors/post-application-errors.js"
-import { PostError } from "@post/domain/errors/post-errors.js"
+} from "../../../../features/post/application/errors/post-application-errors.js"
+import { PostError } from "../../../../features/post/domain/errors/post-errors.js"
 import { UserError,
         EmailAlreadyExistsError,
         InvalidCredentialsError,
         UserNotFoundError
- } from "@user/domain/errors/user-errors.js"
+ } from "../../../../features/user/domain/errors/user-errors.js"
   
 
 export function toHTTPError(error: unknown) {

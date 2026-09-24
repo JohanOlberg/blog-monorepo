@@ -1,16 +1,16 @@
 import type { FastifyInstance } from "fastify";
-import { makeCreateUserController } from "@user/presentation/factory/make-create-user-controller.js";
-import { makeLoginUserController } from "@user/presentation/factory/make-login-user-controller.js";
-import { authGuard } from "@shared/presentation/http/auth/auth-guard.js";
-import { makeActivateUserController } from "@user/presentation/factory/make-activate-user-controller.js";
-import { makeBlockUserController } from "@user/presentation/factory/make-block-user-controller.js";
-import { makeDeactivateUserController } from "@user/presentation/factory/make-deactivate-user-controller.js";
-import { makeGetByEmailUserController } from "@user/presentation/factory/make-get-by-email-user-controller.js";
-import { makeUpdateUserController } from "@user/presentation/factory/make-update-user-controller.js";
-import { makeListUserController } from "@user/presentation/factory/make-list-user-controller.js";
-import { makeChangePasswordUserController } from "@user/presentation/factory/make-change-password-user-controller.js";
-import { makeChangeUserRoleController } from "@user/presentation/factory/make-change-role-user-controller.js";
-import { requirePermission } from "@shared/presentation/http/auth/permission-guard.js";
+import { makeCreateUserController } from "../../factory/make-create-user-controller.js";
+import { makeLoginUserController } from "../../factory/make-login-user-controller.js";
+import { authGuard } from "../../../../../shared/presentation/http/auth/auth-guard.js";
+import { makeActivateUserController } from "../../factory/make-activate-user-controller.js";
+import { makeBlockUserController } from "../../factory/make-block-user-controller.js";
+import { makeDeactivateUserController } from "../../factory/make-deactivate-user-controller.js";
+import { makeGetByEmailUserController } from "../../factory/make-get-by-email-user-controller.js";
+import { makeUpdateUserController } from "../../factory/make-update-user-controller.js";
+import { makeListUserController } from "../../factory/make-list-user-controller.js";
+import { makeChangePasswordUserController } from "../../factory/make-change-password-user-controller.js";
+import { makeChangeUserRoleController } from "../../factory/make-change-role-user-controller.js";
+import { requirePermission } from "../../../../../shared/presentation/http/auth/permission-guard.js";
 import { listUserRolesController } from "../controllers/ListUserRolesController.js";
 
 

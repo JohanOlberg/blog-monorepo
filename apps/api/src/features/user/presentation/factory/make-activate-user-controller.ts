@@ -1,5 +1,5 @@
-import { ActivateUserUseCase } from "@user/application/use-cases/active-user-use-case.js";
-import { PrismaUserRepository } from "@user/infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
+import { ActivateUserUseCase } from "../../application/use-cases/active-user-use-case.js";
+import { PrismaUserRepository } from "../../infrastructure/persistence/prisma/repositories/prisma-user-repository.js";
 import { ActivateUserController } from "../http/controllers/ActivateUserController.js";
 
 export function makeActivateUserController(){

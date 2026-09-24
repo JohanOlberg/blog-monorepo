@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { ChangeUserRoleUseCase} from "@user/application/use-cases/change-role-user-use-case.js";
+import { ChangeUserRoleUseCase} from "../../../application/use-cases/change-role-user-use-case.js";
 
 import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
 import { changeRoleUserSchema } from "../schemas/change-role-schema.js";

@@ -1,6 +1,6 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
 import { userByIdParamSchema } from "../schemas/get-user-by-id-schema.js";
-import { ActivateUserUseCase } from "@user/application/use-cases/active-user-use-case.js";
+import { ActivateUserUseCase } from "../../../application/use-cases/active-user-use-case.js";
 
 export class ActivateUserController{
     constructor(private readonly activateUseCase:ActivateUserUseCase){}

@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { GetPostByIdUseCase } from "@post/application/use-cases/get-post-by-id-use-case.js";
+import { GetPostByIdUseCase } from "../../../application/use-cases/get-post-by-id-use-case.js";
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js";
 
 

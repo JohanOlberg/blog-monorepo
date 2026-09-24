@@ -1,4 +1,4 @@
-import type { UserRoles } from "@user/domain/types/user-roles.js";
+import type { UserRoles } from "../../../features/user/domain/types/user-roles.js";
 import { type Permission } from "./permissions.js";
 export const ROLE_PERMISSIONS: Record<UserRoles, Permission[]> = {
   EDITOR: [

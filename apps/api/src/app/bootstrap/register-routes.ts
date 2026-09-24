@@ -1,8 +1,8 @@
-import { postsRoutes } from "src/features/post/presentation/http/routes/posts-routes.js";
+import { postsRoutes } from "../../features/post/presentation/http/routes/posts-routes.js";
 import type { FastifyInstance } from "fastify";
-import { userRoutes } from "@user/presentation/http/routes/user-routes.js";
-import { categoryRoutes } from "src/features/category/presentation/http/routes/category-routes.js";
-import { authorRoutes } from "@author/presentation/http/routes/author-routes.js";
+import { userRoutes } from "../../features/user/presentation/http/routes/user-routes.js";
+import { categoryRoutes } from "../../features/category/presentation/http/routes/category-routes.js";
+import { authorRoutes } from "../../features/author/presentation/http/routes/author-routes.js";
 
 
 export function registerRoutes(server:FastifyInstance){

@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import { GetAllAuthorsUseCase } from "@author/application/use-cases/list-author-use-case.js";
+import { GetAllAuthorsUseCase } from "../../../application/use-cases/list-author-use-case.js";
 
 export class ListAuthorController {
   constructor(private getAllAuthorsUseCase: GetAllAuthorsUseCase) {}

@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { PublishPostUseCase } from "@post/application/use-cases/publish-post-use-case.js";
+import { PublishPostUseCase } from "../../../application/use-cases/publish-post-use-case.js";
 import { postIdParamSchema } from "../schemas/get-post-by-id.schema.js";
 
 export class PublishPostController{

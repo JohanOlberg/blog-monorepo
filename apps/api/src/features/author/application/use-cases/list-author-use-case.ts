@@ -1,5 +1,5 @@
-import { toAuthorOutput } from "@author/application/mappers/author-output-mappers.js";
-import {type  IAuthorRepository } from "@author/domain/repository/IAuthorRepository.js";
+import { toAuthorOutput } from "../mappers/author-output-mappers.js";
+import {type  IAuthorRepository } from "../../domain/repository/IAuthorRepository.js";
 
 export class GetAllAuthorsUseCase{
     constructor(private authorRepository:IAuthorRepository){}

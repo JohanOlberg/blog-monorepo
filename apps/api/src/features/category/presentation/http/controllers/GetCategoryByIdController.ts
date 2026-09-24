@@ -1,5 +1,5 @@
 import type {FastifyRequest, FastifyReply } from "fastify";
-import { GetCategoryByIdUseCase } from "src/features/category/application/use-cases/get-category-by-id-use-case.js";
+import { GetCategoryByIdUseCase } from "../../../application/use-cases/get-category-by-id-use-case.js";
 import { categoryIdParamSchema } from "../schemas/get-by-id-category.schemas.js";
 
 export class GetCategotyByIdController{

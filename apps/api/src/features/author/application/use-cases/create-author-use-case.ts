@@ -1,9 +1,9 @@
-import { toAuthorOutput } from "@author/application/mappers/author-output-mappers.js";
+import { toAuthorOutput } from "../mappers/author-output-mappers.js";
 import { UserNotFoundError } from "../errors/author-application-erros.js";
-import {type  IAuthorRepository } from "@author/domain/repository/IAuthorRepository.js";
-import { NewAuthor } from "@author/domain/entities/author.js";
+import {type  IAuthorRepository } from "../../domain/repository/IAuthorRepository.js";
+import { NewAuthor } from "../../domain/entities/author.js";
 import type { CreateAuthorInput } from "../dto/author-input.js";
-import type { IUserRepository } from "@user/domain/repositories/IUserRepository.js";
+import type { IUserRepository } from "../../../user/domain/repositories/IUserRepository.js";
 
 
 export class CreateAuthorUseCase{
