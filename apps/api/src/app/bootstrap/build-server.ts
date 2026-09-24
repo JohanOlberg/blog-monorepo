@@ -11,8 +11,12 @@ export function buildServer(server: FastifyInstance){
     
 
 server.register(cors, {
-  origin: ['http://localhost:5173','http://localhost:5174'], // só permite seu frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://blog-monorepo-cms.vercel.app",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
 });
 
 server.decorateRequest("user", undefined)
