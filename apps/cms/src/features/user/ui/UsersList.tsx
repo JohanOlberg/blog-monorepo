@@ -1,6 +1,6 @@
 import type { UserListItem } from "../model/user.types";
 
-import "../../author/ui/authorsList.css";
+import "../../author/ui/AuthorsList.css";
 
 type UsersListProps = {
   users: UserListItem[];
