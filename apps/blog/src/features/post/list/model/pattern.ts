@@ -23,6 +23,8 @@ export type Pattern =
 
 type Area = "box-1"|"box-2"|"box-3"|"box-4"
 
+
+
 type SlotContent =
   | { kind: "post"; data: PostListItem }
   | { kind: "logo"; variant: "box" | "standard" | "extends"; } 
@@ -43,6 +45,7 @@ export interface ItemPattern {
   row: number;
   role:kindOfPatterns[]
 }
+
 
 export const patternComposition: Record<Pattern, ItemPattern[]> = {
 

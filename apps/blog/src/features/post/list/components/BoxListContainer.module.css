@@ -6,13 +6,21 @@
 }
 
 .box-grid{
-  height: 100dvh;
+  
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 10px;
   box-sizing: border-box;
-  overflow: hidden;
+ 
+}
+
+.box-grid--home {
+  height: 100dvh;
+}
+
+.box-grid--content {
+  height: auto;
 }
 
 .patterns{
@@ -126,6 +134,7 @@ border-radius: 0 px;
 
 
 .box{ 
+  position: relative;
   container-type: inline-size;
   background-color: var(--bg-category);
   overflow: hidden;

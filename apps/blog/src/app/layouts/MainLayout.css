@@ -18,6 +18,12 @@ body {
   min-height: 100vh;
   background: #000;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
 }
 
 .blog-layout__content {

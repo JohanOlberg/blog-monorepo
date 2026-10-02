@@ -1,0 +1,64 @@
+.searchBentoMessage {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: var(--results-bento-gap);
+}
+
+.box1 {
+  grid-area: box-1;
+}
+
+.box2 {
+  grid-area: box-2;
+}
+
+.box3 {
+  grid-area: box-3;
+}
+
+.box4 {
+  grid-area: box-4;
+}
+
+.patternA {
+  grid-template-areas:
+    "box-1 box-1 box-1 box-1";
+}
+
+.patternB {
+  grid-template-areas:
+    "box-1 box-1 box-2 box-2";
+}
+
+.patternC {
+  grid-template-areas:
+    "box-1 box-2 box-2 box-2";
+}
+
+.patternD {
+  grid-template-areas:
+    "box-1 box-1 box-1 box-2";
+}
+
+.patternE {
+  grid-template-areas:
+    "box-1 box-2 box-3 box-4";
+}
+
+.patternF {
+  grid-template-areas:
+    "box-1 box-2 box-2 box-3";
+}
+
+.patternG {
+  grid-template-areas:
+    "box-1 box-1 box-2 box-3";
+}
+
+.patternH {
+  grid-template-areas:
+    "box-1 box-2 box-3 box-3";
+}

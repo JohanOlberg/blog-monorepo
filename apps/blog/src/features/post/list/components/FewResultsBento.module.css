@@ -1,0 +1,150 @@
+.fewResultsGrid {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows:
+    repeat(2, var(--results-bento-row-height));
+
+  grid-template-areas:
+    var(--few-results-template);
+
+  gap: var(--results-bento-gap);
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+}
+
+/* -----------------------------
+   AREAS
+----------------------------- */
+
+.imageArea {
+  grid-area: img;
+}
+
+.jokeArea {
+  grid-area: joke;
+}
+
+.actionArea {
+  grid-area: action;
+}
+
+.descriptionArea {
+  grid-area: desc;
+}
+
+/* -----------------------------
+   IMAGE
+----------------------------- */
+
+.imageArea {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.imageArea img {
+  transition:
+    transform 300ms ease,
+    filter 300ms ease;
+}
+
+.imageArea:hover img {
+  transform: scale(1.015);
+  filter: brightness(1.04);
+}
+
+/* -----------------------------
+   JOKE
+----------------------------- */
+
+.jokeArea {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(
+        in srgb,
+        var(--results-bento-accent) 12%,
+        var(--results-bento-box-bg)
+      ),
+      var(--results-bento-box-bg) 68%
+    );
+}
+
+/* -----------------------------
+   DESCRIPTION
+----------------------------- */
+
+.descriptionArea {
+  background:
+    linear-gradient(
+      145deg,
+      var(--results-bento-box-bg),
+      color-mix(
+        in srgb,
+        var(--results-bento-accent) 7%,
+        var(--results-bento-box-bg)
+      )
+    );
+}
+
+/* -----------------------------
+   ACTION
+----------------------------- */
+
+.actionArea {
+  justify-content: stretch;
+}
+
+.actionButton {
+  width: 100%;
+  height: 100%;
+
+  padding: clamp(1rem, 2vw, 2rem);
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--results-bento-text);
+
+  font: inherit;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--results-bento-accent) 10%,
+      transparent
+    );
+}
+
+/* -----------------------------
+   RESPONSIVE
+----------------------------- */
+
+@media (max-width: 600px) {
+  .fewResultsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "img img"
+      "img img"
+      "joke joke"
+      "desc action";
+  }
+}

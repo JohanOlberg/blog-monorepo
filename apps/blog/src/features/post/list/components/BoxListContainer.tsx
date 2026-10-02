@@ -11,6 +11,10 @@ import { useSearchParams } from "react-router-dom";
 import { SearchInfoBox } from "./SearchInfoBox";
 import { NotFoundResults } from "./NotFoundResults";
 import type React from "react";
+import { FewResults } from "./FewResultsBento";
+import { fewResultsPieces, notResultsPieces } from "../model/ResultsPieces";
+import {  useMemo } from "react";
+
 
 
 
@@ -19,6 +23,16 @@ import type React from "react";
 export function BoxListContainer() {
   const [searchParams] = useSearchParams();
   let content:PatternGroup[]  = []
+
+ const fewResult = useMemo(() => {
+  return fewResultsPieces[Math.floor(Math.random() * fewResultsPieces.length)];
+}, []); // O array vazio [] garante que só roda no carregamento inicial
+
+const notResult = useMemo(() => {
+  return notResultsPieces[Math.floor(Math.random() * notResultsPieces.length)];
+}, []);
+    
+  
   
 
 const search = searchParams.get("search")
@@ -77,11 +91,30 @@ if(search||category||sort){
       ):null
       
       }
-      { qtdPosts === 0 ?
-         (<NotFoundResults/>)
-         :
-         (content?.map((con, indexCon)=>(
-          <div key={indexCon} className={`${styles.patterns} ${styles[con.patternName]}` }>
+      { qtdPosts === 0 &&
+         (
+         <>
+         <NotFoundResults
+          category={null}
+          quantity={0}
+          search={null}
+         />
+         
+        <FewResults 
+          imageSrc={notResult.image}
+          imageAlt={notResult.altImg}
+          actionLabel={notResult.action}
+          description={notResult.alt}
+          joke={notResult.joke}
+          key={1}
+        />
+        </>
+        )}
+         
+        {qtdPosts > 0 && (
+          content?.map((con, indexCon)=>(
+            <>
+              <div key={indexCon} className={`${styles.patterns} ${styles[con.patternName]}` }>
             {con.slots.map((post, indexPost) => {
               if(post.content.kind ==="post"){
               return(
@@ -118,11 +151,20 @@ if(search||category||sort){
             })}
                     
               
-          </div>
-
-        )))
-        
-      }
+              </div>
+            </>
+        )))}
+        {/* 3. ADICIONAL: Se tiver posts, mas forem MENOS que 5, o FewResults aparece LOGO ABAIXO dos posts */}
+    {qtdPosts > 0 && qtdPosts < 5 && (
+      <FewResults 
+          imageSrc={fewResult.image}
+          imageAlt={fewResult.altImg}
+          actionLabel={fewResult.action}
+          description={fewResult.alt}
+          joke={fewResult.joke}
+          key={1}
+        />
+    )}
         
 
     </div>
