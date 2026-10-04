@@ -148,3 +148,20 @@
       "desc action";
   }
 }
+
+@media (max-width: 420px) {
+  .fewResultsGrid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "img"
+      "img"
+      "joke"
+      "desc"
+      "action";
+  }
+
+  .actionButton {
+    min-height: 90px;
+  }
+}

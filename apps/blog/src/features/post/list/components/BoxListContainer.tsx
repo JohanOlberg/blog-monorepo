@@ -71,7 +71,16 @@ if(search||category||sort){
   
   
   return (
-    <div className={styles["box-grid"]}>
+    <div
+  className={`
+    ${styles["box-grid"]}
+    ${
+      isFiltered
+        ? styles["box-grid--content"]
+        : styles["box-grid--home"]
+    }
+  `}
+>
       {isFiltered ? (
         
         <div className={`${styles.patterns} ${styles[`pattern-b`]}` } style={{"flex-shrink":0} as React.CSSProperties}>

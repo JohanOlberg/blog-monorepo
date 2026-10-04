@@ -38,9 +38,18 @@
   color: var(--text);
 
   background: var(--bg);
+  font-family: var(--font-content);
 }
 
-
+.heroTitle,
+.introLead,
+.manifestoTitle,
+.architectureIntro,
+.story h3,
+.dedicationContent h2,
+.end h2 {
+  font-family: var(--font-heading);
+}
 /* ================================================== */
 /* HERO */
 /* ================================================== */
@@ -281,7 +290,7 @@
 .endEyebrow {
   display: block;
 
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   font-size: 0.78rem;
 
@@ -550,7 +559,7 @@
   top: 1.8rem;
   right: 1.8rem;
 
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   font-size: 0.85rem;
 
@@ -569,7 +578,7 @@
 
   margin-bottom: 0.4rem;
 
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   font-size: 0.8rem;
 
@@ -842,7 +851,7 @@
 
 
 .flowCard span {
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   color: var(--muted);
 }
@@ -1163,7 +1172,7 @@
 
 
 .signature > span {
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   font-size:
     clamp(
@@ -1179,7 +1188,7 @@
 
 
 .signature small {
-  font-family: monospace;
+  font-family: var(--font-mono);
 
   letter-spacing: 0.14em;
 

@@ -62,3 +62,23 @@
   grid-template-areas:
     "box-1 box-2 box-3 box-3";
 }
+
+@media (max-width: 600px) {
+  .searchBentoMessage {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    grid-template-areas: none;
+  }
+
+  .box1,
+  .box2,
+  .box3,
+  .box4 {
+    grid-area: auto;
+  }
+
+  .searchBentoMessage > :only-child {
+    grid-column: 1 / -1;
+  }
+}

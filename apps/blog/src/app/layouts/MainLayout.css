@@ -1,4 +1,23 @@
-@import url('https://googleapis.com');
+@import url(
+  "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+);
+
+:root {
+  --font-heading:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  --font-content:
+    "Quicksand",
+    system-ui,
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    monospace;
+}
+
 html,
 body,
 #root {
@@ -7,26 +26,7 @@ body,
 }
 
 body {
-   background: #0b0b0d;
-}
+  background: #0b0b0d;
 
-* {
-  box-sizing: border-box;
-}
-
-.blog-layout {
-  min-height: 100vh;
-  background: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-}
-
-.main {
-  flex: 1;
-}
-
-.blog-layout__content {
-  width: 100%;
-  min-height: 100vh;
+  font-family: var(--font-content);
 }

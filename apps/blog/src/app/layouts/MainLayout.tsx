@@ -10,9 +10,9 @@ export default function MainLayout() {
     location.search === "";
 
   return (
-    <div className="layout">
+    <div className="blog-layout">
       <main className="main">
-        <div className="content">
+        <div className="blog-layout__content">
           <Outlet />          
         </div>
         

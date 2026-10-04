@@ -3,8 +3,8 @@ import { PatternFactory } from "../factory/patternFactory.js";
 import type { ItemPattern, Pattern, PostSlot, PatternGroup, kindOfPatterns} from "../model/pattern.js"
 import type { PostListItem } from "../model/public-post-summary.js";
 
-let navUsed: number = 3
-let logoUsed: number = 3
+let navUsed: number = 4
+let logoUsed: number = 4
 
 let usedPattern: Pattern[] = []
 // na PatternFactory, no return:
