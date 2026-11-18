@@ -32,8 +32,6 @@ const notResult = useMemo(() => {
   return notResultsPieces[Math.floor(Math.random() * notResultsPieces.length)];
 }, []);
     
-  
-  
 
 const search = searchParams.get("search")
 const category = searchParams.get("category") || null
@@ -42,10 +40,9 @@ let isFiltered = false
 
 if(search||category||sort){
   isFiltered = true
-  console.log(isFiltered)
 }
 
-  const {data:posts} = usePosts({search,category,sort})
+  const {data:posts, isLoading} = usePosts({search,category,sort})
   let qtdPosts  = 0
   type CategoryInfo = {
     title: string | null;
@@ -81,7 +78,9 @@ if(search||category||sort){
     }
   `}
 >
-      {isFiltered ? (
+      {
+      isLoading ? <p>Loading</p>
+      : isFiltered ? (
         
         <div className={`${styles.patterns} ${styles[`pattern-b`]}` } style={{"flex-shrink":0} as React.CSSProperties}>
 
