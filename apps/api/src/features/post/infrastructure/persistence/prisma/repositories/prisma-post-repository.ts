@@ -1,9 +1,10 @@
 import { Post, NewPost } from "../../../../domain/entities/post.js";
 import { type IPostRepository } from "../../../../domain/repositories/IPostRepository.js";
-import { toPrismaCreate, toDomain, toPrismaUpdate, toPostListOutput, toPostDetailsOutput, toPostListPublishedOutput, toPostItemDetailsOutput } from "../mappers/prisma-post-mapper.js";
+import { toPrismaCreate, toDomain, toPrismaUpdate, toPostListOutput, 
+    toPostDetailsOutput, toPostListPublishedOutput, toPostItemDetailsOutput } from "../mappers/prisma-post-mapper.js";
 import { prisma } from "../../../../../../shared/infrastructure/database/prisma/prisma-client.js";
 import type { PostDetailPublishedOutput, PostDetailsOutput, PostListOutput, PostListPublishedOutput } from "../../../../application/dto/post.output.js";
-import type { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client"; 
 import {type PostsFilters} from "../../../../domain/value-objects/post-params-filter.js"
 
  export class PrismaPostRepository implements IPostRepository{

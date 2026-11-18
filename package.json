@@ -1,32 +1,33 @@
 {
-    "name": "blog-monorepo",
-    "workspaces": [
-        "apps/*",
-        "packages/*"
-    ],
-    "private": true,
-    "version": "0.0.0",
-    "packageManager": "npm@11.6.2",
-    "type": "module",
-    "author": {
-        "name": "Johan",
-        "email": "jolberg882@gmail.com"
-    },
-    "scripts": {
-        "dev": "turbo run dev",
-        "build": "turbo run build",
-        "lint": "turbo run lint",
-        "test": "turbo run test"
-    },
-    "devDependencies": {
-        "ts-node": "^10.9.2",
-        "tsx": "^4.21.0",
-        "turbo": "2.8.11",
-        "typescript": "^5.9.3"
-    },
-    "dependencies": {
-        "react-router-dom": "^7.13.1",
-        "zod": "^4.3.6",
-        "zustand": "^5.0.11"
-    }
+  "name": "blog-monorepo",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "npm@11.6.2",
+  "type": "module",
+  "author": {
+    "name": "Johan",
+    "email": "jolberg882@gmail.com"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "turbo": "2.8.11",
+    "typescript": "~6.0.3"
+  },
+  "dependencies": {
+    "expo": "^58.0.0",
+    "react-router-dom": "^7.13.1",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.11"
+  }
 }

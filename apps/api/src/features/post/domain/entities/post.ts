@@ -48,7 +48,7 @@ export class NewPost{
         if(!newPost.categoryId ){
             throw new CategoryRequiredError();
         }
-        if(newPost.title.length <= 10 || newPost.title.length > 30){
+        if(newPost.title.length <= 10 || newPost.title.length > 50){
             throw new TitleLengthError();
         }
         if(!newPost.authorId){
@@ -57,7 +57,7 @@ export class NewPost{
          if(!newPost.description || newPost.description.trim() ===""){
             throw new DescriptionRequiredError();
         }
-        if(newPost.description.length <= 30 || newPost.description.length > 100){
+        if(newPost.description.length <= 30 || newPost.description.length > 120){
             throw new DescriptionLengthError();
         }
         if(!newPost.slug || newPost.slug.trim() === ""){
@@ -124,10 +124,10 @@ private constructor(private readonly props:PostProps){}
         if(!this.props.title || this.props.title.trim() === ""){
             throw new TitleRequiredError();
         }
-        if(this.props.title.length <= 10 || this.props.title.length >= 31){
+        if(this.props.title.length <= 10 || this.props.title.length >= 50){
             throw new TitleLengthError();
         }
-        if(this.props.description.length <= 30 || this.props.description.length > 100){
+        if(this.props.description.length <= 30 || this.props.description.length > 120){
             throw new DescriptionLengthError();
         }
         if(!this.props.slug || this.props.slug.trim() === ""){
@@ -186,10 +186,10 @@ private constructor(private readonly props:PostProps){}
         if(!post.title || post.title.trim() === ""){
             throw new TitleRequiredError();
         }
-        if(post.title.length <= 10 || post.title.length > 30){
+        if(post.title.length <= 10 || post.title.length > 50){
             throw new TitleLengthError();
         }
-        if(post.description.length <= 30 || post.description.length > 100){
+        if(post.description.length <= 30 || post.description.length > 120){
             throw new DescriptionLengthError();
         }
         if(!post.slug || post.slug.trim() === ""){

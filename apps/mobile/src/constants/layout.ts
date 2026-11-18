@@ -1,0 +1,6 @@
+export const LAYOUT = {
+  HEADER_OVERLAP: 16,
+  HEADER_RADIUS: 26,
+  CONTENT_PADDING: 12,
+  TABLET_BREAKPOINT: 768,
+} as const;
