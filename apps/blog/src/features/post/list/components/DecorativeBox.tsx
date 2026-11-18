@@ -1,17 +1,9 @@
 import type { ReactNode } from "react";
 import "./DecorativeBox.css";
 
-type DecorativeTone =
-  | "violet"
-  | "magenta"
-  | "olive"
-  | "lavender";
+type DecorativeTone = "violet" | "magenta" | "olive" | "lavender";
 
-  type DecorativeVariant =
-  | "a"
-  | "b"
-  | "c"
-  | "d";
+type DecorativeVariant = "a" | "b" | "c" | "d";
 
 type DecorativeBoxProps = {
   children?: ReactNode;
@@ -19,7 +11,7 @@ type DecorativeBoxProps = {
   tone?: DecorativeTone;
   showDots?: boolean;
   showShapes?: boolean;
-  decorativeVariant?:DecorativeVariant;
+  decorativeVariant?: DecorativeVariant;
 };
 
 export function DecorativeBox({
@@ -46,13 +38,9 @@ export function DecorativeBox({
         </>
       )}
 
-      {showDots && (
-        <span className="decorative-box__dots" />
-      )}
+      {showDots && <span className="decorative-box__dots" />}
 
-      <div className="decorative-box__content">
-        {children}
-      </div>
+      <div className="decorative-box__content">{children}</div>
     </section>
   );
 }
