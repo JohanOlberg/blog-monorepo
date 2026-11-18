@@ -60,7 +60,7 @@ function generateFirstLine() {
     remainingColumns -= columnSpan;
   }
 
-  const messageWords = "meu teste de array".split(" ");
+  const messageWords = "No results were found".split(" ");
 
   const textSegments: string[] = [];
   let currentWordIndex = 0;
