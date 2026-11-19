@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import styles from "./SearchInfoBox.module.css";
 
 type CategoryInfo = {
@@ -73,6 +74,7 @@ export function SearchInfoBox({
               </span>
             )}
           </div>
+          <Link className={styles.clearFilters} to="/">Clear all filters</Link>
         </div>
       </div>
     </section>

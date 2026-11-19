@@ -5,7 +5,8 @@ import { useCategories } from "../hooks/useCategories";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { CSSProperties } from "react";
 import type { SubmitEvent } from "react";
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { withSearch } from "../model/search-params";
 type NavBoxProps = {
   homeHref?: string;
   aboutHref?: string;
@@ -21,35 +22,60 @@ export function NavBox({
   aboutHref = "/about",
   latestHref = "/?sort=latest",
    className,
-  
+
 }: NavBoxProps) {
-  const [searchValue, setSearchValue] = useState("")
   const {data:categories} = useCategories()
   const [view, setView] = useState<"navigation" | "categories">("navigation");
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams();
-  
-  
+  const appliedSearch = searchParams.get("search") ?? "";
+  const categoriesId = useId();
+  const categoriesButton = useRef<HTMLButtonElement>(null);
+  const backButton = useRef<HTMLButtonElement>(null);
+
+  const previousView = useRef(view);
+  useEffect(() => {
+    if (view === "categories") {
+      backButton.current?.focus({ preventScroll: true });
+    } else if (previousView.current === "categories") {
+      categoriesButton.current?.focus({ preventScroll: true });
+    }
+    previousView.current = view;
+  }, [view]);
+
+  function closeCategories() {
+    setView("navigation");
+  }
+
+  function showResults(params: URLSearchParams) {
+    const query = params.toString();
+    navigate(query ? `/?${query}` : "/");
+  }
+
+  function clearSearch() {
+    showResults(withSearch(returnPathFilter(), ""));
+  }
+
+
   function returnPathFilter(){
     let params = new URLSearchParams()
     setView("navigation")
     if(location.pathname==="/"){
       params = new URLSearchParams(searchParams)
-      
+
     }
     return params
   }
   function handleCategorieFilter(slug:string){
     const params = returnPathFilter()
     params.set("category",slug)
-    return navigate(`/?${params}`)    
+    return navigate(`/?${params}`)
   }
   function handleSearchFilter(e: SubmitEvent<HTMLFormElement>){
     e.preventDefault()
-    const params = returnPathFilter()
-    params.set("search",searchValue)
-    return navigate(`/?${params}`)    
+    const value = new FormData(e.currentTarget).get("search");
+    showResults(withSearch(returnPathFilter(), String(value ?? "")));
   }
 
 
@@ -61,6 +87,9 @@ export function NavBox({
     .filter(Boolean)
     .join(" ")}
   aria-label="Main navigation"
+  onKeyDown={(event) => {
+    if (event.key === "Escape" && view === "categories") closeCategories();
+  }}
 >
       <div className={styles.glow} />
 
@@ -81,6 +110,8 @@ export function NavBox({
               styles.navScreen,
               styles.navigationScreen,
             ].join(" ")}
+            inert={view !== "navigation"}
+            aria-hidden={view !== "navigation"}
           >
             <div className={styles.navigation}>
               {/* todo o conteúdo atual da navigation */}
@@ -99,7 +130,7 @@ export function NavBox({
         <span className={styles.separator} />
 
         {/* ABOUT */}
-        <a href={aboutHref} className={styles.navigationItem}>
+        <Link to={aboutHref} className={styles.navigationItem}>
           <span className={styles.icon} aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="9" />
@@ -109,7 +140,7 @@ export function NavBox({
           </span>
 
           <span className={styles.label}>About</span>
-        </a>
+        </Link>
 
         <span className={styles.separator} />
 
@@ -118,6 +149,9 @@ export function NavBox({
           type="button"
           className={styles.navigationItem}
           onClick={() => {setView("categories")}}
+          ref={categoriesButton}
+          aria-expanded={view === "categories"}
+          aria-controls={categoriesId}
         >
           <span className={styles.icon} aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -131,13 +165,13 @@ export function NavBox({
             Categories
           </span>
         </button>
-          
+
 
 
         <span className={styles.separator} />
 
         {/* LATEST */}
-        <a href={latestHref} className={styles.navigationItem}>
+        <Link to={latestHref} className={styles.navigationItem}>
           <span className={styles.icon} aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="9" />
@@ -146,7 +180,7 @@ export function NavBox({
           </span>
 
           <span className={styles.label}>Latest</span>
-        </a>
+        </Link>
               {/* Categories continua sendo button */}
             </div>
 
@@ -159,9 +193,15 @@ export function NavBox({
           name="search"
           placeholder="Search articles..."
           aria-label="Search articles"
-          onChange={(event) => setSearchValue(event.target.value)}
+          key={`${location.key}:${appliedSearch}`}
+          defaultValue={appliedSearch}
         />
 
+        {appliedSearch && (
+          <button type="button" onClick={clearSearch} aria-label="Clear search" title="Clear search">
+            <span aria-hidden="true">×</span>
+          </button>
+        )}
         <button
           type="submit"
           aria-label="Search"
@@ -171,7 +211,7 @@ export function NavBox({
             </form>
           </div>
 {
-  
+
 }
           {/* TELA 2 - CATEGORIES */}
           <div
@@ -179,14 +219,16 @@ export function NavBox({
               styles.navScreen,
               styles.categoriesScreen,
             ].join(" ")}
+            id={categoriesId}
+            inert={view !== "categories"}
+            aria-hidden={view !== "categories"}
           >
             <div className={styles.categoriesHeader}>
               <button
                 type="button"
                 className={styles.backButton}
-                onClick={() =>
-                  {setView("navigation") }
-                }
+                ref={backButton}
+                onClick={closeCategories}
               >
                 ← Categories
               </button>
@@ -225,7 +267,7 @@ function IconSearch() {
   return (
     <svg viewBox="0 0 24 24" width="100" height="100">
   <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" fill="none" />
-  
+
   <path d="M 15.6 15.6 L 23 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
 </svg>
   );
