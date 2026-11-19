@@ -12,7 +12,7 @@ import type React from "react";
 import { FewResults } from "./FewResultsBento";
 import { fewResultsPieces, notResultsPieces } from "../model/ResultsPieces";
 import { useMemo } from "react";
-import { Skeleton } from "../../../../shared/components/skeleton";
+import { Skeleton } from "../../../../shared/components/Skeleton";
 
 export function BoxListContainer() {
   const [searchParams] = useSearchParams();
