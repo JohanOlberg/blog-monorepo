@@ -2,6 +2,7 @@ import styles from "./About.module.css";
 
 import heroImage from "../../../assets/logos/archtype-hero-banner.webp";
 import { aboutContent } from "./AboutContent";
+import { NavBox } from "../../navigation/components/NavBox";
 
 type SectionNumberProps = {
   number: string;
@@ -33,6 +34,10 @@ export function About() {
 
   return (
     <main className={styles.about}>
+      <div className={styles.navigationSlot}>
+        <NavBox className={styles.navigation} />
+      </div>
+
       {/* ================================================== */}
       {/* HERO */}
       {/* IMAGEM + TITLE SÃO A MESMA COMPOSIÇÃO */}
