@@ -29,11 +29,11 @@
 
 .bento-skeleton__item {
   border-radius: 12px;
-  background-color: #82806a;
+  background-color: #969694;
 }
 
 .bento-skeleton__item:nth-child(even) {
-  background-color: #686672;
+  background-color: #a6a5a9;
 }
 
 @keyframes bento-skeleton-pulse {

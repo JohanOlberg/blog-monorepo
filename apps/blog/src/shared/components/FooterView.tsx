@@ -103,16 +103,20 @@ export function FooterView({ post }: FooterViewProps) {
 
           <div className="site-footer__links">
             <a
-              href="YOUR_GITHUB_URL"
+              href="https://github.com/JohanOlberg/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>
 
-            <span className="site-footer__muted">
-              LinkedIn soon
-            </span>
+            <a
+              href="https://www.linkedin.com/in/johan-olberg/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </DecorativeBox>
