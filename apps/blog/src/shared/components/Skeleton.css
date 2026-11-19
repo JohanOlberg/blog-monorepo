@@ -1,0 +1,49 @@
+
+.bento-skeleton {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(5, 120px);
+  gap: 16px;
+  width: 100%;
+}
+
+.bento-skeleton__item {
+  border-radius: 12px;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.bento-skeleton__item--dark {
+  background: #d1d5db;
+}
+
+.bento-skeleton__item--medium {
+  background: #e5e7eb;
+}
+
+.bento-skeleton__item--light {
+  background: #f3f4f6;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-skeleton {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(10, 100px);
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-skeleton {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(20, 90px);
+  }
+}
