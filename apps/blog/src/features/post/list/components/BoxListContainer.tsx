@@ -39,7 +39,7 @@ export function BoxListContainer() {
     isFiltered = true;
   }
 
-  const { data: posts, isLoading } = usePosts({ search, category, sort });
+  const { data: posts, isLoading, isSuccess, isFetching } = usePosts({ search, category, sort });
   let qtdPosts = 0;
   type CategoryInfo = {
     title: string | null;
@@ -97,13 +97,13 @@ export function BoxListContainer() {
           </div>
         </div>
       ) : null}
-      {isLoading ? (
+      {isLoading || isFetching ? (
         <>
           <Skeleton></Skeleton>
         </>
       ) : (
         <>
-          {qtdPosts === 0 && (
+          {isSuccess && qtdPosts === 0 && (
             <>
               <NotFoundResults category={null} quantity={0} search={null} />
 
