@@ -14,6 +14,7 @@ import { fewResultsPieces, notResultsPieces } from "../model/ResultsPieces";
 import { useMemo } from "react";
 import { Skeleton } from "../../../../shared/components/Skeleton";
 import { PageState } from "../../../../shared/components/PageState";
+import { PageMetadata } from "../../../../shared/components/PageMetadata";
 
 export function BoxListContainer() {
   const [searchParams] = useSearchParams();
@@ -76,7 +77,25 @@ export function BoxListContainer() {
     );
   }
 
+  const searchTerm = search?.trim();
+  const pageTitle = searchTerm
+    ? `Search: ${searchTerm} | ArchType`
+    : sort === "latest"
+      ? "Latest articles | ArchType"
+      : category
+        ? "Articles by category | ArchType"
+        : "ArchType | Software, Frontend & Architecture";
+  const pageDescription = searchTerm
+    ? `Search ArchType articles for “${searchTerm}”. Explore ideas on software, frontend development and architecture.`
+    : sort === "latest"
+      ? "Read the latest ArchType articles on React, TypeScript, Node.js and software architecture."
+      : category
+        ? "Explore ArchType articles by category, from frontend and backend development to software architecture and UI/UX."
+        : "Ideas and lessons on React, TypeScript, Node.js, frontend development and software architecture.";
+
   return (
+    <>
+    <PageMetadata title={pageTitle} description={pageDescription} />
     <div
       className={`
     ${styles["box-grid"]}
@@ -203,5 +222,6 @@ export function BoxListContainer() {
         </>
       )}
     </div>
+    </>
   );
 }
