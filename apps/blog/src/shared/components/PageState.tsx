@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { NavBox } from "../../features/navigation/components/NavBox";
 import styles from "./PageState.module.css";
+import { PageMetadata } from "./PageMetadata";
 
 type PageStateProps = {
   kind: "loading" | "error" | "not-found";
@@ -19,6 +20,7 @@ export function PageState({
 }: PageStateProps) {
   return (
     <div className={styles.page}>
+      <PageMetadata title={`${title} | ArchType`} description={message} />
       <div className={styles.navigationSlot}>
         <NavBox className={styles.navigation} />
       </div>

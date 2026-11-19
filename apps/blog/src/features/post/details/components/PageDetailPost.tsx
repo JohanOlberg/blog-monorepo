@@ -21,6 +21,7 @@ import styles from "./PageDetailPost.module.css";
 import { NavBox } from "../../../navigation/components/NavBox";
 import { PageState } from "../../../../shared/components/PageState";
 import { isNotFoundError } from "../../../../shared/api/request-error";
+import { PageMetadata } from "../../../../shared/components/PageMetadata";
 
 type PostDetailProps = {
   /**
@@ -117,6 +118,7 @@ export function PostDetail({
       className={rootClassName}
       style={cssVariables}
     >
+      <PageMetadata title={`${post.title} | ArchType`} description={post.description} />
       {/* =================================
           NAVIGATION
       ================================= */}

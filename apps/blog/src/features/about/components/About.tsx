@@ -3,6 +3,7 @@ import styles from "./About.module.css";
 import heroImage from "../../../assets/logos/archtype-hero-banner.webp";
 import { aboutContent } from "./AboutContent";
 import { NavBox } from "../../navigation/components/NavBox";
+import { PageMetadata } from "../../../shared/components/PageMetadata";
 
 type SectionNumberProps = {
   number: string;
@@ -34,6 +35,10 @@ export function About() {
 
   return (
     <main className={styles.about}>
+      <PageMetadata
+        title="About | ArchType"
+        description="Discover the idea behind ArchType: a technology blog exploring software architecture, frontend development and layouts that break repetition."
+      />
       <div className={styles.navigationSlot}>
         <NavBox className={styles.navigation} />
       </div>
