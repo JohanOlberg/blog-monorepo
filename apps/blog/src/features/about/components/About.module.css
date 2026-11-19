@@ -41,6 +41,34 @@
   font-family: var(--font-content);
 }
 
+.navigationSlot {
+  width: calc(100% - 24px);
+  margin: 6px auto 12px;
+  border-radius: 18px;
+  container: about-navigation / inline-size;
+}
+
+.navigationSlot .navigation {
+  height: 88px;
+  --nav-padding-y: 6px;
+  --nav-padding-x: 18px;
+  --nav-navigation-height: 64px;
+  --nav-item-gap: 6px;
+  --nav-item-padding-y: 4px;
+  --nav-icon-size: 24px;
+  --nav-label-size: 14px;
+  --nav-logo-size: 54px;
+  --nav-search-height: 48px;
+  --nav-search-button-size: 38px;
+}
+
+/* Match NavBox's stacked layout, including its borders. */
+@container about-navigation (max-width: 762px) {
+  .navigationSlot .navigation {
+    height: 220px;
+  }
+}
+
 .heroTitle,
 .introLead,
 .manifestoTitle,
@@ -1278,6 +1306,16 @@
   /* ================================================= */
   /* HERO */
   /* ================================================= */
+
+  .hero {
+    grid-template-rows: auto auto;
+  }
+
+  .heroTitle {
+    grid-row: 2;
+    align-self: start;
+    padding-block: 1.5rem 0;
+  }
 
   .heroTitle h1 {
     width: 100%;
