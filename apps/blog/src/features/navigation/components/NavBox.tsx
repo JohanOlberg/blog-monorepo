@@ -7,6 +7,7 @@ import type { CSSProperties } from "react";
 import type { SubmitEvent } from "react";
 import { useEffect, useId, useRef, useState } from "react";
 import { withSearch } from "../model/search-params";
+import { routes } from "../../../app/router/routes";
 type NavBoxProps = {
   homeHref?: string;
   aboutHref?: string;
@@ -20,7 +21,7 @@ type NavBoxProps = {
 export function NavBox({
   homeHref = "/",
   aboutHref = "/about",
-  latestHref = "/?sort=latest",
+  latestHref = routes.latest,
    className,
 
 }: NavBoxProps) {

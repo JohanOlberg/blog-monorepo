@@ -13,6 +13,7 @@ import { FewResults } from "./FewResultsBento";
 import { fewResultsPieces, notResultsPieces } from "../model/ResultsPieces";
 import { useMemo } from "react";
 import { Skeleton } from "../../../../shared/components/Skeleton";
+import { PageState } from "../../../../shared/components/PageState";
 
 export function BoxListContainer() {
   const [searchParams] = useSearchParams();
@@ -39,7 +40,7 @@ export function BoxListContainer() {
     isFiltered = true;
   }
 
-  const { data: posts, isLoading, isSuccess, isFetching } = usePosts({ search, category, sort });
+  const { data: posts, isLoading, isSuccess, isFetching, isError, refetch } = usePosts({ search, category, sort });
   let qtdPosts = 0;
   type CategoryInfo = {
     title: string | null;
@@ -61,6 +62,18 @@ export function BoxListContainer() {
             color: null,
           },
         ];
+  }
+
+  if (isError) {
+    return (
+      <PageState
+        kind="error"
+        title="We couldn't load the articles"
+        message="Please try again. Your search and filters will be kept."
+        onRetry={() => { void refetch(); }}
+        isRetrying={isFetching}
+      />
+    );
   }
 
   return (

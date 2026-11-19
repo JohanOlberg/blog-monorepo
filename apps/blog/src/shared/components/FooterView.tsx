@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { routes } from "../../app/router/routes";
 
 import { PostCard } from "../../features/post/list/components/PostCard";
 import { DecorativeBox } from "../../features/post/list/components/DecorativeBox";
@@ -139,7 +140,7 @@ export function FooterView({ post }: FooterViewProps) {
               About
             </Link>
 
-            <Link to="/latest">
+            <Link to={routes.latest}>
               Latest
             </Link>
           </div>
