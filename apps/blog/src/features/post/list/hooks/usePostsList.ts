@@ -3,7 +3,7 @@ import { getPostsList } from "../api/get-posts-list-api";
 import type{  PostListItem, PostsFilters } from "../model/public-post-summary";
  
 export function usePosts ({search,category,sort}:PostsFilters){
-  const { data, isLoading, isError, error, isSuccess, isFetching } = useQuery<PostListItem[]>({
+  const { data, isLoading, isError, error, isSuccess, isFetching, refetch } = useQuery<PostListItem[]>({
     queryKey: ["posts",search,category,sort],
     queryFn: () => getPostsList({ search, category, sort }),
     staleTime: 1000 * 60 * 5, 
@@ -11,5 +11,5 @@ export function usePosts ({search,category,sort}:PostsFilters){
     refetchOnWindowFocus: false, 
     
 });
-    return { data, isLoading, isError, error, isSuccess, isFetching }
+    return { data, isLoading, isError, error, isSuccess, isFetching, refetch }
 }

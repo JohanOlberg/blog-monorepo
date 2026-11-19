@@ -19,6 +19,8 @@ import { usePostsBySlug } from "../hooks/usePostBySlug";
 
 import styles from "./PageDetailPost.module.css";
 import { NavBox } from "../../../navigation/components/NavBox";
+import { PageState } from "../../../../shared/components/PageState";
+import { isNotFoundError } from "../../../../shared/api/request-error";
 
 type PostDetailProps = {
   /**
@@ -51,24 +53,45 @@ export function PostDetail({
 
   const {
     data: post,
+    isError,
+    error,
+    isSuccess,
+    isFetching,
+    refetch,
   } = usePostsBySlug(
     slug || null,
   );
 
-  if (!slug) {
+  if (!slug || (isError && isNotFoundError(error)) || (isSuccess && !post)) {
     return (
-      <div>
-        Post não encontrado
-      </div>
+      <PageState
+        kind="not-found"
+        title="Article not found"
+        message="This article may have been removed or its address may have changed. Explore the blog to find another article."
+      />
     );
   }
 
-  /*
-   * Se o hook tiver isLoading/error,
-   * depois podemos tratar isso melhor.
-   */
+  if (isError) {
+    return (
+      <PageState
+        kind="error"
+        title="We couldn't load this article"
+        message="There was a problem loading the article. Please try again."
+        onRetry={() => { void refetch(); }}
+        isRetrying={isFetching}
+      />
+    );
+  }
+
   if (!post) {
-    return null;
+    return (
+      <PageState
+        kind="loading"
+        title="Loading article…"
+        message="We're getting the article ready for you."
+      />
+    );
   }
 
   const rootClassName = [

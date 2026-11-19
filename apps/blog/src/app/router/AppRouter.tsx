@@ -1,4 +1,4 @@
-import {  Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
 
 import { BoxListContainer } from "../../features/post/list/components/BoxListContainer";
@@ -13,6 +13,7 @@ return (
         <Routes>
             <Route element={<MainLayout />}>
                 {<Route path={routes.home} element={<BoxListContainer/>} />}
+                <Route path="/latest" element={<Navigate to={routes.latest} replace />} />
                 <Route
                     path={routes.posts.detailPath}
                     element={<PostDetail />}
