@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { patternFirstLineComposition } from "../model/pattnersResult";
 
 import bentoStyles from "../styles/ResultsBento.module.css";
@@ -103,7 +104,7 @@ export function NotFoundResults({
   search,
   quantity,
 }: NotFoundResultsProps) {
-  const firstLine = generateFirstLine();
+  const [firstLine] = useState(generateFirstLine);
 
   const uniquePatternItems =
     firstLine.patternItems?.filter(

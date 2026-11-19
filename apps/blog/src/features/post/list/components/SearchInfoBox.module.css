@@ -11,7 +11,7 @@
   padding: clamp(18px, 2cqw, 26px);
 
   border-radius: 16px;
-  overflow: hidden;
+  overflow: auto;
 
   background:
     linear-gradient(
@@ -206,4 +206,16 @@
   text-transform: uppercase;
 
   color: rgba(255, 255, 255, 0.58);
+}
+.clearFilters {
+  align-self: flex-start;
+  color: #fff;
+  font-family: var(--font-content);
+  font-size: 12px;
+  text-underline-offset: 3px;
+  padding: 6px 0;
+}
+.clearFilters:focus-visible {
+  outline: 2px solid #39c8ff;
+  outline-offset: 3px;
 }

@@ -105,12 +105,12 @@ export function BoxListContainer() {
         <>
           {isSuccess && qtdPosts === 0 && (
             <>
-              <NotFoundResults category={null} quantity={0} search={null} />
+              <NotFoundResults category={category} quantity={0} search={search} />
 
               <FewResults
                 imageSrc={notResult.image}
                 imageAlt={notResult.altImg}
-                actionLabel={notResult.action}
+                actionLabel="View all articles"
                 description={notResult.alt}
                 joke={notResult.joke}
                 key={1}
@@ -181,7 +181,7 @@ export function BoxListContainer() {
             <FewResults
               imageSrc={fewResult.image}
               imageAlt={fewResult.altImg}
-              actionLabel={fewResult.action}
+              actionLabel="View all articles"
               description={fewResult.alt}
               joke={fewResult.joke}
               key={1}

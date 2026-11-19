@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import type { CSSProperties } from "react";
 import bgImg from "../../../../assets/notFound/bgImg.webp"
 
@@ -13,6 +14,7 @@ type FewResultsProps = {
   joke?: string;
   description?: string;
   actionLabel?: string;
+  actionHref?: string;
 };
 
 const availableLayouts = Object.keys(
@@ -32,7 +34,8 @@ export function FewResults({
   imageAlt = "",
   joke = "Looks like the internet is having a quiet day.",
   description = "Try changing your search or explore something else.",
-  actionLabel = "Try again",
+  actionLabel = "View all articles",
+  actionHref = "/",
 }: FewResultsProps) {
   const [layout] = useState<LayoutType>(getRandomLayout);
 
@@ -78,19 +81,16 @@ export function FewResults({
           className={`${bentoStyles.box} ${styles.descriptionArea}`}
         >
           <p className={bentoStyles["results-bento__text"]}>
-            {description}
+            {description.trim() || "Explore all articles or try a different keyword."}
           </p>
         </div>
 
         <div
           className={`${bentoStyles.box} ${styles.actionArea}`}
         >
-          <button
-            type="button"
-            className={styles.actionButton}
-          >
-            {actionLabel}
-          </button>
+          <Link to={actionHref} className={styles.actionButton}>
+            {actionLabel.trim() || "View all articles"}
+          </Link>
         </div>
       </div>
     </div>
