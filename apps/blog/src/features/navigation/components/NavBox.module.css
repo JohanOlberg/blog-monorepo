@@ -281,6 +281,7 @@ margin-top: 3px;
 }
 .navBox {
     position: relative;
+  cursor: default;
 
   width: 100%;
   height: 100%;
@@ -687,6 +688,7 @@ margin-top: 3px;
 
 .search input {
   position: relative;
+  cursor: text;
 
   z-index: 1;
 
