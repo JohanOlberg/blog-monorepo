@@ -8,11 +8,11 @@ export default function MainLayout() {
   const topRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (location.hash === "#top") {
+    if (!location.hash || location.hash === "#top") {
       topRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
-      topRef.current?.focus({ preventScroll: true });
+      if (location.hash === "#top") topRef.current?.focus({ preventScroll: true });
     }
-  }, [location.key, location.hash]);
+  }, [location.key, location.pathname, location.search, location.hash]);
 
   const isHome =
     location.pathname === "/" &&

@@ -25,6 +25,7 @@ const { About } = await server.ssrLoadModule('/src/features/about/components/Abo
 const { PostDetail } = await server.ssrLoadModule('/src/features/post/details/components/PageDetailPost.tsx');
 const { BoxListContainer } = await server.ssrLoadModule('/src/features/post/list/components/BoxListContainer.tsx');
 const { NotFoundPage } = await server.ssrLoadModule('/src/pages/NotFoundPage/NotFoundPage.tsx');
+const { ComposeLayout } = await server.ssrLoadModule('/src/features/post/list/compose/composeLayout.ts');
 const h = React.createElement;
 const post = {
   id: '1', slug: 'accessible-article', title: 'Accessible article', description: 'An article summary.',
@@ -96,4 +97,28 @@ test('footer recommends another latest post but retains the only available post'
     assert.equal((markup.match(/href="\/posts\//g) || []).length, 1);
   }
   assert.ok(render(h(Footer), '/about', []).includes('Latest article coming soon.'));
+});
+
+
+test('returning home repeatedly never loses navigation, logo, or articles', () => {
+  const random = Math.random;
+  try {
+    // Cover the first and last factory candidates as well as varied layouts.
+    for (const choice of [0, 0.25, 0.5, 0.999]) {
+      Math.random = () => choice;
+      for (let count = 1; count <= 30; count++) {
+        const posts = Array.from({ length: count }, (_, i) => ({ ...post, id: i, slug: `post-${i}` }));
+        const initial = ComposeLayout(posts, false);
+        for (let visit = 0; visit < 5; visit++) {
+          ComposeLayout(posts, true); // Filtering must not affect the next home visit.
+          const layout = ComposeLayout(posts, false);
+          assert.deepEqual(layout, initial, `count=${count}, visit=${visit}, choice=${choice}`);
+          const slots = layout.flatMap(group => group.slots);
+          assert.ok(slots.some(slot => slot.content.kind === 'nav'));
+          assert.ok(slots.some(slot => slot.content.kind === 'logo'));
+          assert.deepEqual(slots.filter(slot => slot.content.kind === 'post').map(slot => slot.content.data.slug), posts.map(p => p.slug));
+        }
+      }
+    }
+  } finally { Math.random = random; }
 });
