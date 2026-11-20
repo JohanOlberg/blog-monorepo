@@ -18,6 +18,7 @@ const server = await createServer({
 after(() => server.close());
 const { PostCard } = await server.ssrLoadModule('/src/features/post/list/components/PostCard.tsx');
 const { LogoBox } = await server.ssrLoadModule('/src/features/post/list/components/LogoBox.tsx');
+const { Footer } = await server.ssrLoadModule('/src/shared/components/Footer.tsx');
 const { FooterView } = await server.ssrLoadModule('/src/shared/components/FooterView.tsx');
 const { default: MainLayout } = await server.ssrLoadModule('/src/app/layouts/MainLayout.tsx');
 const { About } = await server.ssrLoadModule('/src/features/about/components/About.tsx');
@@ -32,10 +33,10 @@ const post = {
   author: { name: 'Johan', bio: 'Author biography.' },
 };
 
-function render(element, pathname = '/') {
+function render(element, pathname = '/', footerPosts = [post]) {
   const client = new QueryClient();
   client.setQueryData(['categories'], []);
-  client.setQueryData(['posts', 'latest'], post);
+  client.setQueryData(['footer', 'latest-posts'], footerPosts);
   client.setQueryData(['posts', post.slug], post);
   client.setQueryData(['posts', null, null, null], []);
   try {
@@ -79,4 +80,20 @@ test('home, About, article, and not-found routes have one main and one h1', () =
     assert.ok(markup.includes('id="top"'), pathname);
     assert.ok(markup.includes('href="#main-content"'), pathname);
   }
+});
+
+
+test('footer recommends another latest post but retains the only available post', () => {
+  const older = { ...post, slug: 'older-article', title: 'Older article' };
+  for (const [pathname, posts, expected] of [
+    ['/posts/accessible-article', [post, older], 'older-article'],
+    ['/posts/older-article', [post, older], 'accessible-article'],
+    ['/about', [post, older], 'accessible-article'],
+    ['/posts/accessible-article', [post], 'accessible-article'],
+  ]) {
+    const markup = render(h(Footer), pathname, posts);
+    assert.ok(markup.includes(`href="/posts/${expected}"`), pathname);
+    assert.equal((markup.match(/href="\/posts\//g) || []).length, 1);
+  }
+  assert.ok(render(h(Footer), '/about', []).includes('Latest article coming soon.'));
 });
