@@ -3,29 +3,31 @@ import { PatternFactory } from "../factory/patternFactory.js";
 import type { ItemPattern, Pattern, PostSlot, PatternGroup, kindOfPatterns} from "../model/pattern.js"
 import type { PostListItem } from "../model/public-post-summary.js";
 
-let navUsed: number = 4
-let logoUsed: number = 4
+export function ComposeLayout(post:PostListItem[], excludeSpecial:boolean){
+// Composition state belongs to this layout, never to a previous route/render.
+let navUsed = 4;
+let logoUsed = 4;
+let logoInserted = false;
+let usedPattern: Pattern[] = [];
 
-let usedPattern: Pattern[] = []
-// na PatternFactory, no return:
-function validaPatterns(qntPosts: number, excludeSpecial:boolean): { patternName: Pattern; area: ItemPattern[], role: kindOfPatterns } {
- if(!excludeSpecial){
-  if (navUsed >= 3) {
-    navUsed = 0;
-    return PatternFactory(usedPattern.slice(-2), "NAV", qntPosts);
+function validaPatterns(qntPosts: number): { patternName: Pattern; area: ItemPattern[], role: kindOfPatterns } {
+  if (!excludeSpecial) {
+    if (navUsed >= 3) {
+      navUsed = 0;
+      // Leave one article for the first logo group, even with a short feed.
+      return PatternFactory(usedPattern.slice(-2), "NAV", logoInserted ? qntPosts : qntPosts - 1);
+    }
+    if (logoUsed >= 3) {
+      logoUsed = 0;
+      logoInserted = true;
+      return PatternFactory(usedPattern.slice(-2), "LOGO", qntPosts);
+    }
+    navUsed++;
+    logoUsed++;
   }
-  if (logoUsed >= 3) {
-    logoUsed = 0;
-    return PatternFactory(usedPattern.slice(-2), "LOGO", qntPosts);
-  }
-  navUsed++;
-  logoUsed++;
-}
   return PatternFactory(usedPattern.slice(-2), "POST", qntPosts);
 }
 
-export function ComposeLayout(post:PostListItem[], excludeSpecial:boolean){
-let usedPosts: PostListItem[] = []
 let  remainPosts: PostListItem[] = post;
 let patternGroup:PatternGroup[] =[]
 
@@ -33,7 +35,7 @@ while(remainPosts.length > 0){
 
 
     //retorno da factory, recebo o nome do patern e o record com as areas
-    const resultFactory = validaPatterns(remainPosts.length,excludeSpecial)
+    const resultFactory = validaPatterns(remainPosts.length)
 
     //insiro o pattern no historico
     usedPattern = [...usedPattern, resultFactory.patternName]
@@ -73,7 +75,6 @@ while(remainPosts.length > 0){
     }
     patternGroup= [...patternGroup,{patternName:resultFactory.patternName, slots:[...marrigedPosdPattern]}]
 
-    usedPosts = [...usedPosts, ...slicedPosts];
     remainPosts = remainPosts.slice(postAreas.length);
 
 
