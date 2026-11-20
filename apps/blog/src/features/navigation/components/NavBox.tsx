@@ -88,6 +88,7 @@ export function NavBox({
     .filter(Boolean)
     .join(" ")}
   aria-label="Main navigation"
+  data-view={view}
   onKeyDown={(event) => {
     if (event.key === "Escape" && view === "categories") closeCategories();
   }}
