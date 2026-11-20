@@ -96,6 +96,7 @@ export function BoxListContainer() {
   return (
     <>
     <PageMetadata title={pageTitle} description={pageDescription} />
+    <h1 className="sr-only">{searchTerm ? "Search results" : sort === "latest" ? "Latest articles" : "ArchType articles"}</h1>
     <div
       className={`
     ${styles["box-grid"]}

@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Link } from "react-router-dom";
 import styles from "./PostCard.module.css";
 
@@ -22,8 +23,9 @@ export function PostCard({
   publishedAt,
   category,
 }: PostCardProps) {
+  const titleId = useId();
   return (
-    <Link style={{"textDecoration":"none"}} to={`/posts/${slug}`}>
+    <Link className={styles.cardLink} to={`/posts/${slug}`} aria-labelledby={titleId}>
     <article
       className={styles["post-card"]}
       style={{
@@ -48,7 +50,7 @@ export function PostCard({
       </header>
 
       <div className={styles["post-card__content"]}>
-        <h2 className={styles["post-card__title"]}>
+        <h2 id={titleId} className={styles["post-card__title"]}>
           {title}
         </h2>
 
@@ -62,7 +64,7 @@ export function PostCard({
           By {author}
         </span>
 
-        <span className={styles["post-card__arrow"]}>
+        <span className={styles["post-card__arrow"]} aria-hidden="true">
           →
         </span>
       </footer>
