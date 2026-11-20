@@ -32,10 +32,6 @@ export function FooterView({ post }: FooterViewProps) {
       {/* POST - SEM DECORAÇÃO */}
       {post ? (
         <section className="site-footer__post">
-          <Link
-            to={`/posts/${post.slug}`}
-            className="site-footer__post-link"
-          >
             <div
               className="site-footer__post-box"
               style={{
@@ -54,7 +50,6 @@ export function FooterView({ post }: FooterViewProps) {
                 }}
               />
             </div>
-          </Link>
         </section>
       ) : (
         <section className="site-footer__post">
@@ -71,9 +66,9 @@ export function FooterView({ post }: FooterViewProps) {
         decorativeVariant="a"
       >
         <div className="site-footer__brand-inner">
-          <div className="site-footer__logo">
+          <Link to={`${routes.home}#top`} className="site-footer__logo" aria-label="ArchType — Home">
             &lt;t&gt;
-          </div>
+          </Link>
 
           <strong className="site-footer__brand-name">
             ArchType

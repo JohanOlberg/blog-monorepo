@@ -34,7 +34,7 @@ export function About() {
   } = aboutContent;
 
   return (
-    <main className={styles.about}>
+    <div className={styles.about}>
       <PageMetadata
         title="About | ArchType"
         description="Discover the idea behind ArchType: a technology blog exploring software architecture, frontend development and layouts that break repetition."
@@ -304,6 +304,6 @@ export function About() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
