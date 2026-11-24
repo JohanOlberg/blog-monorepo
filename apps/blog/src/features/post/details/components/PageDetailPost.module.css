@@ -277,6 +277,11 @@
   --nav-search-button-size: 38px;
 }
 
+/* Expand the category panel in normal flow without overlapping the article. */
+.fullNavSlot .detailNav[data-view="categories"] {
+  height: 220px;
+}
+
 /* NavBox stacks navigation and search when its inner width is at most 760px.
    Include its borders, and reserve room for the categories panel as well. */
 @container article-navigation (max-width: 762px) {

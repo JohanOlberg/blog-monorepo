@@ -18,7 +18,6 @@ import { PageMetadata } from "../../../../shared/components/PageMetadata";
 
 export function BoxListContainer() {
   const [searchParams] = useSearchParams();
-  let content: PatternGroup[] = [];
 
   const fewResult = useMemo(() => {
     return fewResultsPieces[
@@ -42,6 +41,10 @@ export function BoxListContainer() {
   }
 
   const { data: posts, isLoading, isSuccess, isFetching, isError, refetch } = usePosts({ search, category, sort });
+  const content: PatternGroup[] = useMemo(
+    () => posts?.length ? ComposeLayout(posts, isFiltered) : [],
+    [posts, isFiltered],
+  );
   let qtdPosts = 0;
   type CategoryInfo = {
     title: string | null;
@@ -50,7 +53,6 @@ export function BoxListContainer() {
   let categoryInfo: CategoryInfo[] = [];
 
   if (posts?.length) {
-    content = ComposeLayout(posts, isFiltered);
     qtdPosts = posts.length;
     categoryInfo = posts.length
       ? posts.map((post) => ({
@@ -96,6 +98,7 @@ export function BoxListContainer() {
   return (
     <>
     <PageMetadata title={pageTitle} description={pageDescription} />
+    <h1 className="sr-only">{searchTerm ? "Search results" : sort === "latest" ? "Latest articles" : "ArchType articles"}</h1>
     <div
       className={`
     ${styles["box-grid"]}

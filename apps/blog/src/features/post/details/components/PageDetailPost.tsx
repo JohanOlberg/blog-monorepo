@@ -114,7 +114,7 @@ export function PostDetail({
 
 
   return (
-    <main
+    <div
       className={rootClassName}
       style={cssVariables}
     >
@@ -369,7 +369,7 @@ export function PostDetail({
           </section>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

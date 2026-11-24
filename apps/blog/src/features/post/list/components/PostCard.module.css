@@ -1,3 +1,17 @@
+.cardLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.cardLink:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -4px;
+}
+
 .post-card {
   --card-padding: clamp(18px, 2cqw, 22px);
   font-family: var(--font-content);

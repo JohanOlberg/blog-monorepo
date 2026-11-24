@@ -46,14 +46,14 @@ export function LogoBox({ size = "standard"}: LogoProps) {
 const [theme] = useState(choiceThemes);
   
   return (
-    <div className={styles.wrapper}>
+    <a className={styles.wrapper} href="#top" aria-label="ArchType — Back to top">
       <img
       src={LOGO_SOURCES[size][theme]}
-      alt="ArchType"
+      alt=""
       className={styles.logo}
       loading="lazy"
       draggable={false}
     />
-    </div>
+    </a>
   );
 }

@@ -281,6 +281,7 @@ margin-top: 3px;
 }
 .navBox {
     position: relative;
+  cursor: default;
 
   width: 100%;
   height: 100%;
@@ -687,6 +688,7 @@ margin-top: 3px;
 
 .search input {
   position: relative;
+  cursor: text;
 
   z-index: 1;
 
@@ -853,7 +855,7 @@ height:
 
 .search button:focus-visible {
   outline: 2px solid white;
-  outline-offset: 2px;
+  outline-offset: -3px;
 }
 
 .home {
@@ -1158,4 +1160,14 @@ height:
   .search input::placeholder {
     font-size: 12px;
   }
+}
+.search:focus-within {
+  outline: 2px solid #1bdcff;
+  outline-offset: -2px;
+}
+
+.backButton:focus-visible {
+  outline: 2px solid #1bdcff;
+  outline-offset: 3px;
+  border-radius: 3px;
 }

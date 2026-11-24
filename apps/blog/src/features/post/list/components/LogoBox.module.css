@@ -1,4 +1,8 @@
 .wrapper {
+  display: block;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -41,4 +45,9 @@
   background-size: 5px 5px;
 
   opacity: 0.12;
+}
+
+.wrapper:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -4px;
 }
