@@ -13,6 +13,7 @@ import { UserSelector } from "../../user/ui/UserSelector";
 
 import { FeedbackMessage } from "../../../shared/ui/FeedbackMessage";
 import { getApiErrorMessage } from "../../../shared/api/getApiErrorMessage";
+import { createFormFromAuthor } from "../model/author-form";
 
 
 type AuthorPageMode =
@@ -36,16 +37,6 @@ const emptyAuthorForm: AuthorFormData = {
   status:"INACTIVE"
 };
 
-
-function createFormFromAuthor(author: Author): AuthorFormData {
-  return {
-    name: author.name,
-    bio: author.bio ?? "",
-    avatarUrl: author.avatarUrl ?? "",
-    userId: author.userId,
-    status: author.status
-  };
-}
 
 export function AuthorsPageContent({
   authors,
